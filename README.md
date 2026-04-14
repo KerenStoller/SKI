@@ -9,13 +9,15 @@ A simple project with a dummy backend and a dummy frontend. They don't talk to e
 
 ## Running the backend
 
+
 ```bash
 cd backend
 pip install -r requirements.txt
-uvicorn main:app --reload
+cd ..
+uvicorn backend.main:app --reload --port 8002
 ```
 
-Runs at http://localhost:8000
+Runs at http://localhost:8002
 
 ## Running the frontend
 
