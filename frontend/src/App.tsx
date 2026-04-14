@@ -35,7 +35,8 @@ function App() {
   ]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/health")
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:8002";
+    fetch(`${backendUrl}/health`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Backend is unavailable");
