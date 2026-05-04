@@ -21,11 +21,6 @@ app.add_middleware(
 app.include_router(grade.router, prefix="/api")
 
 
-@app.get("/")
-def root():
-    return {"message": "Hello World"}
-
-
 # Health check endpoint
 @app.get("/health")
 def health():
