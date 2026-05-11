@@ -1,5 +1,9 @@
 fastapi
 openai
+mistralai
+PyMuPDF
+Pillow
 uvicorn[standard]
 python-dotenv
+python-multipart
 pytest

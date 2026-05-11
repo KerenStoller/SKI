@@ -1,0 +1,192 @@
+[
+  {
+    "run": 1,
+    "ok": true,
+    "elapsed": 3.2533507347106934,
+    "grading": {
+      "final_score": 90,
+      "max_score": 100,
+      "rationale": "The student correctly implemented isSorted with correct loop bounds and comparison direction, returning false on the first out-of-order pair. The Team class meets all rubric requirements with private fields, constructor, and getters. The TeamManager class uses a private array with capacity check in addTeam, has a constructor, and uses getters properly. However, TeamManager is missing the required countTeamsWithMoreThan method, resulting in a 5-point deduction. The isValidPassword method correctly checks length, uppercase letters, and digits but misses the required lowercase letter check, resulting in a 5-point deduction.",
+      "deductions": [
+        {
+          "question_number": 3,
+          "reason": "Missing countTeamsWithMoreThan(int n) method; the student's answer does not include this method.",
+          "points": 5
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing check for at least one lowercase letter; the student's code only checks length, uppercase letters, and digits.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 2,
+    "ok": true,
+    "elapsed": 3.5438449382781982,
+    "grading": {
+      "final_score": 90,
+      "max_score": 100,
+      "rationale": "The student correctly implemented isSorted with proper iteration and comparison, so no deductions on Q1. The Team class in Q2 meets all rubric requirements with private fields, constructor, and getters, so no deductions. In Q3, the TeamManager class uses a private array with a constructor and addTeam method that checks capacity, but it is missing the required countTeamsWithMoreThan(int n) method, resulting in a 5-point deduction. Q4's isValidPassword method correctly checks length, uppercase, and digit presence but misses the required lowercase letter check, resulting in a 5-point deduction.",
+      "deductions": [
+        {
+          "question_number": 3,
+          "reason": "Missing countTeamsWithMoreThan(int n) method; student_answer does not include this method.",
+          "points": 5
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing check for at least one lowercase letter; student_answer does not check for lowercase letters anywhere.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 3,
+    "ok": true,
+    "elapsed": 2.7295539379119873,
+    "grading": {
+      "final_score": 95,
+      "max_score": 100,
+      "rationale": "The student correctly implemented isSorted with proper loop bounds and comparison direction, and correct return values. The Team class matches the rubric exactly. The TeamManager class has all required methods, uses a private array with capacity check in addTeam, and accesses team names via getter, so no deductions there. The isValidPassword method correctly checks length, uppercase, and digit, but misses the required lowercase letter check, so 5 points deducted.",
+      "deductions": [
+        {
+          "question_number": 4,
+          "reason": "Missing check for at least one lowercase letter; the student code only checks length, uppercase, and digit as shown in the loop and return statement.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 4,
+    "ok": true,
+    "elapsed": 3.0681512355804443,
+    "grading": {
+      "final_score": 95,
+      "max_score": 100,
+      "rationale": "The student correctly implemented the isSorted method with correct loop bounds and comparison direction, and correct return values. The Team class correctly declares private fields, constructor, and getters as required. The TeamManager class uses a private array with capacity check in addTeam, has a constructor, and required methods, though removeTeam and getTeamNames are extra but correct. The isValidPassword method correctly checks length, uppercase, and digit but misses the required check for at least one lowercase letter, resulting in a deduction.",
+      "deductions": [
+        {
+          "question_number": 4,
+          "reason": "Missing check for at least one lowercase letter; the student code only checks length, uppercase, and digit as seen in the student_answer: \"boolean hasUpper = false; boolean hasDigit = false; ... return hasUpper && hasDigit;\" with no lowercase check.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 5,
+    "ok": true,
+    "elapsed": 4.165639877319336,
+    "grading": {
+      "final_score": 95,
+      "max_score": 100,
+      "rationale": "The student correctly implemented isSorted with proper loop bounds and comparison direction, and correct return values. The Team class has all required private fields, constructor, and getters. The TeamManager class uses a private array with capacity check in addTeam, has the constructor, addTeam, and other required methods, and uses getters properly. The isValidPassword method checks length, uppercase letter, and digit but misses the required check for at least one lowercase letter, so 5 points are deducted for that missing check.",
+      "deductions": [
+        {
+          "question_number": 4,
+          "reason": "Missing check for at least one lowercase letter; the student code only checks length, uppercase letter, and digit but does not check for lowercase letters anywhere in the code.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 6,
+    "ok": true,
+    "elapsed": 3.620398759841919,
+    "grading": {
+      "final_score": 95,
+      "max_score": 100,
+      "rationale": "The student correctly implemented isSorted with proper loop bounds and comparison direction, returning false on the first out-of-order pair. The Team class correctly declares private fields, constructor, and getters as required. The TeamManager class uses a private array with capacity check in addTeam, has a constructor, and methods addTeam, removeTeam, and getTeamNames; all methods use getters properly. The isValidPassword method checks length, uppercase letter, and digit presence but misses the required check for at least one lowercase letter, resulting in a deduction.",
+      "deductions": [
+        {
+          "question_number": 4,
+          "reason": "Missing check for at least one lowercase letter; the student code only checks length, uppercase letter, and digit as seen in the code: no check for lowercase letters in the loop.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 7,
+    "ok": true,
+    "elapsed": 2.9208428859710693,
+    "grading": {
+      "final_score": 95,
+      "max_score": 100,
+      "rationale": "The student correctly implemented isSorted with proper iteration and comparison, so no deductions for Q1. The Team class in Q2 meets all rubric requirements with private fields, constructor, and getters, so no deductions. For Q3, the TeamManager uses a private array with capacity check in addTeam, has constructor, addTeam, and other methods, so no deductions. Q4 is missing the lowercase letter check required by the rubric, so 5 points are deducted.",
+      "deductions": [
+        {
+          "question_number": 4,
+          "reason": "Missing check for at least one lowercase letter; the student code only checks length, uppercase letters, and digits as shown in the code: \"boolean hasUpper = false; boolean hasDigit = false; ... return hasUpper && hasDigit;\" with no lowercase check.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 8,
+    "ok": true,
+    "elapsed": 3.332533121109009,
+    "grading": {
+      "final_score": 95,
+      "max_score": 100,
+      "rationale": "The student correctly implemented isSorted with correct loop bounds and comparison direction, returning false on the first out-of-order pair. The Team class correctly declares private fields, constructor, and getters. The TeamManager class uses a private array with capacity check in addTeam, has a constructor, and methods addTeam, removeTeam, and getTeamNames; no deduction for missing countTeamsWithMoreThan as it was not asked. The isValidPassword method correctly checks length, uppercase, and digit but misses the required lowercase letter check, resulting in a 5-point deduction.",
+      "deductions": [
+        {
+          "question_number": 4,
+          "reason": "Missing check for at least one lowercase letter; the student code only checks length, uppercase, and digit as seen in the code: \"boolean hasUpper = false; boolean hasDigit = false;\" and no hasLower variable or check.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 9,
+    "ok": true,
+    "elapsed": 10.5083646774292,
+    "grading": {
+      "final_score": 90,
+      "max_score": 100,
+      "rationale": "The student correctly implemented the isSorted method with correct loop bounds and comparison direction, and correct return values. The Team class fully meets the rubric requirements with private fields, constructor, and getters. The TeamManager class uses a private array with capacity check in addTeam, has a constructor, and uses getters properly, but is missing the required countTeamsWithMoreThan method, resulting in a deduction. The isValidPassword method correctly checks length, uppercase, and digit, but misses the required lowercase letter check, resulting in a deduction.",
+      "deductions": [
+        {
+          "question_number": 3,
+          "reason": "Missing countTeamsWithMoreThan(int n) method as required by the rubric; student_answer does not include such a method.",
+          "points": 5
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing check for at least one lowercase letter; student_answer only checks length, uppercase, and digit but not lowercase.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 10,
+    "ok": true,
+    "elapsed": 4.88651704788208,
+    "grading": {
+      "final_score": 90,
+      "max_score": 100,
+      "rationale": "The student correctly implemented isSorted with proper loop bounds and comparison direction, and correct return values. The Team class matches the rubric exactly with private fields, constructor, and getters. The TeamManager class uses a private array with capacity check in addTeam, has a constructor, and addTeam method; however, the rubric requires countTeamsWithMoreThan(int n), which is missing. The isValidPassword method checks length, uppercase, and digit but misses the lowercase letter check required by the rubric.",
+      "deductions": [
+        {
+          "question_number": 3,
+          "reason": "Missing countTeamsWithMoreThan(int n) method as required by the rubric; the student's answer does not include this method.",
+          "points": 5
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing check for at least one lowercase letter; the student's code only checks length, uppercase, and digit but not lowercase.",
+          "points": 5
+        }
+      ]
+    }
+  }
+]

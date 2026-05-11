@@ -2,76 +2,107 @@ import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import logo from "./assets/logo.png";
 
-type DeductionItem = {
-  id: number;
+type Deduction = {
+  question_number: number;
   reason: string;
   points: number;
 };
 
-type CommentItem = {
-  id: number;
-  text: string;
+type ExtractedQuestion = {
+  question_number: number;
+  question_text: string;
+  student_answer: string;
 };
+
+type GradingResult = {
+  final_score: number;
+  max_score: number;
+  rationale: string;
+  deductions: Deduction[];
+  extracted_questions: ExtractedQuestion[];
+};
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8002";
 
 function App() {
   const [health, setHealth] = useState<string | null>(null);
+  const [healthError, setHealthError] = useState<string | null>(null);
+
+  const [emptyExam, setEmptyExam] = useState<File | null>(null);
+  const [solvedExam, setSolvedExam] = useState<File | null>(null);
+  const [rubric, setRubric] = useState("");
+
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<GradingResult | null>(null);
 
-  const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [showDeductions, setShowDeductions] = useState(false);
-
-  const [finalScore] = useState<number>(87);
-
-  const [deductions] = useState<DeductionItem[]>([
-    { id: 1, reason: "Incomplete explanation in Question 1", points: 5 },
-    { id: 2, reason: "Missing detail in Question 3", points: 4 },
-    { id: 3, reason: "Minor mistake in Question 5", points: 4 },
-  ]);
-
-  const [comments] = useState<CommentItem[]>([
-    { id: 1, text: "Good direction in Question 1, but the explanation is incomplete." },
-    { id: 2, text: "Question 3 shows understanding, but the final answer is not fully developed." },
-    { id: 3, text: "Question 5 contains a small mistake that affects the final result." },
-  ]);
+  const [showOcr, setShowOcr] = useState(false);
 
   useEffect(() => {
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:8002";
-    fetch(`${backendUrl}/health`)
+    fetch(`${BACKEND_URL}/health`)
       .then((res) => {
-        if (!res.ok) {
-          throw new Error("Backend is unavailable");
-        }
-
+        if (!res.ok) throw new Error("Backend is unavailable");
         return res.json();
       })
       .then((data) => setHealth(data.status))
-      .catch((err) => setError(err.message));
+      .catch((err) => setHealthError(err.message));
   }, []);
 
-  const pdfUrl = useMemo(() => {
-    if (!pdfFile) {
-      return "";
+  const solvedPdfUrl = useMemo(() => {
+    if (!solvedExam) return "";
+    return URL.createObjectURL(solvedExam);
+  }, [solvedExam]);
+
+  const handleFileChange =
+    (setter: (file: File | null) => void) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      if (file.type !== "application/pdf") {
+        alert("Please upload a PDF file only.");
+        return;
+      }
+      setter(file);
+    };
+
+  const canSubmit =
+    !!emptyExam && !!solvedExam && rubric.trim().length > 0 && !loading;
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!canSubmit || !emptyExam || !solvedExam) return;
+
+    setLoading(true);
+    setError(null);
+    setResult(null);
+
+    const formData = new FormData();
+    formData.append("empty_exam", emptyExam);
+    formData.append("solved_exam", solvedExam);
+    formData.append("rubric", rubric);
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/grade`, {
+        method: "POST",
+        body: formData,
+      });
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        throw new Error(errBody.detail || `Request failed (${res.status})`);
+      }
+      const data: GradingResult = await res.json();
+      setResult(data);
+      setShowDeductions(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unknown error");
+    } finally {
+      setLoading(false);
     }
-
-    return URL.createObjectURL(pdfFile);
-  }, [pdfFile]);
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-
-    if (!file) {
-      return;
-    }
-
-    if (file.type !== "application/pdf") {
-      alert("Please upload a PDF file only.");
-      return;
-    }
-
-    setPdfFile(file);
   };
 
-  const totalDeduction = deductions.reduce((sum, item) => sum + item.points, 0);
+  const totalDeduction =
+    result?.deductions.reduce((sum, d) => sum + d.points, 0) ?? 0;
 
   return (
     <div className="page" dir="ltr">
@@ -91,7 +122,7 @@ function App() {
           <span className="status-label">Backend Status</span>
           {health ? (
             <span className="status-ok">{health}</span>
-          ) : error ? (
+          ) : healthError ? (
             <span className="status-error">Offline</span>
           ) : (
             <span className="status-loading">Checking...</span>
@@ -101,75 +132,124 @@ function App() {
 
       <main className="dashboard">
         <section className="left-column">
-          <div className="panel upload-panel">
+          <form className="panel upload-panel" onSubmit={handleSubmit}>
             <h2>Upload Exam</h2>
             <p className="panel-subtitle">
-              Upload a PDF exam file to preview it and display grading results.
+              Upload the blank and solved exam PDFs and provide a rubric.
             </p>
 
             <label className="upload-dropzone">
               <input
                 type="file"
                 accept="application/pdf"
-                onChange={handleFileChange}
+                onChange={handleFileChange(setEmptyExam)}
               />
-              <span className="upload-title">Choose PDF File</span>
-              <span className="upload-hint">Click here to upload your exam document</span>
+              <span className="upload-title">Empty Exam (PDF)</span>
+              <span className="upload-hint">
+                {emptyExam ? emptyExam.name : "Click to upload the blank exam"}
+              </span>
             </label>
 
-            {pdfFile && (
-              <div className="selected-file">
-                <span className="file-pill">PDF</span>
-                <span className="file-name">{pdfFile.name}</span>
-              </div>
-            )}
-          </div>
+            <label className="upload-dropzone">
+              <input
+                type="file"
+                accept="application/pdf"
+                onChange={handleFileChange(setSolvedExam)}
+              />
+              <span className="upload-title">Solved Exam (PDF)</span>
+              <span className="upload-hint">
+                {solvedExam ? solvedExam.name : "Click to upload the student's exam"}
+              </span>
+            </label>
+
+            <label className="rubric-field">
+              <span className="rubric-label">Rubric</span>
+              <textarea
+                className="rubric-textarea"
+                value={rubric}
+                onChange={(e) => setRubric(e.target.value)}
+                placeholder="Paste the grading rubric here..."
+                rows={6}
+              />
+            </label>
+
+            <button
+              type="submit"
+              className="main-button"
+              disabled={!canSubmit}
+            >
+              {loading ? "Grading..." : "Grade Exam"}
+            </button>
+
+            {error && <div className="error-banner">{error}</div>}
+          </form>
 
           <div className="panel score-panel">
             <div className="score-header">
               <div>
                 <h2>Final Grade</h2>
-                <p className="panel-subtitle">Overall result after automatic review</p>
+                <p className="panel-subtitle">
+                  {result
+                    ? `Score out of ${result.max_score}`
+                    : "Upload an exam and click Grade to see the result"}
+                </p>
               </div>
-              <div className="score-circle">{finalScore}</div>
+              <div className="score-circle">
+                {result ? result.final_score : "—"}
+              </div>
             </div>
 
-            <button
-              className="main-button"
-              onClick={() => setShowDeductions((prev) => !prev)}
-            >
-              {showDeductions ? "Hide Deductions" : "Show Deductions"}
-            </button>
+            {result && (
+              <>
+                <button
+                  type="button"
+                  className="main-button"
+                  onClick={() => setShowDeductions((prev) => !prev)}
+                >
+                  {showDeductions ? "Hide Deductions" : "Show Deductions"}
+                </button>
 
-            {showDeductions && (
-              <div className="deductions-card">
-                <div className="deductions-header">
-                  <h3>Score Deductions</h3>
-                  <span className="deductions-total">-{totalDeduction} pts</span>
-                </div>
-
-                <div className="deductions-list">
-                  {deductions.map((item) => (
-                    <div key={item.id} className="deduction-row">
-                      <span>{item.reason}</span>
-                      <strong>-{item.points}</strong>
+                {showDeductions && (
+                  <div className="deductions-card">
+                    <div className="deductions-header">
+                      <h3>Score Deductions</h3>
+                      <span className="deductions-total">
+                        -{totalDeduction} pts
+                      </span>
                     </div>
-                  ))}
-                </div>
-              </div>
+
+                    <div className="deductions-list">
+                      {result.deductions.length === 0 ? (
+                        <p>No deductions — full marks.</p>
+                      ) : (
+                        result.deductions.map((d, i) => (
+                          <div key={i} className="deduction-row">
+                            <span>
+                              <strong>Q{d.question_number}:</strong> {d.reason}
+                            </span>
+                            <strong>-{d.points}</strong>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                )}
+              </>
             )}
           </div>
 
           <div className="panel comments-panel">
             <h2>Teacher Notes</h2>
-            <p className="panel-subtitle">Feedback and comments for the student</p>
+            <p className="panel-subtitle">Overall feedback for the student</p>
 
             <div className="comments-list">
-              {comments.map((comment) => (
-                <div key={comment.id} className="comment-card">
-                  {comment.text}
+              {result ? (
+                <div className="comment-card">{result.rationale}</div>
+              ) : (
+                <div className="comment-card placeholder">
+                  Grading rationale will appear here after the exam is graded.
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </section>
@@ -180,27 +260,63 @@ function App() {
               <div>
                 <h2>Exam Preview</h2>
                 <p className="panel-subtitle">
-                  Uploaded exam will appear here in a readable preview window
+                  Preview of the student's solved exam
                 </p>
               </div>
             </div>
 
-            {!pdfFile ? (
+            {!solvedExam ? (
               <div className="empty-viewer">
                 <img src={logo} alt="AutoGrade" className="empty-logo" />
-                <h3>No PDF Uploaded Yet</h3>
-                <p>Upload an exam file to preview the document here.</p>
+                <h3>No Solved Exam Yet</h3>
+                <p>Upload the solved exam to preview it here.</p>
               </div>
             ) : (
               <div className="pdf-frame-wrapper">
                 <iframe
-                  title="Exam PDF Preview"
-                  src={pdfUrl}
+                  title="Solved Exam Preview"
+                  src={solvedPdfUrl}
                   className="pdf-frame"
                 />
               </div>
             )}
           </div>
+
+          {result && (
+            <div className="panel ocr-panel">
+              <div className="viewer-header">
+                <div>
+                  <h2>What the OCR Read</h2>
+                  <p className="panel-subtitle">
+                    Compare with the PDF above to verify the grading is based on the right text.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  className="main-button"
+                  onClick={() => setShowOcr((prev) => !prev)}
+                >
+                  {showOcr ? "Hide" : "Show"}
+                </button>
+              </div>
+
+              {showOcr && (
+                <div className="ocr-list">
+                  {result.extracted_questions.map((q) => (
+                    <div key={q.question_number} className="ocr-item">
+                      <h4>Question {q.question_number}</h4>
+                      <div className="ocr-label">Question (as read by OCR):</div>
+                      <pre className="ocr-text">{q.question_text || "(empty)"}</pre>
+                      <div className="ocr-label">Student's answer (as read by OCR):</div>
+                      <pre className="ocr-text">
+                        {q.student_answer || "(blank)"}
+                      </pre>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </section>
       </main>
     </div>

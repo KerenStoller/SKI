@@ -1,0 +1,34 @@
+The exam is out of 100 points, 25 points per question.
+
+Q1 — isSorted(int[] arr)
+- Must iterate over every adjacent pair in the array.
+- Must return false on the first out-of-order pair and true if the whole array is checked.
+- Deduct 5 if the loop bound is wrong (e.g., iterates only half the array, off-by-one).
+- Deduct 10 if the comparison direction is wrong (e.g., uses < instead of >).
+- Deduct 10 if return values are inverted or missing.
+
+Q2 — Team class
+- Must declare a private field for the team name (String).
+- Must declare a private field for the number of members (int).
+- Must have a constructor that initializes both fields from parameters.
+- Must have a public getTeamName() that returns the team name.
+- Deduct 5 per missing field, missing constructor, or missing getter.
+- Deduct 3 if fields are declared public instead of private.
+
+Q3 — TeamManager class
+- Must store teams in a private array or list of Team.
+- Must have a constructor that initializes the storage.
+- Must have addTeam(Team t) that adds a team to the storage.
+- Must have countTeamsWithMoreThan(int n) that returns the number of teams with strictly more than n members.
+- Deduct 5 per missing required method (constructor, addTeam, countTeamsWithMoreThan).
+- Deduct 5 if countTeamsWithMoreThan reads a private field of Team directly instead of going through a getter (encapsulation violation).
+- Deduct 3 if addTeam does not handle the storage being full (e.g., no capacity check on a fixed-size array). Do not deduct if an ArrayList / dynamic list is used.
+
+Q4 — isValidPassword(String pass)
+- Must check that the password length is at least 8.
+- Must check that the password contains at least one uppercase letter.
+- Must check that the password contains at least one lowercase letter.
+- Must check that the password contains at least one digit.
+- Deduct 5 per missing check.
+- Deduct 3 if the return value is inverted (e.g., returns true for invalid passwords) but all checks are present.
+- Minor stylistic issues (extra checks the rubric does not require, slight variable-name differences) are not deducted.

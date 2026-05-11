@@ -431,3 +431,120 @@ body,
     align-items: flex-start;
   }
 }
+.rubric-field {
+  display: flex;
+  flex-direction: column;
+  margin-top: 18px;
+}
+
+.rubric-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2e3849;
+  margin-bottom: 6px;
+}
+
+.rubric-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 120px;
+  color: #1f2937;
+}
+
+.rubric-textarea:focus {
+  outline: none;
+  border-color: rgba(79, 70, 229, 0.4);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.upload-panel .main-button {
+  margin-top: 18px;
+}
+
+.main-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.error-banner {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(220, 38, 38, 0.08);
+  color: #b91c1c;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.comment-card.placeholder {
+  opacity: 0.55;
+  font-style: italic;
+}
+
+.ocr-panel {
+  margin-top: 20px;
+}
+
+.ocr-panel .viewer-header {
+  margin-bottom: 0;
+}
+
+.ocr-panel .main-button {
+  width: auto;
+  padding: 8px 18px;
+  align-self: center;
+}
+
+.ocr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 18px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.ocr-item {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.ocr-item h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #2e3849;
+}
+
+.ocr-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #5b6478;
+  margin: 8px 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ocr-text {
+  margin: 0;
+  padding: 10px 12px;
+  background: rgba(15, 23, 42, 0.04);
+  border-radius: 8px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #1f2937;
+  max-height: 260px;
+  overflow-y: auto;
+}
