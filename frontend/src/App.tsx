@@ -39,9 +39,11 @@ function App() {
   const [showOcr, setShowOcr] = useState(false);
 
   useEffect(() => {
+    document.title = "AutoGrade";
+
     fetch(`${BACKEND_URL}/health`)
       .then((res) => {
-        if (!res.ok) throw new Error("Backend is unavailable");
+        if (!res.ok) throw new Error("השרת אינו זמין");
         return res.json();
       })
       .then((data) => setHealth(data.status))
@@ -59,7 +61,7 @@ function App() {
       const file = event.target.files?.[0];
       if (!file) return;
       if (file.type !== "application/pdf") {
-        alert("Please upload a PDF file only.");
+        alert("נא להעלות קובץ PDF בלבד.");
         return;
       }
       setter(file);
@@ -88,13 +90,13 @@ function App() {
       });
       if (!res.ok) {
         const errBody = await res.json().catch(() => ({}));
-        throw new Error(errBody.detail || `Request failed (${res.status})`);
+        throw new Error(errBody.detail || `הבקשה נכשלה (${res.status})`);
       }
       const data: GradingResult = await res.json();
       setResult(data);
       setShowDeductions(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Unknown error");
+      setError(err instanceof Error ? err.message : "שגיאה לא ידועה");
     } finally {
       setLoading(false);
     }
@@ -104,27 +106,27 @@ function App() {
     result?.deductions.reduce((sum, d) => sum + d.points, 0) ?? 0;
 
   return (
-    <div className="page" dir="ltr">
+    <div className="page" dir="rtl">
       <div className="background-shape background-shape-one"></div>
       <div className="background-shape background-shape-two"></div>
 
       <header className="topbar">
         <div className="brand">
-          <img src={logo} alt="AutoGrade Logo" className="brand-logo" />
+          <img src={logo} alt="לוגו AutoGrade" className="brand-logo" />
           <div className="brand-text">
             <h1>AutoGrade</h1>
-            <p>Smart grading, happy teaching</p>
+            <p>בדיקה חכמה, הוראה שמחה</p>
           </div>
         </div>
 
         <div className="status-badge">
-          <span className="status-label">Backend Status</span>
+          <span className="status-label">סטטוס השרת</span>
           {health ? (
             <span className="status-ok">{health}</span>
           ) : healthError ? (
-            <span className="status-error">Offline</span>
+            <span className="status-error">לא מחובר</span>
           ) : (
-            <span className="status-loading">Checking...</span>
+            <span className="status-loading">בודק...</span>
           )}
         </div>
       </header>
@@ -132,9 +134,9 @@ function App() {
       <main className="dashboard">
         <section className="left-column">
           <form className="panel upload-panel" onSubmit={handleSubmit}>
-            <h2>Upload Exam</h2>
+            <h2>העלאת מבחן</h2>
             <p className="panel-subtitle">
-              Upload the blank and solved exam PDFs and provide a rubric.
+              העלי את קובץ המבחן הריק ואת קובץ המבחן הפתור, והוסיפי מחוון בדיקה.
             </p>
 
             <label className="upload-dropzone">
@@ -143,9 +145,9 @@ function App() {
                 accept="application/pdf"
                 onChange={handleFileChange(setEmptyExam)}
               />
-              <span className="upload-title">Empty Exam (PDF)</span>
+              <span className="upload-title">מבחן ריק (PDF)</span>
               <span className="upload-hint">
-                {emptyExam ? emptyExam.name : "Click to upload the blank exam"}
+                {emptyExam ? emptyExam.name : "לחצי להעלאת המבחן הריק"}
               </span>
             </label>
 
@@ -155,19 +157,19 @@ function App() {
                 accept="application/pdf"
                 onChange={handleFileChange(setSolvedExam)}
               />
-              <span className="upload-title">Solved Exam (PDF)</span>
+              <span className="upload-title">מבחן פתור (PDF)</span>
               <span className="upload-hint">
-                {solvedExam ? solvedExam.name : "Click to upload the student's exam"}
+                {solvedExam ? solvedExam.name : "לחצי להעלאת המבחן של התלמיד/ה"}
               </span>
             </label>
 
             <label className="rubric-field">
-              <span className="rubric-label">Rubric</span>
+              <span className="rubric-label">מחוון בדיקה</span>
               <textarea
                 className="rubric-textarea"
                 value={rubric}
                 onChange={(e) => setRubric(e.target.value)}
-                placeholder="Paste the grading rubric here..."
+                placeholder="הדביקי כאן את מחוון הבדיקה..."
                 rows={6}
               />
             </label>
@@ -177,7 +179,7 @@ function App() {
               className="main-button"
               disabled={!canSubmit}
             >
-              {loading ? "Grading..." : "Grade Exam"}
+              {loading ? "בודק..." : "בדיקת מבחן"}
             </button>
 
             {error && <div className="error-banner">{error}</div>}
@@ -186,11 +188,11 @@ function App() {
           <div className="panel score-panel">
             <div className="score-header">
               <div>
-                <h2>Final Grade</h2>
+                <h2>ציון סופי</h2>
                 <p className="panel-subtitle">
                   {result
-                    ? `Score out of ${result.max_score}`
-                    : "Upload an exam and click Grade to see the result"}
+                    ? `ציון מתוך ${result.max_score}`
+                    : "העלי מבחן ולחצי על בדיקת מבחן כדי לראות את התוצאה"}
                 </p>
               </div>
               <div className="score-circle">
@@ -205,26 +207,26 @@ function App() {
                   className="main-button"
                   onClick={() => setShowDeductions((prev) => !prev)}
                 >
-                  {showDeductions ? "Hide Deductions" : "Show Deductions"}
+                  {showDeductions ? "הסתרת הורדות" : "הצגת הורדות"}
                 </button>
 
                 {showDeductions && (
                   <div className="deductions-card">
                     <div className="deductions-header">
-                      <h3>Score Deductions</h3>
+                      <h3>הורדות ניקוד</h3>
                       <span className="deductions-total">
-                        -{totalDeduction} pts
+                        -{totalDeduction} נק׳
                       </span>
                     </div>
 
                     <div className="deductions-list">
                       {result.deductions.length === 0 ? (
-                        <p>No deductions — full marks.</p>
+                        <p>אין הורדות — ניקוד מלא.</p>
                       ) : (
                         result.deductions.map((d, i) => (
                           <div key={i} className="deduction-row">
                             <span>
-                              <strong>Q{d.question_number}:</strong> {d.reason}
+                              <strong>שאלה {d.question_number}:</strong> {d.reason}
                             </span>
                             <strong>-{d.points}</strong>
                           </div>
@@ -238,15 +240,15 @@ function App() {
           </div>
 
           <div className="panel comments-panel">
-            <h2>Teacher Notes</h2>
-            <p className="panel-subtitle">Overall feedback for the student</p>
+            <h2>הערות למורה</h2>
+            <p className="panel-subtitle">משוב כללי לתלמיד/ה</p>
 
             <div className="comments-list">
               {result ? (
                 <div className="comment-card">{result.rationale}</div>
               ) : (
                 <div className="comment-card placeholder">
-                  Grading rationale will appear here after the exam is graded.
+                  נימוק הבדיקה יופיע כאן לאחר בדיקת המבחן.
                 </div>
               )}
             </div>
@@ -257,9 +259,9 @@ function App() {
           <div className="panel viewer-panel">
             <div className="viewer-header">
               <div>
-                <h2>Exam Preview</h2>
+                <h2>תצוגה מקדימה של המבחן</h2>
                 <p className="panel-subtitle">
-                  Preview of the student's solved exam
+                  תצוגה מקדימה של המבחן הפתור של התלמיד/ה
                 </p>
               </div>
             </div>
@@ -267,13 +269,13 @@ function App() {
             {!solvedExam ? (
               <div className="empty-viewer">
                 <img src={logo} alt="AutoGrade" className="empty-logo" />
-                <h3>No Solved Exam Yet</h3>
-                <p>Upload the solved exam to preview it here.</p>
+                <h3>עדיין לא הועלה מבחן פתור</h3>
+                <p>העלי את המבחן הפתור כדי לראות אותו כאן.</p>
               </div>
             ) : (
               <div className="pdf-frame-wrapper">
                 <iframe
-                  title="Solved Exam Preview"
+                  title="תצוגה מקדימה של מבחן פתור"
                   src={solvedPdfUrl}
                   className="pdf-frame"
                 />
@@ -285,9 +287,9 @@ function App() {
             <div className="panel ocr-panel">
               <div className="viewer-header">
                 <div>
-                  <h2>What the OCR Read</h2>
+                  <h2>מה ה־OCR זיהה</h2>
                   <p className="panel-subtitle">
-                    Compare with the PDF above to verify the grading is based on the right text.
+                    השווי מול ה־PDF למעלה כדי לוודא שהבדיקה מבוססת על הטקסט הנכון.
                   </p>
                 </div>
                 <button
@@ -295,22 +297,22 @@ function App() {
                   className="main-button"
                   onClick={() => setShowOcr((prev) => !prev)}
                 >
-                  {showOcr ? "Hide" : "Show"}
+                  {showOcr ? "הסתרה" : "הצגה"}
                 </button>
               </div>
 
               {showOcr && (
                 <div className="ocr-list">
                   <div className="ocr-item">
-                    <h4>Empty exam (questions)</h4>
+                    <h4>מבחן ריק (שאלות)</h4>
                     <pre className="ocr-text">
-                      {result.ocr_transcripts.questions_markdown || "(empty)"}
+                      {result.ocr_transcripts.questions_markdown || "(ריק)"}
                     </pre>
                   </div>
                   <div className="ocr-item">
-                    <h4>Solved exam (student answers)</h4>
+                    <h4>מבחן פתור (תשובות תלמיד/ה)</h4>
                     <pre className="ocr-text">
-                      {result.ocr_transcripts.answers_markdown || "(empty)"}
+                      {result.ocr_transcripts.answers_markdown || "(ריק)"}
                     </pre>
                   </div>
                 </div>
