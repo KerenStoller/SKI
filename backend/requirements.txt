@@ -1,8 +1,6 @@
 fastapi
 openai
-mistralai
-PyMuPDF
-Pillow
+mistralai>=2.0.0
 uvicorn[standard]
 python-dotenv
 python-multipart

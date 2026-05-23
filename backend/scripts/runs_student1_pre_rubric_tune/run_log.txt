@@ -1,0 +1,36 @@
+
+=== Phase A: end-to-end x10 (fresh OCR + fresh grading) ===
+  A 1: score= 53.0  deductions=9  t=25.0s
+  A 2: score= 59.0  deductions=9  t=12.3s
+  A 3: score= 55.0  deductions=10  t=15.3s
+  A 4: score= 56.0  deductions=7  t=11.9s
+  A 5: score= 44.0  deductions=9  t=12.0s
+  A 6: score= 54.0  deductions=8  t=12.8s
+  A 7: score= 58.0  deductions=8  t=12.2s
+  A 8: score= 56.0  deductions=7  t=10.4s
+  A 9: score= 44.0  deductions=8  t=10.5s
+  A10: score= 52.0  deductions=9  t=11.2s
+
+=== Phase B: grading-only x10 (OCR fixed to Phase A's first OK run) ===
+  B 1: score= 56.0  deductions=7  t=8.5s
+  B 2: score= 54.0  deductions=8  t=9.1s
+  B 3: score= 50.0  deductions=9  t=7.5s
+  B 4: score= 46.0  deductions=9  t=11.7s
+  B 5: score= 61.0  deductions=7  t=8.8s
+  B 6: score= 47.0  deductions=9  t=9.6s
+  B 7: score= 51.0  deductions=9  t=11.2s
+  B 8: score= 44.0  deductions=9  t=10.5s
+  B 9: score= 52.0  deductions=5  t=11.8s
+  B10: score= 46.0  deductions=4  t=6.9s
+
+=== Analysis ===
+  Phase A (end-to-end) scores: n=10 mean=53.10 stdev=5.24 min=44 max=59 range=15
+  Phase B (grading-only) scores: n=10 mean=50.70 stdev=5.27 min=44 max=61 range=17
+  Phase A OCR digests: 1 distinct shape(s) across 10 runs
+  Phase A distinct deduction signatures: 10
+  Phase B distinct deduction signatures: 10
+
+Verdict heuristic:
+  Grading alone explains most of the variance -> blame GRADING.
+
+Results saved to: /Users/kerenstoller/Documents/SKI/backend/scripts/runs_student1

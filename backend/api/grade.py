@@ -4,7 +4,7 @@ from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel
 
 from backend.grading.grader import grade_exam
-from backend.ocr.extractor import extract_answers
+from backend.ocr.extractor import extract_exam_transcripts
 
 router = APIRouter()
 
@@ -15,10 +15,9 @@ class Deduction(BaseModel):
     points: float
 
 
-class ExtractedQuestion(BaseModel):
-    question_number: int
-    question_text: str
-    student_answer: str
+class OcrTranscripts(BaseModel):
+    questions_markdown: str
+    answers_markdown: str
 
 
 class GradeExamResponse(BaseModel):
@@ -26,7 +25,7 @@ class GradeExamResponse(BaseModel):
     max_score: float
     rationale: str
     deductions: List[Deduction]
-    extracted_questions: List[ExtractedQuestion]
+    ocr_transcripts: OcrTranscripts
 
 
 @router.post("/grade", response_model=GradeExamResponse)
@@ -46,13 +45,17 @@ async def grade_exam_endpoint(
     solved_bytes = await solved_exam.read()
 
     try:
-        questions = extract_answers(empty_bytes, solved_bytes)
+        transcripts = extract_exam_transcripts(empty_bytes, solved_bytes)
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"OCR failed: {e}")
 
     try:
-        grading = grade_exam(rubric, questions)
+        grading = grade_exam(
+            rubric,
+            transcripts["questions_markdown"],
+            transcripts["answers_markdown"],
+        )
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"Grading failed: {e}")
 
-    return {**grading, "extracted_questions": questions}
+    return {**grading, "ocr_transcripts": transcripts}

@@ -1,0 +1,37 @@
+Student: student1.pdf  |  Rubric: rubric.txt  |  Output: /Users/kerenstoller/Documents/SKI/backend/scripts/runs_student1
+
+=== Phase A: end-to-end x10 (fresh OCR + fresh grading) ===
+  A 1: score= 57.0  deductions=8  t=24.7s
+  A 2: score= 62.0  deductions=7  t=15.3s
+  A 3: score= 50.0  deductions=8  t=14.1s
+  A 4: score= 55.0  deductions=7  t=10.7s
+  A 5: score= 62.0  deductions=7  t=13.8s
+  A 6: score= 52.0  deductions=8  t=12.9s
+  A 7: FAILED (Unterminated string starting at: line 38 column 17 (char 3961))  t=13.7s
+  A 8: score= 58.0  deductions=7  t=10.4s
+  A 9: score= 52.0  deductions=8  t=13.1s
+  A10: score= 25.0  deductions=13  t=10.6s
+
+=== Phase B: grading-only x10 (OCR fixed to Phase A's first OK run) ===
+  B 1: score= 48.0  deductions=8  t=8.4s
+  B 2: score= 51.0  deductions=7  t=8.3s
+  B 3: score= 58.0  deductions=7  t=10.7s
+  B 4: score= 65.0  deductions=6  t=9.7s
+  B 5: score= 62.0  deductions=7  t=8.4s
+  B 6: score= 44.0  deductions=9  t=8.5s
+  B 7: score= 62.0  deductions=7  t=6.7s
+  B 8: score= 44.0  deductions=9  t=9.2s
+  B 9: score= 48.0  deductions=8  t=7.4s
+  B10: score= 62.0  deductions=7  t=8.6s
+
+=== Analysis ===
+  Phase A (end-to-end) scores: n=9 mean=52.56 stdev=11.18 min=25 max=62 range=37
+  Phase B (grading-only) scores: n=10 mean=54.40 stdev=8.22 min=44 max=65 range=21
+  Phase A OCR digests: 1 distinct shape(s) across 9 runs
+  Phase A distinct deduction signatures: 7
+  Phase B distinct deduction signatures: 6
+
+Verdict heuristic:
+  Both contribute. OCR adds noise on top of an already-noisy grader.
+
+Results saved to: /Users/kerenstoller/Documents/SKI/backend/scripts/runs_student1

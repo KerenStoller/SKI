@@ -1,0 +1,407 @@
+[
+  {
+    "run": 1,
+    "ok": true,
+    "elapsed": 5.212270975112915,
+    "grading": {
+      "final_score": 39,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic and does not implement isSorted as required, so full 25 points deducted. Q2 Part A has public fields instead of private (3 points) and missing getters/setters for numMembers and needsComputers (10 points). Q2 Part B misses capacity check in addTeam (3 points) and countComputersNeeded accesses fields directly (5 points). Q3 is missing most required checks except length and uppercase, so 15 points deducted.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The student's method is named isBalanced and sums halves of the array instead of iterating over adjacent pairs to check sorting order as required by isSorted. The code does not implement the required functionality.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as required (student wrote 'public String teamName;' etc.).",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers. Only getTeamName() is present; no other getters or any setters are provided.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "In Hackathon class, addTeam does not check if the storage is full before adding a team (no capacity check before 'this.teams[currentTeams] = t;').",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded accesses Team fields directly (teams[i].needsComputers and teams[i].numMembers) instead of using getters, violating encapsulation.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "isValidPassword only checks length and presence of uppercase letters (returns true immediately on first uppercase). Missing checks for lowercase letters and digits.",
+          "points": 15
+        }
+      ]
+    }
+  },
+  {
+    "run": 2,
+    "ok": true,
+    "elapsed": 5.779080867767334,
+    "grading": {
+      "final_score": 44,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic and does not implement isSorted as required, so full 25 points deducted. Q2 Part A has public fields instead of private (3 points), missing getter and setter methods for numMembers and needsComputers (10 points). Q2 Part B is mostly correct but addTeam does not check for full capacity before adding (3 points). Q3 is missing most required checks except length and uppercase, so 15 points deducted.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The student implemented isBalanced instead of isSorted; the code does not iterate over adjacent pairs or return false on first out-of-order pair as required.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as required (found 'public String teamName;', 'public int numMembers;', 'public boolean needsComputers;').",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers; only getTeamName() is present.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "In addTeam method, no check for full capacity before adding a team; the code directly assigns teams[currentTeams] without verifying currentTeams < maxTeams.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing checks for lowercase letters and digits; only length and uppercase letter checks are present ('if (pass.length() >= 8)' and loop returns true on uppercase letter).",
+          "points": 15
+        }
+      ]
+    }
+  },
+  {
+    "run": 3,
+    "ok": true,
+    "elapsed": 5.5625340938568115,
+    "grading": {
+      "final_score": 39,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic (checks balanced array sums, not isSorted), so full 25 points deducted. Q2 has public fields instead of private (3 points), missing getter and setter methods for numMembers and needsComputers (10 points), but constructor and getTeamName() present. Q3 (Hackathon class) missing capacity check in addTeam (3 points), countComputersNeeded reads fields directly (5 points). Q4 is missing checks for lowercase and digit, and returns true prematurely inside uppercase check (15 points).",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The student's method 'isBalanced' checks sums of halves of the array instead of iterating over adjacent pairs to check if the array is sorted as required by the rubric.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields 'teamName', 'numMembers', and 'needsComputers' are declared public instead of private as required.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for 'numMembers' and 'needsComputers'; only 'getTeamName()' is present.",
+          "points": 10
+        },
+        {
+          "question_number": 3,
+          "reason": "Method 'addTeam' does not check if the storage array is full before adding a team (no capacity check).",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Method 'countComputersNeeded' accesses 'needsComputers' and 'numMembers' fields of Team directly instead of using getters, violating encapsulation.",
+          "points": 5
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing checks for lowercase letters and digits; also returns true immediately upon finding an uppercase letter without verifying other conditions.",
+          "points": 15
+        }
+      ]
+    }
+  },
+  {
+    "run": 4,
+    "ok": true,
+    "elapsed": 4.540165901184082,
+    "grading": {
+      "final_score": 49,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic and does not implement isSorted as required, so full 25 points deducted. Q2 Part A has public fields instead of private (3 points), missing getter and setter methods for numMembers and needsComputers (10 points total), constructor and getTeamName present. Q2 Part B has correct private fields, constructor, and countComputersNeeded method, but addTeam does not check for full capacity before adding (3 points). Q3 is missing most required checks except length and uppercase letter, missing lowercase and digit checks (10 points).",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The student's method named isBalanced does not implement isSorted as required by the rubric; it checks sums of halves instead of sorting order.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as required.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers; only getTeamName() is present.",
+          "points": 10
+        },
+        {
+          "question_number": 3,
+          "reason": "addTeam method does not check if the hackathon is full before adding a team; no capacity check present.",
+          "points": 3
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing checks for lowercase letters and digits in isValidPassword; only length and uppercase checks are present.",
+          "points": 10
+        }
+      ]
+    }
+  },
+  {
+    "run": 5,
+    "ok": true,
+    "elapsed": 6.16416597366333,
+    "grading": {
+      "final_score": 41,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic and does not implement isSorted as required, so full 25 points deducted. Q2 Part A has public fields instead of private and missing getters/setters for numMembers and needsComputers, deducting accordingly. Q2 Part B misses capacity check in addTeam and accesses Team fields directly in countComputersNeeded, deducting accordingly. Q3 is missing checks for lowercase letters and digits and returns true prematurely inside the uppercase check loop, so deducting for missing checks and incorrect return logic.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The method is named isBalanced and sums halves of the array instead of iterating over adjacent pairs to check sorted order as required by isSorted. The code does not implement the required isSorted method behavior.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as required (e.g., 'public String teamName;').",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers; only getTeamName() is present.",
+          "points": 10
+        },
+        {
+          "question_number": 3,
+          "reason": "addTeam method does not check if the storage is full before adding a team (e.g., no check on currentTeams against maxTeams).",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "countComputersNeeded method accesses Team fields needsComputers and numMembers directly (e.g., 'teams[i].needsComputers'), violating encapsulation.",
+          "points": 5
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing checks for lowercase letters and digits; the code only checks for uppercase letters and returns true immediately upon finding one, missing other required conditions.",
+          "points": 10
+        },
+        {
+          "question_number": 4,
+          "reason": "Return value is incorrect because it returns true inside the uppercase letter loop without verifying all conditions, leading to incorrect acceptance of invalid passwords.",
+          "points": 3
+        }
+      ]
+    }
+  },
+  {
+    "run": 6,
+    "ok": true,
+    "elapsed": 5.744492053985596,
+    "grading": {
+      "final_score": 44,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic and does not implement isSorted as required, so full 25 points deducted. Q2 Part A has public fields instead of private (3 points), missing getter and setter methods for numMembers and needsComputers (10 points). Q2 Part B has no capacity check in addTeam (3 points), and countComputersNeeded reads Team fields directly (5 points). Q3 is missing most required checks except length and uppercase letter, so 15 points deducted for missing lowercase and digit checks.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The student's method is named isBalanced and sums halves of the array instead of iterating over adjacent pairs to check sorted order as required by isSorted. The code does not implement the required method behavior.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as shown in 'public String teamName;', 'public int numMembers;', and 'public boolean needsComputers;'.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers; only getTeamName() is present in the student's code.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "In addTeam method, there is no check for storage being full before adding a team, as shown by 'this.teams[currentTeams] = t;' and 'currentTeams++;' without any capacity check.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded method accesses Team fields directly via 'teams[i].needsComputers' and 'teams[i].numMembers' instead of using getters, violating encapsulation.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing checks for lowercase letters and digits; the code only checks length and presence of uppercase letters, as shown by the single loop returning true on uppercase and no other checks.",
+          "points": 10
+        }
+      ]
+    }
+  },
+  {
+    "run": 7,
+    "ok": true,
+    "elapsed": 5.154301881790161,
+    "grading": {
+      "final_score": 49,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic (checks balanced array sums, not isSorted), so full 25 points deducted. Q2 Part A has public fields instead of private (3 points) and missing getters/setters for numMembers and needsComputers (10 points). Q2 Part B is mostly correct but addTeam lacks capacity check (3 points deducted). Q3 is missing most password checks except length and uppercase, so 15 points deducted for missing lowercase and digit checks.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The method is named isBalanced and checks sums of halves of the array, not isSorted as required. The code does not iterate over adjacent pairs or check order, so it is off-topic.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as required. The student wrote: 'public String teamName;', 'public int numMembers;', 'public boolean needsComputers;'.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers. Only getTeamName() is present; no other getters or any setters are defined.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "In Hackathon class, addTeam method does not check if currentTeams is less than maxTeams before adding, so it does not handle storage being full. The method always adds and returns true.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "isValidPassword only checks length >= 8 and presence of uppercase letters (returns true on first uppercase). Missing checks for lowercase letters and digits.",
+          "points": 10
+        }
+      ]
+    }
+  },
+  {
+    "run": 8,
+    "ok": true,
+    "elapsed": 5.538861989974976,
+    "grading": {
+      "final_score": 44,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic (method isBalanced instead of isSorted), so full 25 points deducted. Q2 Part A: fields are public instead of private (3 points), missing getter and setter methods for numMembers and needsComputers (10 points total), constructor and getTeamName present. Q2 Part B: addTeam does not check for full capacity before adding (3 points), countComputersNeeded reads fields directly (5 points). Q3: Missing checks for lowercase and digit, only checks length and uppercase, so 10 points deducted.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The method is named isBalanced and checks sums of halves, not isSorted with adjacent pairs as required.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private (fields are public: 'public String teamName;', 'public int numMembers;', 'public boolean needsComputers;').",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers; only getTeamName() is present.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "In Hackathon class, addTeam does not check if currentTeams < maxTeams before adding a team (no capacity check before 'this.teams[currentTeams] = t;').",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded() accesses teams[i].needsComputers and teams[i].numMembers fields directly instead of using getters (encapsulation violation).",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "isValidPassword only checks length >= 8 and presence of uppercase letters; missing checks for lowercase letters and digits.",
+          "points": 10
+        }
+      ]
+    }
+  },
+  {
+    "run": 9,
+    "ok": true,
+    "elapsed": 4.847750902175903,
+    "grading": {
+      "final_score": 43,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic (checks balanced array sums, not isSorted) so full 25 points deducted. Q2 Part A has public fields instead of private (-3 per field, total -9), but constructor and getTeamName() are present. Q2 Part B misses capacity check in addTeam (-3), and countComputersNeeded reads fields directly (-5). Q3 is missing most required password checks (uppercase, lowercase, digit), only length and uppercase partially checked (-15).",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The method named isBalanced checks sums of halves of the array and length parity, not isSorted as required by the rubric.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as shown in 'public String teamName;', 'public int numMembers;', and 'public boolean needsComputers;'.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "In Hackathon class, addTeam does not check if currentTeams reached maxTeams before adding a team, as shown by 'this.teams[currentTeams] = t;' and 'currentTeams++;' without any condition.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "In countComputersNeeded(), the code accesses teams[i].needsComputers and teams[i].numMembers directly instead of using getters, violating encapsulation.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "The method only checks length >= 8 and presence of uppercase letters (returns true immediately on first uppercase), but does not check for lowercase letters or digits as required.",
+          "points": 15
+        }
+      ]
+    }
+  },
+  {
+    "run": 10,
+    "ok": true,
+    "elapsed": 4.76122784614563,
+    "grading": {
+      "final_score": 44,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic (checks balanced array sums, not isSorted) so full 25 points deducted. Q2 partially correct: fields are public instead of private (-3), missing getter and setter methods for numMembers and needsComputers (-10 total). Q3 (Hackathon class) mostly correct but addTeam lacks capacity check (-3), countComputersNeeded reads fields directly (-5). Q4 missing checks for lowercase and digit, returns true too early (-10).",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The method is named isBalanced and checks sums of halves of the array instead of iterating over adjacent pairs to check sorted order as required by isSorted.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as shown by 'public String teamName;' etc.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers; only getTeamName() is present.",
+          "points": 10
+        },
+        {
+          "question_number": 3,
+          "reason": "Method addTeam does not check if currentTeams < maxTeams before adding, so no capacity check on fixed-size array.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "countComputersNeeded accesses teams[i].needsComputers and teams[i].numMembers fields directly instead of using getters, violating encapsulation.",
+          "points": 5
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing checks for lowercase letters and digits; also returns true immediately upon finding an uppercase letter without verifying other conditions.",
+          "points": 10
+        }
+      ]
+    }
+  }
+]

@@ -10,10 +10,10 @@ Web app for uploading an empty exam, a solved exam, and a rubric at once, gradin
 
 - Upload an empty exam, a solved exam, and a rubric.
 - The `/api/grade` endpoint accepts both PDFs and the rubric text.
-- **OCR stage**: both PDFs are stitched into images and sent to Mistral Pixtral in a single vision call, which returns the questions and the student's answers as structured JSON.
-- **Grading stage**: the extracted Q&A and the rubric are sent to OpenAI (GPT-4.1-mini), which returns per-question deductions and a rationale.
+- **OCR stage (Mistral Document AI)**: each PDF is processed with `mistral-ocr-latest` → markdown transcript. Low-confidence pages are rejected (with one retry).
+- **Grading stage (OpenAI)**: the questions transcript, answers transcript, and rubric are sent to GPT-4.1-mini in one call. OpenAI aligns questions with student work and applies the rubric.
 - The final score is computed deterministically as `max_score - sum(deductions)` (the grader's own score is overridden).
-- The API returns the score, deductions, rationale, and extracted Q&A to the frontend.
+- The API returns the score, deductions, rationale, and both OCR transcripts to the frontend.
 
 ## Stack
 
@@ -25,11 +25,15 @@ Web app for uploading an empty exam, a solved exam, and a rubric at once, gradin
 Create `backend/.env` (gitignored) with:
 
 ```
-MISTRAL_API_KEY=...   # used by OCR (Pixtral)
-OPENAI_API_KEY=...    # used by grading (GPT-4.1-mini)
+MISTRAL_API_KEY=...                        # Mistral Document OCR
+OPENAI_API_KEY=...                         # grading (GPT-4.1-mini)
+MISTRAL_OCR_MODEL=mistral-ocr-latest       # optional
+MISTRAL_OCR_MIN_CONFIDENCE=0.80            # optional; min page-average (content pages only)
+MISTRAL_OCR_MIN_PAGE_CHARS_FOR_CONFIDENCE=80  # optional; skip gate on near-blank pages
+MISTRAL_OCR_MIN_PAGE_MINIMUM=0.50          # optional; also enforce page-minimum score
 ```
 
-Both keys are required — OCR runs on Mistral, grading runs on OpenAI.
+Both keys are required. Mistral OCR is billed per page when billing is active — see [Mistral billing](https://docs.mistral.ai/admin/user-management-finops/billing). New accounts may include free API credits before a card is required.
 
 ## Running the backend
 

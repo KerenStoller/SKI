@@ -1,0 +1,429 @@
+[
+  {
+    "run": 1,
+    "ok": true,
+    "elapsed": 19.295610904693604,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a Java method called isSorted that receives an array of integers and returns true if the array is sorted in ascending order, and false otherwise.\n\npublic static boolean isSorted(int[] arr) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isSorted(int[] arr) {\n    int n = arr.length;\n    for (int i = 0; i < n - 1; i++) {\n        if (arr[i] > arr[i + 1]) {\n            return false;\n        }\n    }\n    return true;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Write a Java class called Team that represents a sports team. The class should have the following fields:\n- name (String)\n- members (int[])\n\nThe class should have the following methods:\n- A constructor that receives the team name and an array of member IDs.\n- A method called getTeamName() that returns the team name.\n- A method called getMembers() that returns the array of member IDs.\n\npublic class Team {\n    // Your code here\n}",
+        "student_answer": "public class Team {\n    private String teamName;\n    private int[] members;\n\n    public Team(String teamName, int[] members) {\n        this.teamName = teamName;\n        this.members = members;\n    }\n\n    public String getTeamName() {\n        return teamName;\n    }\n\n    public int[] getMembers() {\n        return members;\n    }\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a Java class called TeamManager that manages a collection of Team objects. The class should have the following methods:\n- A method called addTeam(Team team) that adds a team to the collection.\n- A method called removeTeam(String teamName) that removes a team by its name.\n- A method called getTeamNames() that returns an array of all team names.\n\npublic class TeamManager {\n    // Your code here\n}",
+        "student_answer": "public class TeamManager {\n    private Team[] teams;\n    private int currentTeams;\n\n    public TeamManager() {\n        this.teams = new Team[10];\n        this.currentTeams = 0;\n    }\n\n    public void addTeam(Team team) {\n        if (currentTeams < teams.length) {\n            teams[currentTeams++] = team;\n        }\n    }\n\n    public void removeTeam(String teamName) {\n        for (int i = 0; i < currentTeams; i++) {\n            if (teams[i].getTeamName().equals(teamName)) {\n                teams[i] = teams[currentTeams - 1];\n                currentTeams--;\n                break;\n            }\n        }\n    }\n\n    public String[] getTeamNames() {\n        String[] teamNames = new String[currentTeams];\n        for (int i = 0; i < currentTeams; i++) {\n            teamNames[i] = teams[i].getTeamName();\n        }\n        return teamNames;\n    }\n}"
+      },
+      {
+        "question_number": 4,
+        "question_text": "Write a Java method called isValidPassword that receives a string and returns true if the password is valid, and false otherwise. A valid password must meet the following criteria:\n- At least 8 characters long.\n- Contains at least one uppercase letter.\n- Contains at least one digit.\n\npublic static boolean isValidPassword(String pass) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isValidPassword(String pass) {\n    if (pass.length() < 8) {\n        return false;\n    }\n    boolean hasUpper = false;\n    boolean hasDigit = false;\n    for (int i = 0; i < pass.length(); i++) {\n        if (Character.isUpperCase(pass.charAt(i))) {\n            hasUpper = true;\n        }\n        if (Character.isDigit(pass.charAt(i))) {\n            hasDigit = true;\n        }\n    }\n    return hasUpper && hasDigit;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 90,
+      "max_score": 100,
+      "rationale": "The student correctly implemented isSorted with correct loop bounds and comparison, so no deductions on Q1. The Team class in Q2 meets all rubric requirements with private fields, constructor, and getters, so no deductions. In Q3, the TeamManager class stores teams in a private array, has a constructor, addTeam with capacity check, but is missing the required countTeamsWithMoreThan(int n) method, so 5 points deducted. Q4 is missing the check for at least one lowercase letter, so 5 points deducted. No other issues found.",
+      "deductions": [
+        {
+          "question_number": 3,
+          "reason": "Missing countTeamsWithMoreThan(int n) method; the student's answer does not include this method.",
+          "points": 5
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing check for at least one lowercase letter; the student's code only checks length, uppercase letters, and digits.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 2,
+    "ok": true,
+    "elapsed": 12.498973846435547,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a Java method called isPalindrome that checks if a given string is a palindrome (reads the same forwards and backwards).\n\npublic static boolean isPalindrome(String str) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isPalindrome(String str) {\n    int len = str.length();\n    for (int i = 0; i < len / 2; i++) {\n        if (str.charAt(i) != str.charAt(len - 1 - i)) {\n            return false;\n        }\n    }\n    return true;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Implement a class called Team that represents a sports team. The class should have the following:\n\n- A private field for the team name (String).\n- A private field for the number of team members (int).\n- A constructor that initializes these fields.\n- A method getTeamName() that returns the team name.\n- A method getTeamMembers() that returns the number of team members.\n\npublic class Team {\n    // Your code here\n}",
+        "student_answer": "public class Team {\n    private String teamName;\n    private int numMembers;\n\n    public Team(String teamName, int numMembers) {\n        this.teamName = teamName;\n        this.numMembers = numMembers;\n    }\n\n    public String getTeamName() {\n        return teamName;\n    }\n\n    public int getTeamMembers() {\n        return numMembers;\n    }\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Implement a class called TeamManager that manages a list of Team objects. The class should have the following:\n\n- A private field for the list of teams (ArrayList<Team>).\n- A constructor that initializes the list.\n- A method addTeam(Team team) that adds a team to the list.\n- A method getTeamNames() that returns a list of all team names.\n- A method countTeamsWithMembers(int minMembers) that returns the number of teams with at least minMembers members.\n\npublic class TeamManager {\n    // Your code here\n}",
+        "student_answer": "public class TeamManager {\n    private ArrayList<Team> teams;\n\n    public TeamManager() {\n        this.teams = new ArrayList<Team>();\n    }\n\n    public void addTeam(Team team) {\n        teams.add(team);\n    }\n\n    public ArrayList<String> getTeamNames() {\n        ArrayList<String> teamNames = new ArrayList<>();\n        for (Team team : teams) {\n            teamNames.add(team.getTeamName());\n        }\n        return teamNames;\n    }\n\n    public int countTeamsWithMembers(int minMembers) {\n        int total = 0;\n        for (Team team : teams) {\n            if (team.getTeamMembers() >= minMembers) {\n                total++;\n            }\n        }\n        return total;\n    }\n}"
+      },
+      {
+        "question_number": 4,
+        "question_text": "Write a Java method called isValidPassword that checks if a given password is valid. The password is valid if it meets the following criteria:\n\n- At least 8 characters long.\n- Contains at least one uppercase letter.\n- Contains at least one lowercase letter.\n- Contains at least one digit.\n\npublic static boolean isValidPassword(String password) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isValidPassword(String password) {\n    if (password.length() < 8) {\n        return false;\n    }\n    boolean hasUpper = false;\n    boolean hasLower = false;\n    boolean hasDigit = false;\n    for (int i = 0; i < password.length(); i++) {\n        char c = password.charAt(i);\n        if (Character.isUpperCase(c)) {\n            hasUpper = true;\n        } else if (Character.isLowerCase(c)) {\n            hasLower = true;\n        } else if (Character.isDigit(c)) {\n            hasDigit = true;\n        }\n    }\n    return hasUpper && hasLower && hasDigit;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All answers meet the rubric requirements fully. Q1 correctly checks palindrome by iterating half the string and returning false on mismatch. Q2 declares private fields, constructor, and both getters as required. Q3 uses a private ArrayList, initializes it, adds teams, and counts teams with at least minMembers using getters. Q4 checks length >=8, presence of uppercase, lowercase, and digit, and returns true only if all are present. No deductions applied.",
+      "deductions": []
+    }
+  },
+  {
+    "run": 3,
+    "ok": true,
+    "elapsed": 12.682307004928589,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a function that checks if an array is sorted in ascending order.\n\npublic static boolean isSorted(int[] arr) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isSorted(int[] arr) {\n    int n = arr.length;\n    int half = n / 2;\n    for (int i = 0; i < half; i++) {\n        if (arr[i] > arr[i + 1]) {\n            return false;\n        }\n    }\n    return true;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Implement a class called Team that represents a sports team. The class should include the following:\n\n- A private field for the team name (String).\n- A private field for the number of members (int).\n- A constructor that initializes these fields.\n- A method getTeamName() that returns the team name.\n- A method getTeamMembers() that returns the number of members.\n\npublic class Team {\n    // Your code here\n}",
+        "student_answer": "public class Team {\n    private String teamName;\n    private int numMembers;\n    public Team(String teamName, int numMembers) {\n        this.teamName = teamName;\n        this.numMembers = numMembers;\n    }\n    public String getTeamName() {\n        return teamName;\n    }\n    public int getTeamMembers() {\n        return numMembers;\n    }\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Implement a class called TeamManager that manages a list of teams. The class should include the following:\n\n- A private field for the list of teams (ArrayList<Team>).\n- A constructor that initializes the list.\n- A method addTeam(Team t) that adds a team to the list.\n- A method getTeamNames() that returns an array of team names.\n- A method countTeamsWithMoreThan(int minMembers) that returns the number of teams with more than minMembers members.\n\npublic class TeamManager {\n    // Your code here\n}",
+        "student_answer": "public class TeamManager {\n    private ArrayList<Team> teams;\n    public TeamManager() {\n        this.teams = new ArrayList<Team>();\n    }\n    public void addTeam(Team t) {\n        teams.add(t);\n    }\n    public String[] getTeamNames() {\n        String[] names = new String[teams.size()];\n        for (int i = 0; i < teams.size(); i++) {\n            names[i] = teams.get(i).getTeamName();\n        }\n        return names;\n    }\n    public int countTeamsWithMoreThan(int minMembers) {\n        int total = 0;\n        for (Team t : teams) {\n            if (t.getTeamMembers() > minMembers) {\n                total++;\n            }\n        }\n        return total;\n    }\n}"
+      },
+      {
+        "question_number": 4,
+        "question_text": "Write a function that checks if a given string is a palindrome (reads the same forwards and backwards).\n\npublic static boolean isPalindrome(String s) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isPalindrome(String s) {\n    for (int i = 0; i < s.length() / 2; i++) {\n        if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {\n            return false;\n        }\n    }\n    return true;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 70,
+      "max_score": 100,
+      "rationale": "Q1 has a loop bound error causing incomplete checks, Q2 and Q3 fully meet the rubric requirements, Q4 is off-topic as it implements palindrome checking instead of password validation.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The loop iterates only up to half the array length (for (int i = 0; i < half; i++)), so it does not check every adjacent pair as required.",
+          "points": 5
+        },
+        {
+          "question_number": 4,
+          "reason": "The student's code implements a palindrome check instead of the required isValidPassword method with length and character checks.",
+          "points": 25
+        }
+      ]
+    }
+  },
+  {
+    "run": 4,
+    "ok": true,
+    "elapsed": 15.486573934555054,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a function isSorted(arr) that returns true if the array arr is sorted in ascending order and false otherwise.\n\npublic static boolean isSorted(int[] arr) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isSorted(int[] arr) {\n    int n = arr.length;\n    int half = arr.length / 2;\n    for (int i = 0; i < half; i++) {\n        if (arr[i] > arr[i + 1]) {\n            return false;\n        }\n    }\n    return true;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Implement the StringRepresentation class with the following methods:\n\npublic class StringRepresentation {\n    private String teamName;\n    private int numMembers;\n    private boolean hasCoach;\n\n    // Constructor\n    // getTeamName()\n    // getNumMembers()\n    // getHasCoach()\n    // setTeamName()\n    // setNumMembers()\n    // setHasCoach()\n}",
+        "student_answer": "public class StringRepresentation {\n    private String teamName;\n    private int numMembers;\n    private boolean hasCoach;\n\n    public StringRepresentation(String teamName, int numMembers, boolean hasCoach) {\n        this.teamName = teamName;\n        this.numMembers = numMembers;\n        this.hasCoach = hasCoach;\n    }\n\n    public String getTeamName() {\n        return teamName;\n    }\n\n    public int getNumMembers() {\n        return numMembers;\n    }\n\n    public boolean getHasCoach() {\n        return hasCoach;\n    }\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Implement the Team class with the following methods:\n\npublic class Team {\n    private String teamName;\n    private int[] members;\n    private boolean hasCoach;\n\n    // Constructor\n    // addMember()\n    // removeMember()\n    // getTeamName()\n    // getMembers()\n    // getHasCoach()\n    // countComputers()\n}",
+        "student_answer": "public class Team {\n    private String teamName;\n    private int[] members;\n    private boolean hasCoach;\n\n    public Team(String teamName, int[] members, boolean hasCoach) {\n        this.teamName = teamName;\n        this.members = members;\n        this.hasCoach = hasCoach;\n    }\n\n    public boolean addMember(int member) {\n        // Implementation missing\n    }\n\n    public boolean removeMember(int member) {\n        // Implementation missing\n    }\n\n    public String getTeamName() {\n        return teamName;\n    }\n\n    public int[] getMembers() {\n        return members;\n    }\n\n    public boolean getHasCoach() {\n        return hasCoach;\n    }\n\n    public int countComputers() {\n        int total = 0;\n        for (int i = 0; i < members.length; i++) {\n            if (members[i] == 1) {\n                total++;\n            }\n        }\n        return total;\n    }\n}"
+      },
+      {
+        "question_number": 4,
+        "question_text": "Write a function isValidPassword(password) that returns true if the password is valid and false otherwise. A valid password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.\n\npublic static boolean isValidPassword(String password) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isValidPassword(String password) {\n    if (password.length() < 8) {\n        return false;\n    }\n    boolean hasUpper = false;\n    boolean hasLower = false;\n    boolean hasDigit = false;\n    for (int i = 0; i < password.length(); i++) {\n        char c = password.charAt(i);\n        if (c >= 'A' && c <= 'Z') {\n            hasUpper = true;\n        }\n        if (c >= 'a' && c <= 'z') {\n            hasLower = true;\n        }\n        if (c >= '0' && c <= '9') {\n            hasDigit = true;\n        }\n    }\n    return hasUpper && hasLower && hasDigit;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 70,
+      "max_score": 100,
+      "rationale": "Q1 deducts 5 points for incorrect loop bound iterating only half the array. Q2 is off-topic (StringRepresentation class with extra fields) so full 25 points deducted. Q3 has all required fields and methods declared, but addMember and removeMember methods are missing implementation bodies, which is not penalized by the rubric since it does not require implementation, only presence. Q4 meets all rubric requirements with all checks present and correct return value.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Loop iterates only to half the array length: 'for (int i = 0; i < half; i++)' where half = arr.length / 2, missing checks for all adjacent pairs.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Class is named StringRepresentation and includes a boolean hasCoach field, which is not part of the rubric's Team class requirements; the code does not match the rubric's Team class specification.",
+          "points": 25
+        }
+      ]
+    }
+  },
+  {
+    "run": 5,
+    "ok": true,
+    "elapsed": 23.127146005630493,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a Java method called isPalindrome that checks if a given array of integers is a palindrome. The method should return true if the array is a palindrome and false otherwise. A palindrome array reads the same forwards and backwards. For example, [1, 2, 3, 2, 1] is a palindrome, but [1, 2, 3, 4] is not.\n\npublic static boolean isPalindrome(int[] arr) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isPalindrome(int[] arr) {\n    int n = arr.length;\n    int half = arr.length / 2;\n    for (int i = 0; i < half; i++) {\n        if (arr[i] != arr[n - 1 - i]) {\n            return false;\n        }\n    }\n    return true;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Implement a class called Team that represents a sports team. The class should have the following fields and methods:\n\n- Fields:\n  - name: String\n  - members: int\n  - isChampion: boolean\n\n- Methods:\n  - Team(String name, int members, boolean isChampion): Constructor\n  - getTeamName(): Returns the team name\n  - getMembers(): Returns the number of members\n  - isChampion(): Returns whether the team is a champion\n\npublic class Team {\n    // Your code here\n}",
+        "student_answer": "public class Team {\n    private String teamName;\n    private int members;\n    private boolean isChampion;\n\n    public Team(String teamName, int members, boolean isChampion) {\n        this.teamName = teamName;\n        this.members = members;\n        this.isChampion = isChampion;\n    }\n\n    public String getTeamName() {\n        return teamName;\n    }\n\n    public int getMembers() {\n        return members;\n    }\n\n    public boolean isChampion() {\n        return isChampion;\n    }\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Implement a class called Hackathon that represents a hackathon event. The class should have the following fields and methods:\n\n- Fields:\n  - name: String\n  - teams: ArrayList<Team>\n  - currentTeamIndex: int\n\n- Methods:\n  - Hackathon(String name): Constructor\n  - addTeam(Team team): Adds a team to the hackathon\n  - getCurrentTeam(): Returns the current team\n  - nextTeam(): Moves to the next team\n  - countComputers(): Returns the total number of computers used by all teams\n\npublic class Hackathon {\n    // Your code here\n}",
+        "student_answer": "public class Hackathon {\n    private String name;\n    private ArrayList<Team> teams;\n    private int currentTeamIndex;\n\n    public Hackathon(String name) {\n        this.name = name;\n        this.teams = new ArrayList<Team>();\n        this.currentTeamIndex = 0;\n    }\n\n    public void addTeam(Team team) {\n        teams.add(team);\n    }\n\n    public Team getCurrentTeam() {\n        if (currentTeamIndex < teams.size()) {\n            return teams.get(currentTeamIndex);\n        }\n        return null;\n    }\n\n    public void nextTeam() {\n        if (currentTeamIndex < teams.size() - 1) {\n            currentTeamIndex++;\n        }\n    }\n\n    public int countComputers() {\n        int total = 0;\n        for (Team team : teams) {\n            total += team.getMembers();\n        }\n        return total;\n    }\n}"
+      },
+      {
+        "question_number": 4,
+        "question_text": "Write a Java method called isValidPassword that checks if a given password string meets the following criteria:\n\n- The password must be at least 8 characters long.\n- The password must contain at least one uppercase letter.\n- The password must contain at least one lowercase letter.\n- The password must contain at least one digit.\n\npublic static boolean isValidPassword(String pass) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isValidPassword(String pass) {\n    if (pass.length() < 8) {\n        return false;\n    }\n    boolean hasUpper = false;\n    boolean hasLower = false;\n    boolean hasDigit = false;\n    for (int i = 0; i < pass.length(); i++) {\n        char c = pass.charAt(i);\n        if (c >= 'A' && c <= 'Z') {\n            hasUpper = true;\n        }\n        if (c >= 'a' && c <= 'z') {\n            hasLower = true;\n        }\n        if (c >= '0' && c <= '9') {\n            hasDigit = true;\n        }\n    }\n    return hasUpper && hasLower && hasDigit;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All four answers meet the rubric requirements for their respective questions. Q1 correctly checks palindrome by comparing pairs and returns false on first mismatch. Q2 declares all required private fields, constructor, and getters. Q3 uses a private ArrayList for teams, has constructor, addTeam, and count method that uses getter properly. Q4 checks length, uppercase, lowercase, digit, and returns true only if all are present. No deductions applied.",
+      "deductions": []
+    }
+  },
+  {
+    "run": 6,
+    "ok": true,
+    "elapsed": 15.762531042098999,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a Java method called isSorted that receives an array of integers and returns true if the array is sorted in ascending order, and false otherwise.\n\npublic static boolean isSorted(int[] arr) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isSorted(int[] arr) {\n    int n = arr.length;\n    for (int i = 0; i < n - 1; i++) {\n        if (arr[i] > arr[i + 1]) {\n            return false;\n        }\n    }\n    return true;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Write a Java class called Team that represents a sports team. The class should have the following fields and methods:\n\n- Fields:\n  - name: String\n  - members: int\n  - computers: boolean\n\n- Methods:\n  - Team(String name, int members, boolean computers): Constructor\n  - getTeamName(): Returns the team name\n  - getTeamMembers(): Returns the number of team members\n  - getComputers(): Returns whether the team has computers\n\npublic class Team {\n    // Your code here\n}",
+        "student_answer": "public class Team {\n    private String teamName;\n    private int members;\n    private boolean hasComputers;\n\n    public Team(String teamName, int members, boolean hasComputers) {\n        this.teamName = teamName;\n        this.members = members;\n        this.hasComputers = hasComputers;\n    }\n\n    public String getTeamName() {\n        return teamName;\n    }\n\n    public int getTeamMembers() {\n        return members;\n    }\n\n    public boolean getComputers() {\n        return hasComputers;\n    }\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a Java class called Hackathon that represents a hackathon event. The class should have the following fields and methods:\n\n- Fields:\n  - name: String\n  - teams: ArrayList<Team>\n\n- Methods:\n  - Hackathon(String name): Constructor\n  - addTeam(Team team): Adds a team to the hackathon\n  - getTeamNames(): Returns an array of team names\n  - countComputers(): Returns the total number of computers among all teams\n\npublic class Hackathon {\n    // Your code here\n}",
+        "student_answer": "public class Hackathon {\n    private String name;\n    private ArrayList<Team> teams;\n\n    public Hackathon(String name) {\n        this.name = name;\n        this.teams = new ArrayList<Team>();\n    }\n\n    public void addTeam(Team team) {\n        teams.add(team);\n    }\n\n    public String[] getTeamNames() {\n        String[] teamNames = new String[teams.size()];\n        for (int i = 0; i < teams.size(); i++) {\n            teamNames[i] = teams.get(i).getTeamName();\n        }\n        return teamNames;\n    }\n\n    public int countComputers() {\n        int total = 0;\n        for (Team team : teams) {\n            if (team.getComputers()) {\n                total++;\n            }\n        }\n        return total;\n    }\n}"
+      },
+      {
+        "question_number": 4,
+        "question_text": "Write a Java method called isValidPassword that receives a string and returns true if the password is valid, and false otherwise. A valid password must meet the following criteria:\n\n- Length of at least 8 characters\n- Contains at least one uppercase letter\n- Contains at least one digit\n\npublic static boolean isValidPassword(String pass) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isValidPassword(String pass) {\n    if (pass.length() < 8) {\n        return false;\n    }\n    boolean hasUpper = false;\n    boolean hasDigit = false;\n    for (int i = 0; i < pass.length(); i++) {\n        if (Character.isUpperCase(pass.charAt(i))) {\n            hasUpper = true;\n        }\n        if (Character.isDigit(pass.charAt(i))) {\n            hasDigit = true;\n        }\n    }\n    return hasUpper && hasDigit;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 70,
+      "max_score": 100,
+      "rationale": "Q1 is fully correct with proper iteration, comparison, and return values. Q2 correctly declares private fields for team name and members, has a constructor, and a getTeamName() method, so no deductions. Q3 is off-topic because it implements a Hackathon class with different fields and methods than the rubric's TeamManager class requirements; thus full 25 points deducted for off-topic. Q4 is missing the check for at least one lowercase letter, so 5 points deducted.",
+      "deductions": [
+        {
+          "question_number": 3,
+          "reason": "The student's answer defines a Hackathon class with fields and methods unrelated to the rubric's TeamManager class requirements (e.g., no countTeamsWithMoreThan method, no addTeam handling for storage capacity, no private array/list of Team as required). The code's purpose and behavior do not match the rubric's TeamManager specification.",
+          "points": 25
+        },
+        {
+          "question_number": 4,
+          "reason": "The student's isValidPassword method checks length, uppercase letters, and digits but does not check for at least one lowercase letter anywhere in the code.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 7,
+    "ok": true,
+    "elapsed": 13.629491090774536,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a Java method called isSorted that receives an array of integers and returns true if the array is sorted in ascending order, and false otherwise.\n\npublic static boolean isSorted(int[] arr) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isSorted(int[] arr) {\n    int n = arr.length;\n    for (int i = 0; i < n - 1; i++) {\n        if (arr[i] > arr[i + 1]) {\n            return false;\n        }\n    }\n    return true;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Write a Java class called Team that represents a sports team. The class should have the following fields:\n- name (String)\n- members (int[])\n\nThe class should have the following methods:\n- getTeamName() - returns the team name\n- getTeamMembers() - returns the team members\n\npublic class Team {\n    // Your code here\n}",
+        "student_answer": "public class Team {\n    private String teamName;\n    private int[] members;\n\n    public Team(String teamName, int[] members) {\n        this.teamName = teamName;\n        this.members = members;\n    }\n\n    public String getTeamName() {\n        return teamName;\n    }\n\n    public int[] getTeamMembers() {\n        return members;\n    }\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a Java class called TeamManager that manages a list of teams. The class should have the following methods:\n- addTeam(Team t) - adds a team to the list\n- removeTeam(String teamName) - removes a team by name\n- countComputers() - returns the total number of team members\n\npublic class TeamManager {\n    // Your code here\n}",
+        "student_answer": "public class TeamManager {\n    private Team[] teams;\n    private int currentTeams;\n\n    public TeamManager() {\n        this.teams = new Team[10];\n        this.currentTeams = 0;\n    }\n\n    public void addTeam(Team t) {\n        if (currentTeams < teams.length) {\n            teams[currentTeams++] = t;\n        }\n    }\n\n    public void removeTeam(String teamName) {\n        for (int i = 0; i < currentTeams; i++) {\n            if (teams[i].getTeamName().equals(teamName)) {\n                System.arraycopy(teams, i + 1, teams, i, currentTeams - i - 1);\n                currentTeams--;\n            }\n        }\n    }\n\n    public int countComputers() {\n        int total = 0;\n        for (int i = 0; i < currentTeams; i++) {\n            total += teams[i].getTeamMembers().length;\n        }\n        return total;\n    }\n}"
+      },
+      {
+        "question_number": 4,
+        "question_text": "Write a Java method called isValidPassword that receives a string and returns true if the password is valid, and false otherwise. A valid password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.\n\npublic static boolean isValidPassword(String pass) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isValidPassword(String pass) {\n    if (pass.length() < 8) {\n        return false;\n    }\n    boolean hasUpper = false;\n    boolean hasLower = false;\n    boolean hasDigit = false;\n    for (int i = 0; i < pass.length(); i++) {\n        char c = pass.charAt(i);\n        if (c >= 'A' && c <= 'Z') {\n            hasUpper = true;\n        } else if (c >= 'a' && c <= 'z') {\n            hasLower = true;\n        } else if (c >= '0' && c <= '9') {\n            hasDigit = true;\n        }\n    }\n    return hasUpper && hasLower && hasDigit;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All answers meet the rubric requirements fully. The isSorted method iterates correctly over all adjacent pairs, returns false on the first out-of-order pair, and returns true otherwise. The Team class has private fields for team name and members, a constructor initializing both, and the required getters. The TeamManager class uses a private Team array with a constructor, addTeam with capacity check, removeTeam by name, and countComputers that uses getters properly. The isValidPassword method checks length, uppercase, lowercase, and digit presence correctly and returns the correct boolean. No deductions applied.",
+      "deductions": []
+    }
+  },
+  {
+    "run": 8,
+    "ok": true,
+    "elapsed": 18.524101972579956,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a function called isSorted that receives an array of integers and returns true if the array is sorted in ascending order, and false otherwise.\n\npublic static boolean isSorted(int[] arr) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isSorted(int[] arr) {\n    int n = arr.length;\n    for (int i = 0; i < n - 1; i++) {\n        if (arr[i] > arr[i + 1]) {\n            return false;\n        }\n    }\n    return true;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Write a class called Team that represents a sports team. The class should have the following fields:\n- name: String\n- members: int\n- wins: int\n\nThe class should have the following methods:\n- A constructor that initializes the fields.\n- A method called getTeamName() that returns the team's name.\n- A method called addWin() that increases the number of wins by 1.\n\npublic class Team {\n    // Your code here\n}",
+        "student_answer": "public class Team {\n    private String teamName;\n    private int members;\n    private int wins;\n\n    public Team(String teamName, int members, int wins) {\n        this.teamName = teamName;\n        this.members = members;\n        this.wins = wins;\n    }\n\n    public String getTeamName() {\n        return teamName;\n    }\n\n    public void addWin() {\n        wins++;\n    }\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a class called TeamManager that manages a list of teams. The class should have the following fields:\n- teams: ArrayList<Team>\n\nThe class should have the following methods:\n- A constructor that initializes the ArrayList.\n- A method called addTeam(Team team) that adds a team to the list.\n- A method called getTotalWins() that returns the total number of wins of all teams.\n\npublic class TeamManager {\n    // Your code here\n}",
+        "student_answer": "public class TeamManager {\n    private ArrayList<Team> teams;\n\n    public TeamManager() {\n        this.teams = new ArrayList<Team>();\n    }\n\n    public void addTeam(Team team) {\n        teams.add(team);\n    }\n\n    public int getTotalWins() {\n        int total = 0;\n        for (Team team : teams) {\n            total += team.wins;\n        }\n        return total;\n    }\n}"
+      },
+      {
+        "question_number": 4,
+        "question_text": "Write a function called isValidPassword that receives a string and returns true if the password is valid, and false otherwise. A valid password must meet the following criteria:\n- At least 8 characters long.\n- Contains at least one uppercase letter.\n- Contains at least one lowercase letter.\n- Contains at least one digit.\n\npublic static boolean isValidPassword(String pass) {\n    // Your code here\n}",
+        "student_answer": "public static boolean isValidPassword(String pass) {\n    if (pass.length() < 8) {\n        return false;\n    }\n    boolean hasUpper = false;\n    boolean hasLower = false;\n    boolean hasDigit = false;\n    for (int i = 0; i < pass.length(); i++) {\n        char c = pass.charAt(i);\n        if (c >= 'A' && c <= 'Z') {\n            hasUpper = true;\n        }\n        if (c >= 'a' && c <= 'z') {\n            hasLower = true;\n        }\n        if (c >= '0' && c <= '9') {\n            hasDigit = true;\n        }\n    }\n    return hasUpper && hasLower && hasDigit;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 90,
+      "max_score": 100,
+      "rationale": "The student correctly implemented isSorted with proper iteration and comparison, so no deductions for Q1. The Team class in Q2 correctly declares all required private fields, constructor, and methods, so no deductions there. In Q3, the TeamManager class uses an ArrayList (dynamic list), has the constructor and addTeam method, but the count method is named getTotalWins instead of countTeamsWithMoreThan, and it accesses the private field 'wins' of Team directly instead of using a getter, violating encapsulation. Also, the required method countTeamsWithMoreThan is missing. In Q4, the password validation correctly checks length, uppercase, lowercase, and digit presence, so no deductions.",
+      "deductions": [
+        {
+          "question_number": 3,
+          "reason": "Missing method countTeamsWithMoreThan(int n) as required; student implemented getTotalWins() instead.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "countTeamsWithMoreThan (or equivalent) must not access Team's private fields directly; student code accesses 'team.wins' directly in getTotalWins().",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 9,
+    "ok": true,
+    "elapsed": 40.63373613357544,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a function isSorted(arr) that returns true if the array arr is sor`ted in ascending order and false otherwise. The function should return false if the array is empty or has only one element.",
+        "student_answer": "public static boolean isSorted(int[] arr) {\n    int n = arr.length;\n    int half = n / 2;\n    for (int i = 0; i < half; i++) {\n        if (arr[i] > arr[i + 1]) {\n            return false;\n        }\n    }\n    return true;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Write a class StringReverser that has a method reverse(string s) that returns the reversed string. For example, if the input is \"hello\", the output should be \"olleh\".",
+        "student_answer": "public class StringReverser {\n    public String reverse(String s) {\n        return new StringBuilder(s).reverse().toString();\n    }\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a class Team that has the following methods:\n    - addMember(String name): Adds a member to the team.\n    - removeMember(String name): Removes a member from the team.\n    - getTeamMembers(): Returns a list of all team members.\n    - countComputers(): Returns the number of team members who have computers.\n    Assume that each member has a boolean attribute hasComputer.",
+        "student_answer": "public class Team {\n    private String[] team;\n    private int currentTeam;\n    private boolean[] hasComputers;\n    public Team() {\n        this.team = new String[100];\n        this.hasComputers = new boolean[100];\n    }\n    public void addMember(String name) {\n        this.team[currentTeam++] = name;\n    }\n    public void removeMember(String name) {\n        // Implementation missing\n    }\n    public String[] getTeamMembers() {\n        return team;\n    }\n    public int countComputers() {\n        int total = 0;\n        for (int i = 0; i < currentTeam; i++) {\n            if (hasComputers[i]) {\n                total++;\n            }\n        }\n        return total;\n    }\n}"
+      },
+      {
+        "question_number": 4,
+        "question_text": "Write a function isValidPassword(string pass) that returns true if the password is valid and false otherwise. A valid password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.",
+        "student_answer": "public static boolean isValidPassword(String pass) {\n    if (pass.length() < 8) {\n        return false;\n    }\n    boolean hasUpper = false, hasLower = false, hasDigit = false;\n    for (int i = 0; i < pass.length(); i++) {\n        char c = pass.charAt(i);\n        if (c >= 'A' && c <= 'Z') {\n            hasUpper = true;\n        }\n        if (c >= 'a' && c <= 'z') {\n            hasLower = true;\n        }\n        if (c >= '0' && c <= '9') {\n            hasDigit = true;\n        }\n    }\n    return hasUpper && hasLower && hasDigit;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 45,
+      "max_score": 100,
+      "rationale": "Q1 has a loop bound error causing incomplete iteration over adjacent pairs. Q2 is off-topic: the answer is a StringReverser class, unrelated to the Team class requested. Q3 is off-topic: the answer is a Team class managing members and computers, not a TeamManager class managing Team objects. Q4 is fully correct.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The loop iterates only up to half the array length (for (int i = 0; i < half; i++)), so it does not check all adjacent pairs as required.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "The answer defines a StringReverser class with a reverse method, unrelated to the rubric's Team class requirements (teamName, numMembers, constructor, getTeamName).",
+          "points": 25
+        },
+        {
+          "question_number": 3,
+          "reason": "The answer defines a Team class managing members and their computer status, not a TeamManager class storing Team objects with addTeam and countTeamsWithMoreThan methods as required.",
+          "points": 25
+        }
+      ]
+    }
+  },
+  {
+    "run": 10,
+    "ok": true,
+    "elapsed": 13.230370998382568,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a function that checks if an array is sorted in ascending order.\n\npublic static boolean isSorted(int[] arr) {\n    // TODO: implement this method\n}",
+        "student_answer": "public static boolean isSorted(int[] arr) {\n    int n = arr.length;\n    int half = n / 2;\n    for (int i = 0; i < half; i++) {\n        if (arr[i] > arr[i + 1]) {\n            return false;\n        }\n    }\n    return true;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Implement the StringReplacement class.\n\npublic class StringReplacement {\n    private String teamName;\n    private int numMembers;\n    private boolean isActive;\n    \n    // TODO: implement the constructor and methods\n}",
+        "student_answer": "public class StringReplacement {\n    public String teamName;\n    public int numMembers;\n    public boolean isActive;\n    \n    public StringReplacement(String teamName, int numMembers, boolean isActive) {\n        this.teamName = teamName;\n        this.numMembers = numMembers;\n        this.isActive = isActive;\n    }\n    \n    public String getTeamName() {\n        return teamName;\n    }\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Implement the TeamManager class.\n\npublic class TeamManager {\n    private Team[] teams;\n    \n    // TODO: implement the constructor and methods\n}",
+        "student_answer": "public class TeamManager {\n    private Team[] teams;\n    \n    public TeamManager(Team[] teams) {\n        this.teams = teams;\n    }\n    \n    public boolean addTeam(Team t) {\n        // TODO: implement this method\n    }\n    \n    public int countActiveTeams() {\n        int total = 0;\n        for (int i = 0; i < teams.length; i++) {\n            if (teams[i].isActive) {\n                total++;\n            }\n        }\n        return total;\n    }\n}"
+      },
+      {
+        "question_number": 4,
+        "question_text": "Write a function that checks if a password is valid.\n\npublic static boolean isValidPassword(String pass) {\n    // TODO: implement this method\n    // Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.\n}",
+        "student_answer": "public static boolean isValidPassword(String pass) {\n    if (pass.length() < 8) {\n        return false;\n    }\n    boolean hasUpper = false;\n    boolean hasLower = false;\n    boolean hasDigit = false;\n    for (int i = 0; i < pass.length(); i++) {\n        char c = pass.charAt(i);\n        if (c >= 'A' && c <= 'Z') {\n            hasUpper = true;\n        }\n        if (c >= 'a' && c <= 'z') {\n            hasLower = true;\n        }\n        if (c >= '0' && c <= '9') {\n            hasDigit = true;\n        }\n    }\n    return hasUpper && hasLower && hasDigit;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 74,
+      "max_score": 100,
+      "rationale": "Q1 loses 5 points for incorrect loop bound iterating only half the array. Q2 loses 6 points for declaring teamName and numMembers as public instead of private. Q3 loses 5 points for missing addTeam implementation and 5 points for missing countTeamsWithMoreThan method, plus 5 points for countTeamsWithMoreThan not implemented so no encapsulation check possible. Q4 is fully correct.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Loop iterates only to half the array length: 'for (int i = 0; i < half; i++)' where half = n / 2, so not all adjacent pairs are checked.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields 'teamName' and 'numMembers' are declared public instead of private: 'public String teamName;' and 'public int numMembers;'.",
+          "points": 6
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing implementation of addTeam method: 'public boolean addTeam(Team t) { // TODO: implement this method }'.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing countTeamsWithMoreThan(int n) method; only countActiveTeams() is present which does not meet the rubric requirement.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "Cannot verify encapsulation in countTeamsWithMoreThan because method is missing; potential encapsulation violation deduction applies if method reads private fields directly, but method is absent.",
+          "points": 5
+        }
+      ]
+    }
+  }
+]

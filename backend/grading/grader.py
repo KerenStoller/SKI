@@ -1,7 +1,7 @@
 import os
 import re
 import json
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -11,15 +11,19 @@ load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=api_key) if api_key else None
 
-with open(os.path.join(os.path.dirname(__file__), 'prompt.md'), 'r') as f:
+with open(os.path.join(os.path.dirname(__file__), "prompt.md"), "r") as f:
     PROMPT_TEMPLATE = f.read()
 
 
-def build_prompt(rubric: str, questions: List[Dict[str, Any]]) -> str:
-    """Fill the prompt template with the rubric and extracted questions."""
-    questions_json = json.dumps(questions, ensure_ascii=False, indent=2)
-    prompt = PROMPT_TEMPLATE.replace('[Insert rubric here]', rubric)
-    prompt = prompt.replace('[Insert questions and answers here]', questions_json)
+def build_prompt(
+    rubric: str, questions_markdown: str, answers_markdown: str
+) -> str:
+    """Fill the prompt template with rubric and both OCR transcripts."""
+    prompt = PROMPT_TEMPLATE.replace("[Insert rubric here]", rubric)
+    prompt = prompt.replace(
+        "[Insert questions transcript here]", questions_markdown
+    )
+    prompt = prompt.replace("[Insert answers transcript here]", answers_markdown)
     return prompt
 
 
@@ -28,12 +32,14 @@ def _strip_json_fences(text: str) -> str:
     return match.group(1) if match else text
 
 
-def grade_exam(rubric: str, questions: List[Dict[str, Any]]) -> Dict[str, Any]:
+def grade_exam(
+    rubric: str, questions_markdown: str, answers_markdown: str
+) -> Dict[str, Any]:
     """
-    Grade an exam given the rubric and the list of {question_number,
-    question_text, student_answer} extracted by the OCR step.
+    Grade an exam given the rubric and separate OCR transcripts for the
+    blank exam (questions) and the solved exam (student work).
     """
-    prompt = build_prompt(rubric, questions)
+    prompt = build_prompt(rubric, questions_markdown, answers_markdown)
 
     response = client.chat.completions.create(
         model="gpt-4.1-mini",
@@ -45,8 +51,6 @@ def grade_exam(rubric: str, questions: List[Dict[str, Any]]) -> Dict[str, Any]:
     raw = response.choices[0].message.content
     result = json.loads(_strip_json_fences(raw))
 
-    # Final score is the source of truth: max_score minus the sum of deductions.
-    # GPT's own final_score is overridden — it can't be trusted to add correctly.
     deductions = result.get("deductions") or []
     total_deductions = sum(d.get("points", 0) for d in deductions)
     max_score = result.get("max_score", 100)

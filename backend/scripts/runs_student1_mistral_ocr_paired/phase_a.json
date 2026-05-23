@@ -1,0 +1,637 @@
+[
+  {
+    "run": 1,
+    "ok": true,
+    "elapsed": 47.91723608970642,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a method named isBalanced that receives an array of integers arr. The method should return true if arr is a \"Balanced Array\" (מערך מאוזן), and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).",
+        "student_answer": "public static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i < half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i < arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part A (סעיף א):\nWrite the class Team (קבוצה). The class should include the following properties:\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).",
+        "student_answer": "public class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part B (סעיף ב):\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.",
+        "student_answer": "public class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i < teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a \"Strong Password\" (סיסמה חזקה). It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).",
+        "student_answer": "public static boolean isValidPassword(String pass) {\nif (pass.length() >= 8) {\nfor (int i = 0; i < pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch >= 'A' && ch <= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 44,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic and does not implement isSorted as required, so full 25 points deducted. Q2 Part A has public fields instead of private (3 points), missing getter and setter methods for numMembers and needsComputers (10 points). Q2 Part B is mostly correct but addTeam does not check for full capacity before adding (3 points). Q3 is missing most required checks except length and uppercase (15 points).",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The student's method is named isBalanced and sums halves of the array instead of iterating over adjacent pairs to check sorted order as required by isSorted. The code does not implement the required method behavior.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as shown by 'public String teamName;' etc.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers. Only getTeamName() is present; no other getters or any setters are defined.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "In addTeam method, no check for array capacity before adding a team. The code assigns teams[currentTeams] = t and increments currentTeams without verifying if currentTeams < maxTeams.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "The method only checks password length >= 8 and presence of uppercase letters (returns true immediately on first uppercase). Missing checks for lowercase letters and digits.",
+          "points": 15
+        }
+      ]
+    }
+  },
+  {
+    "run": 2,
+    "ok": true,
+    "elapsed": 15.455762386322021,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).",
+        "student_answer": "public static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i < half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i < arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part A (סעיף א):\nWrite the class Team (קבוצה). The class should include the following properties:\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).",
+        "student_answer": "public class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part B (סעיף ב):\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.",
+        "student_answer": "public class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i < teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).",
+        "student_answer": "public static boolean isValidPassword(String pass) {\nif (pass.length() >= 8) {\nfor (int i = 0; i < pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch >= 'A' && ch <= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 38,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic (checks balanced array sums, not isSorted) so full 25 points deducted. Q2 Part A misses private fields and setters, deducting 11 points total. Q2 Part B misses capacity check in addTeam and accesses Team fields directly, deducting 8 points. Q3 is missing most password checks, deducting 21 points.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The method is named isBalanced and checks sums of halves of the array, not isSorted as required by the rubric.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private (deduct 3). Setter methods for all attributes are missing (deduct 5).",
+          "points": 8
+        },
+        {
+          "question_number": 2,
+          "reason": "Constructor is present. addTeam method does not check if the storage is full before adding (no capacity check). countComputersNeeded reads Team fields needsComputers and numMembers directly instead of using getters.",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Only checks password length and presence of uppercase letter; missing checks for lowercase letters and digits.",
+          "points": 10
+        },
+        {
+          "question_number": 3,
+          "reason": "Returns true immediately upon finding an uppercase letter without verifying other conditions, causing incorrect logic for password validation.",
+          "points": 11
+        }
+      ]
+    }
+  },
+  {
+    "run": 3,
+    "ok": true,
+    "elapsed": 19.574207305908203,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).",
+        "student_answer": "public static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i < half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i < arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part A (סעיף א):\nWrite the class Team (קבוצה). The class should include the following properties:\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).",
+        "student_answer": "public class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part B (סעיף ב):\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.",
+        "student_answer": "public class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i < teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "A string is defined as a \"Strong Password\" (סיסמה חזקה) if it meets all of the following conditions:\n1. Its length is at least 8 characters.\n2. It contains at least one uppercase letter ('A' - 'Z').\n3. It contains at least one digit ('0' - '9').\n\nYour Task:\nWrite a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).",
+        "student_answer": "public static boolean isValidPassword(String pass) {\nif (pass.length() >= 8) {\nfor (int i = 0; i < pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch >= 'A' && ch <= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 49,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic (checks balanced sums, not sorted order), so full 25 points deducted. Q2 Part A has public fields instead of private (3 points), but constructor and getter present; missing setters (5 points). Q2 Part B has correct private fields and constructor, addTeam method lacks capacity check (3 points), countComputersNeeded reads fields directly (5 points). Q3 is missing checks for lowercase letters and digits (5 + 5 points), and returns true prematurely inside uppercase check (logic flaw), but rubric does not specify deducting for logic flaws beyond missing checks, so no deduction for that. Total deductions sum to 45, final score 55.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The method isBalanced sums halves of the array instead of iterating over adjacent pairs to check sorted order as required by isSorted; the code does not implement the isSorted method described in the rubric.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as required (found 'public String teamName;', 'public int numMembers;', 'public boolean needsComputers;').",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing setter methods for the attributes; only getTeamName() is provided, no setters found in the text.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "In Hackathon class, addTeam does not check if the storage is full before adding a team (no capacity check before 'this.teams[currentTeams] = t;').",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded() accesses Team fields needsComputers and numMembers directly (e.g., 'if (teams[i].needsComputers)') instead of using getters, violating encapsulation.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing check for at least one lowercase letter; the code only checks for uppercase letters and length.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing check for at least one digit; the code does not check for digits anywhere.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 4,
+    "ok": true,
+    "elapsed": 21.40530776977539,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).",
+        "student_answer": "public static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i < half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i < arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part A (סעיף א):\nWrite the class Team (קבוצה). The class should include the following properties:\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).",
+        "student_answer": "public class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part B (סעיף ב):\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.",
+        "student_answer": "public class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i < teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).",
+        "student_answer": "public static boolean isValidPassword(String pass) {\nif (pass.length() >= 8) {\nfor (int i = 0; i < pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch >= 'A' && ch <= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 27,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic and does not implement isSorted as required, so full 25 points deducted. Q2 partially meets requirements but fields are public instead of private (3 points deducted), and missing getters/setters for numMembers and needsComputers (10 points deducted). Q3 is off-topic (the Hackathon class manages teams and computers, not countTeamsWithMoreThan), so full 25 points deducted. Q4 is missing most checks except length and uppercase, so 15 points deducted for missing lowercase and digit checks.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The method is named isBalanced and sums halves of the array instead of iterating over adjacent pairs to check sorted order as required by the rubric for isSorted. The student_answer is:\npublic static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i < half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i < arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as shown:\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers. The student_answer only includes getTeamName():\npublic String getTeamName() {\nreturn teamName;\n}",
+          "points": 10
+        },
+        {
+          "question_number": 3,
+          "reason": "The class Hackathon manages teams and computers, not a TeamManager with countTeamsWithMoreThan method as required. The student_answer is:\npublic class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i < teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}",
+          "points": 25
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing checks for lowercase letters and digits. The student_answer only checks length >= 8 and presence of uppercase letters:\npublic static boolean isValidPassword(String pass) {\nif (pass.length() >= 8) {\nfor (int i = 0; i < pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch >= 'A' && ch <= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}",
+          "points": 10
+        }
+      ]
+    }
+  },
+  {
+    "run": 5,
+    "ok": true,
+    "elapsed": 19.85688614845276,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).",
+        "student_answer": "public static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i < half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i < arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part A (סעיף א):\nWrite the class Team (קבוצה). The class should include the following properties:\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).",
+        "student_answer": "public class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part B (סעיף ב):\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.",
+        "student_answer": "public class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i < teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).",
+        "student_answer": "public static boolean isValidPassword(String pass) {\nif (pass.length() >= 8) {\nfor (int i = 0; i < pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch >= 'A' && ch <= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 49,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic (checks balanced array sums, not sorted order) so full 25 points deducted. Q2 has public fields instead of private (3 points), but constructor and getTeamName() present; missing setters for all attributes (5 points). Q3 (Hackathon class) has private fields, constructor, addTeam, and countComputersNeeded methods; addTeam uses array with capacity check missing (3 points), countComputersNeeded reads Team fields directly (5 points). Q4 is missing checks for lowercase and digit, and returns true immediately upon finding uppercase without checking others (missing 3 checks, 15 points total). No inversion of return values. Total deductions sum to 45 + 3 + 5 + 3 + 5 + 15 = 45 + 3 + 5 + 3 + 5 + 15 = 36 + 15 = 51? Recalculate carefully: Q1: 25, Q2: 3 + 5 = 8, Q3: 3 + 5 = 8, Q4: missing lowercase (5), missing digit (5), missing length check (no, length check present), so missing lowercase and digit only (10), plus missing uppercase? Uppercase is checked but returns true immediately, so missing lowercase and digit only. So Q4 deductions: 5 (missing lowercase) + 5 (missing digit) = 10. Total deductions: 25 + 8 + 8 + 10 = 51. Final score = 100 - 51 = 49. Adjust final_score to 49.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The method isBalanced does not implement isSorted as required; it sums halves of the array instead of checking adjacent pairs for sorted order. The rubric requires checking adjacent pairs and returning false on first out-of-order pair, which is missing.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as required (e.g., 'public String teamName;').",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing setter methods for all attributes; only getTeamName() is present, no setters found in the student answer.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "Method addTeam does not check if the storage array is full before adding a team; it directly assigns to teams[currentTeams] and increments currentTeams without capacity check.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Method countComputersNeeded accesses Team fields needsComputers and numMembers directly (e.g., 'teams[i].needsComputers'), violating encapsulation by not using getters.",
+          "points": 5
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing checks for lowercase letters and digits; the code only checks for uppercase letters and length >= 8.",
+          "points": 10
+        }
+      ]
+    }
+  },
+  {
+    "run": 6,
+    "ok": true,
+    "elapsed": 17.62199091911316,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).",
+        "student_answer": "public static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i < half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i < arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part A (סעיף א):\nWrite the class Team (קבוצה). The class should include the following properties:\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).",
+        "student_answer": "public class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part B (סעיף ב):\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.",
+        "student_answer": "public class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i < teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).",
+        "student_answer": "public static boolean isValidPassword(String pass) {\nif (pass.length() >= 8) {\nfor (int i = 0; i < pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch >= 'A' && ch <= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 44,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic (checks balanced array sums, not sortedness) so full 25 points deducted. Q2 has public fields instead of private (3 points), missing getter and setter methods for numMembers and needsComputers (10 points total), but constructor and getTeamName() present. Q3 (Hackathon class) has private fields and constructor, addTeam method present but missing capacity check (3 points), countComputersNeeded reads fields directly (5 points). Q4 (isValidPassword) only checks length and uppercase letter, missing lowercase and digit checks (10 points).",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The method isBalanced sums halves of the array to check balance, but the rubric requires isSorted checking adjacent pairs for order. The code does not implement isSorted as required.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, needsComputers are declared public instead of private as required.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers; only getTeamName() is present.",
+          "points": 10
+        },
+        {
+          "question_number": 3,
+          "reason": "addTeam method does not check if the storage is full before adding a team; no capacity check on fixed-size array.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "countComputersNeeded method accesses Team fields needsComputers and numMembers directly instead of using getters, violating encapsulation.",
+          "points": 5
+        },
+        {
+          "question_number": 4,
+          "reason": "isValidPassword only checks length and uppercase letters; missing checks for lowercase letters and digits.",
+          "points": 10
+        }
+      ]
+    }
+  },
+  {
+    "run": 7,
+    "ok": true,
+    "elapsed": 26.331881046295166,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).",
+        "student_answer": "public static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i < half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i < arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part A (סעיף א):\nWrite the class Team (קבוצה). The class should include the following properties:\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).",
+        "student_answer": "public class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part B (סעיף ב):\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.",
+        "student_answer": "public class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i < teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).",
+        "student_answer": "public static boolean isValidPassword(String pass) {\nif (pass.length() >= 8) {\nfor (int i = 0; i < pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch >= 'A' && ch <= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 54,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic and does not implement isSorted as required, so full 25 points deducted. Q2 Part A has public fields instead of private (3 points), but has constructor and getTeamName(), so no deduction for those. Q2 Part B has a constructor and addTeam method, but addTeam does not check for full capacity (3 points), and countComputersNeeded reads Team fields directly (5 points). Q3 is missing most password checks except length and uppercase, so 15 points deducted for missing lowercase and digit checks.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The student's method is named isBalanced and sums halves of the array instead of iterating over adjacent pairs to check sorted order as required by isSorted. The code does not implement isSorted at all.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as required. Found in: 'public String teamName;', 'public int numMembers;', 'public boolean needsComputers;'.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "In Hackathon class, addTeam does not check if the storage is full before adding a team. The method unconditionally assigns teams[currentTeams] = t and increments currentTeams, risking overflow.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "In countComputersNeeded(), the code accesses teams[i].needsComputers and teams[i].numMembers directly instead of using getters, violating encapsulation.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "The method only checks password length >= 8 and presence of uppercase letters (returns true immediately on first uppercase). It does not check for lowercase letters or digits, missing these required checks.",
+          "points": 10
+        },
+        {
+          "question_number": 3,
+          "reason": "The method returns true immediately upon finding an uppercase letter without verifying lowercase or digit presence, so it returns true for some invalid passwords, but since missing checks are already deducted, no inversion deduction applied.",
+          "points": 0
+        }
+      ]
+    }
+  },
+  {
+    "run": 8,
+    "ok": true,
+    "elapsed": 26.927531003952026,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a method named isBalanced that receives an array of integers arr. The method should return true if arr is a \"Balanced Array\" (מערך מאוזן), and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).",
+        "student_answer": "public static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i < half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i < arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part A (סעיף א):\nWrite the class Team (קבוצה). The class should include the following properties:\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).",
+        "student_answer": "public class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part B (סעיף ב):\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.",
+        "student_answer": "public class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i < teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a \"Strong Password\" (סיסמה חזקה). It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).",
+        "student_answer": "public static boolean isValidPassword(String pass) {\nif (pass.length() >= 8) {\nfor (int i = 0; i < pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch >= 'A' && ch <= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 44,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic (checks balanced array sums, not isSorted), so full 25 points deducted. Q2 Part A has public fields instead of private (3 points), missing getter and setter methods for numMembers and needsComputers (10 points). Q2 Part B is mostly correct but addTeam lacks capacity check (3 points), and countComputersNeeded reads fields directly (5 points). Q3 is missing checks for lowercase letters and digits (10 points), and returns true prematurely inside the uppercase check loop, so logic is flawed (no deduction since no specific control flow error per rubric, but missing checks cause deduction).",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The student's method is named isBalanced and checks sums of halves of the array instead of iterating over adjacent pairs to check if the array is sorted as required by the rubric.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as required (public String teamName; public int numMembers; public boolean needsComputers;).",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers; only getTeamName() is present.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "In Hackathon class, addTeam does not check if currentTeams has reached maxTeams before adding, so no capacity check is present.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded() accesses teams[i].needsComputers and teams[i].numMembers fields directly instead of using getters, violating encapsulation.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing checks for lowercase letters and digits; only uppercase letter check is present in isValidPassword.",
+          "points": 10
+        }
+      ]
+    }
+  },
+  {
+    "run": 9,
+    "ok": true,
+    "elapsed": 25.738094806671143,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).",
+        "student_answer": "public static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i < half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i < arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part A (סעיף א):\nWrite the class Team (קבוצה). The class should include the following properties:\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).",
+        "student_answer": "public class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part B (סעיף ב):\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.",
+        "student_answer": "public class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i < teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).",
+        "student_answer": "public static boolean isValidPassword(String pass) {\nif (pass.length() >= 8) {\nfor (int i = 0; i < pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch >= 'A' && ch <= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 39,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic and does not implement isSorted as required, so full 25 points deducted. Q2 partially meets requirements but fields are public instead of private (3 points deducted), and missing getters/setters for numMembers and needsComputers (10 points deducted). Q3 (Hackathon class) has correct private fields and constructor, addTeam method lacks capacity check (3 points deducted), countComputersNeeded reads Team fields directly (5 points deducted). Q4 is missing most checks except length and uppercase, so 15 points deducted for missing lowercase and digit checks.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The student's method is named isBalanced and sums halves of the array instead of implementing isSorted that checks adjacent pairs for order as required by the rubric. The code does not iterate over adjacent pairs or return false on the first out-of-order pair.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private as required (fields are 'public String teamName;', 'public int numMembers;', 'public boolean needsComputers;').",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getter and setter methods for numMembers and needsComputers. Only getTeamName() is present; no other getters or setters are defined.",
+          "points": 10
+        },
+        {
+          "question_number": 3,
+          "reason": "addTeam method does not check if the storage is full before adding a team (no capacity check before 'this.teams[currentTeams] = t;').",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "countComputersNeeded method accesses Team fields directly (teams[i].needsComputers and teams[i].numMembers) instead of using getters, violating encapsulation.",
+          "points": 5
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing checks for lowercase letters and digits. The code only checks length >= 8 and presence of uppercase letters (returns true inside loop if uppercase found), but does not check for lowercase or digit presence.",
+          "points": 10
+        },
+        {
+          "question_number": 4,
+          "reason": "Missing check for digit presence in password. The code does not verify that the password contains at least one digit.",
+          "points": 5
+        }
+      ]
+    }
+  },
+  {
+    "run": 10,
+    "ok": true,
+    "elapsed": 18.17930507659912,
+    "ocr": [
+      {
+        "question_number": 1,
+        "question_text": "Write a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).",
+        "student_answer": "public static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i < half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i < arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part A (סעיף א):\nWrite the class Team (קבוצה). The class should include the following properties:\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).",
+        "student_answer": "public class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}"
+      },
+      {
+        "question_number": 2,
+        "question_text": "Part B (סעיף ב):\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.",
+        "student_answer": "public class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i < teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}"
+      },
+      {
+        "question_number": 3,
+        "question_text": "Write a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).",
+        "student_answer": "public static boolean isValidPassword(String pass) {\nif (pass.length() >= 8) {\nfor (int i = 0; i < pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch >= 'A' && ch <= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}"
+      }
+    ],
+    "grading": {
+      "final_score": 43,
+      "max_score": 100,
+      "rationale": "Q1 is off-topic (method isBalanced instead of isSorted) so full 25 points deducted. Q2 Part A: fields are public instead of private (-3 each for 3 fields = -9), constructor present, getTeamName present, missing setters (-5 each for 2 missing setters for teamName and numMembers, since needsComputers setter is missing too but rubric only requires getTeamName getter, so only deduct for missing setters). Q2 Part B: constructor present, addTeam present but no capacity check on fixed-size array (-3), countComputersNeeded present but reads private fields directly (-5). Q3: isValidPassword checks length and uppercase letter only, missing lowercase and digit checks (-5 each for 2 missing checks = -10). Return value logic correct, no inversion deduction. Total deductions sum to 45 + 9 + 3 + 5 + 10 = 72, but since Q1 full 25 deducted, total deductions are 25 + 9 + 3 + 5 + 10 = 52. Final score 100 - 45 = 55.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "The method is named isBalanced and checks sums of halves, not isSorted as required by the rubric.",
+          "points": 25
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields teamName, numMembers, and needsComputers are declared public instead of private: 'public String teamName;', 'public int numMembers;', 'public boolean needsComputers;'.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing setter methods for teamName, numMembers, and needsComputers; only getTeamName() is present.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "In Hackathon class, addTeam does not check if the array is full before adding a team: 'this.teams[currentTeams] = t; currentTeams++; return true;'.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded reads private fields needsComputers and numMembers directly: 'if (teams[i].needsComputers) { total += teams[i].numMembers; }'.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing checks for lowercase letters and digits; only length >= 8 and uppercase letter checks are present.",
+          "points": 10
+        }
+      ]
+    }
+  }
+]

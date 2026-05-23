@@ -1,34 +1,41 @@
-The exam is out of 100 points, 25 points per question.
+Computer Science Bagrut Simulation – 5 Units: Grading Rubric
+Total Points: 100
 
-Q1 — isSorted(int[] arr)
-- Must iterate over every adjacent pair in the array.
-- Must return false on the first out-of-order pair and true if the whole array is checked.
-- Deduct 5 if the loop bound is wrong (e.g., iterates only half the array, off-by-one).
-- Deduct 10 if the comparison direction is wrong (e.g., uses < instead of >).
-- Deduct 10 if return values are inverted or missing.
+Q1 — isBalanced(int[] arr) (30 points)
+* Must check if the array length is even, returning false if it is odd.
+* Must calculate the sum of the elements in the first half of the array.
+* Must calculate the sum of the elements in the second half of the array.
+* Must return true if the two sums are exactly equal, and false otherwise.
+* Deduct 5 if the even-length validation is missing or incorrect.
+* Deduct 10 if loop bounds are incorrect for splitting the array exactly in half.
+* Deduct 10 if the summation logic is flawed or missing.
+* Deduct 5 if return values are inverted or missing.
 
-Q2 — Team class
-- Must declare a private field for the team name (String).
-- Must declare a private field for the number of members (int).
-- Must have a constructor that initializes both fields from parameters.
-- Must have a public getTeamName() that returns the team name.
-- Deduct 5 per missing field, missing constructor, or missing getter.
-- Deduct 3 if fields are declared public instead of private.
+Q2 Part A — Team class (15 points)
+* Must declare private fields for teamName (String), numMembers (int), and needsComputers (boolean).
+* Must have a constructor that initializes all three fields from parameters.
+* Must have standard get and set methods for all attributes.
+* Deduct 3 per missing field.
+* Deduct 5 if the constructor is missing or does not initialize all fields.
+* Deduct 5 if getters and setters are missing.
+* Deduct 2 if fields are declared public instead of private (encapsulation violation).
 
-Q3 — TeamManager class
-- Must store teams in a private array or list of Team.
-- Must have a constructor that initializes the storage.
-- Must have addTeam(Team t) that adds a team to the storage.
-- Must have countTeamsWithMoreThan(int n) that returns the number of teams with strictly more than n members.
-- Deduct 5 per missing required method (constructor, addTeam, countTeamsWithMoreThan).
-- Deduct 5 if countTeamsWithMoreThan reads a private field of Team directly instead of going through a getter (encapsulation violation).
-- Deduct 3 if addTeam does not handle the storage being full (e.g., no capacity check on a fixed-size array). Do not deduct if an ArrayList / dynamic list is used.
+Q2 Part B — Hackathon class (25 points)
+* Must declare properties: teams (array of Team), maxTeams (int), and currentTeams (int).
+* Must have a constructor that receives maxTeams, initializes the array to that size, and sets currentTeams to 0.
+* Must have addTeam(Team t) that adds the team if there is room, increments the count, and returns true/false based on success.
+* Must have countComputersNeeded() that iterates over the teams and sums numMembers only if needsComputers is true.
+* Deduct 5 if the constructor fails to correctly size the array or initialize the counter.
+* Deduct 5 if addTeam does not check if the array is full or fails to increment the counter.
+* Deduct 5 if countComputersNeeded ignores the needsComputers flag or calculates the sum incorrectly.
+* Deduct 3 if methods violate encapsulation by reading private fields of Team directly instead of using getters (if applicable based on Part A).
 
-Q4 — isValidPassword(String pass)
-- Must check that the password length is at least 8.
-- Must check that the password contains at least one uppercase letter.
-- Must check that the password contains at least one lowercase letter.
-- Must check that the password contains at least one digit.
-- Deduct 5 per missing check.
-- Deduct 3 if the return value is inverted (e.g., returns true for invalid passwords) but all checks are present.
-- Minor stylistic issues (extra checks the rubric does not require, slight variable-name differences) are not deducted.
+Q3 — isValidPassword(String pass) (30 points)
+* Must be declared as a static method.
+* Must check that the string length is at least 8 characters.
+* Must check that the string contains at least one uppercase letter ('A'-'Z').
+* Must check that the string contains at least one digit ('0'-'9').
+* Deduct 5 if the method is not static.
+* Deduct 8 per missing condition check (length, uppercase, digit).
+* Deduct 5 if the return value is inverted (e.g., returns true for invalid passwords).
+* Minor stylistic issues (e.g., using boolean flags vs. early returns) are not deducted.

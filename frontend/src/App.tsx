@@ -8,10 +8,9 @@ type Deduction = {
   points: number;
 };
 
-type ExtractedQuestion = {
-  question_number: number;
-  question_text: string;
-  student_answer: string;
+type OcrTranscripts = {
+  questions_markdown: string;
+  answers_markdown: string;
 };
 
 type GradingResult = {
@@ -19,7 +18,7 @@ type GradingResult = {
   max_score: number;
   rationale: string;
   deductions: Deduction[];
-  extracted_questions: ExtractedQuestion[];
+  ocr_transcripts: OcrTranscripts;
 };
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8002";
@@ -302,17 +301,18 @@ function App() {
 
               {showOcr && (
                 <div className="ocr-list">
-                  {result.extracted_questions.map((q) => (
-                    <div key={q.question_number} className="ocr-item">
-                      <h4>Question {q.question_number}</h4>
-                      <div className="ocr-label">Question (as read by OCR):</div>
-                      <pre className="ocr-text">{q.question_text || "(empty)"}</pre>
-                      <div className="ocr-label">Student's answer (as read by OCR):</div>
-                      <pre className="ocr-text">
-                        {q.student_answer || "(blank)"}
-                      </pre>
-                    </div>
-                  ))}
+                  <div className="ocr-item">
+                    <h4>Empty exam (questions)</h4>
+                    <pre className="ocr-text">
+                      {result.ocr_transcripts.questions_markdown || "(empty)"}
+                    </pre>
+                  </div>
+                  <div className="ocr-item">
+                    <h4>Solved exam (student answers)</h4>
+                    <pre className="ocr-text">
+                      {result.ocr_transcripts.answers_markdown || "(empty)"}
+                    </pre>
+                  </div>
                 </div>
               )}
             </div>

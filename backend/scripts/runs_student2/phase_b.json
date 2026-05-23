@@ -1,0 +1,112 @@
+[
+  {
+    "run": 1,
+    "ok": true,
+    "elapsed": 3.7821502685546875,
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All questions are answered correctly and fully according to the rubric. \n\nQ1: The method checks for even length and returns false if odd (correct). It sums the first half and second half correctly with correct loop bounds, and returns true only if sums are equal. No deductions.\n\nQ2 Part A: The Team class declares all three fields as private, has a constructor initializing all fields, and provides standard getters and setters for all attributes. No deductions.\n\nQ2 Part B: The Hackathon class declares the required properties, constructor initializes the array and currentTeams correctly, addTeam checks for space and increments currentTeams, returns correct boolean, and countComputersNeeded sums numMembers only for teams needing computers using getters. No direct field access violating encapsulation. No deductions.\n\nQ3: The isValidPassword method is static, checks length >= 8, checks for uppercase letter and digit, and returns true only if all conditions met. No inverted return. No deductions.",
+      "deductions": []
+    }
+  },
+  {
+    "run": 2,
+    "ok": true,
+    "elapsed": 7.790462017059326,
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All questions are answered correctly and completely according to the rubric. \n\nQ1: The method checks for even length and returns false if odd (correct). It sums the first half and second half correctly with proper loop bounds. It returns true if sums are equal, false otherwise. No deductions.\n\nQ2 Part A: The Team class declares all three fields as private, has a constructor initializing all fields, and provides standard getters and setters for all attributes. No deductions.\n\nQ2 Part B: The Hackathon class declares all required properties, constructor correctly initializes the array and counter, addTeam checks capacity and increments counter, returns correct boolean, countComputersNeeded sums numMembers only for teams needing computers using getters, no direct field access violating encapsulation. No deductions.\n\nQ3: The isValidPassword method is static, checks length >= 8, checks for uppercase letter and digit, and returns true only if all conditions met. No inversion of return values. No deductions.",
+      "deductions": []
+    }
+  },
+  {
+    "run": 3,
+    "ok": true,
+    "elapsed": 3.7866549491882324,
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All questions are answered correctly and completely according to the rubric. \n\nQ1: The method checks for even length and returns false if odd (correct). It sums the first half and second half correctly with proper loop bounds. It returns true only if sums are equal, false otherwise. No deductions.\n\nQ2 Part A: The Team class declares all three fields as private, has a constructor initializing all fields, and provides standard getters and setters for all attributes. No deductions.\n\nQ2 Part B: The Hackathon class declares all required properties, constructor initializes the array and currentTeams correctly. addTeam checks if there is room before adding, increments currentTeams, and returns true/false correctly. countComputersNeeded sums numMembers only for teams needing computers, using getters (no direct field access). No deductions.\n\nQ3: isValidPassword is declared static, checks length >= 8, checks for uppercase letter and digit, and returns true only if all conditions met. No inverted return. No deductions.",
+      "deductions": []
+    }
+  },
+  {
+    "run": 4,
+    "ok": true,
+    "elapsed": 2.839195966720581,
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All questions were answered correctly and fully according to the rubric. \n\nQ1: The method correctly checks for even length, sums the first and second halves with correct loop bounds, and returns true only if sums are equal.\n\nQ2 Part A: All three fields are declared private, constructor initializes all fields, and standard getters and setters are present.\n\nQ2 Part B: All three properties are declared, constructor initializes array and counter correctly, addTeam checks capacity and increments counter, countComputersNeeded sums only teams needing computers using getters.\n\nQ3: The method is static, checks length >= 8, checks for uppercase letter, checks for digit, and returns true only if all conditions met.\n\nNo deductions apply.",
+      "deductions": []
+    }
+  },
+  {
+    "run": 5,
+    "ok": true,
+    "elapsed": 2.865870952606201,
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All questions were answered correctly according to the rubric. \n\nQ1: The method checks for even length, correctly sums the first and second halves with proper loop bounds, and returns true only if sums are equal.\n\nQ2 Part A: The Team class declares all three fields as private, has a constructor initializing all fields, and provides standard getters and setters.\n\nQ2 Part B: The Hackathon class declares all required properties, constructor correctly initializes array and counter, addTeam checks capacity and increments counter, countComputersNeeded sums numMembers only for teams needing computers, and uses getters (encapsulation respected).\n\nQ3: The isValidPassword method is static, checks length >= 8, checks for uppercase letters and digits, and returns true only if all conditions met.\n\nNo deductions apply.",
+      "deductions": []
+    }
+  },
+  {
+    "run": 6,
+    "ok": true,
+    "elapsed": 2.8048229217529297,
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All questions were answered correctly according to the rubric. \n\nQ1: The method checks for even length and returns false if odd, sums the first half and second half correctly with proper loop bounds, and returns true only if sums are equal.\n\nQ2 Part A: All three fields are declared private, constructor initializes all fields, and standard getters and setters are provided.\n\nQ2 Part B: Properties teams, maxTeams, and currentTeams are declared; constructor initializes array and counter correctly; addTeam checks for space, adds team, increments counter, and returns correct boolean; countComputersNeeded sums numMembers only for teams needing computers using getters.\n\nQ3: Method is static, checks length >= 8, checks for uppercase letter and digit, and returns true only if all conditions met.\n\nNo deductions apply as all rubric criteria are met.",
+      "deductions": []
+    }
+  },
+  {
+    "run": 7,
+    "ok": true,
+    "elapsed": 3.3702220916748047,
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All questions are answered correctly and completely according to the rubric. \n\nQ1: The method checks for even length and returns false if odd (correct). It sums the first half and second half correctly with proper loop bounds. It returns true if sums are equal, false otherwise. No deductions.\n\nQ2 Part A: The Team class declares all three fields as private. The constructor initializes all fields. All standard getters and setters are present. No deductions.\n\nQ2 Part B: The Hackathon class declares the required properties with correct types and access modifiers. The constructor initializes the array to maxTeams size and sets currentTeams to 0. The addTeam method checks if there is room, adds the team, increments currentTeams, and returns true/false accordingly. The countComputersNeeded method correctly sums numMembers only for teams needing computers, using getters (no direct field access). No deductions.\n\nQ3: The isValidPassword method is static. It checks length >= 8, presence of uppercase letter, and presence of digit. It returns true only if all conditions met, false otherwise. No inversion of return values. No deductions.",
+      "deductions": []
+    }
+  },
+  {
+    "run": 8,
+    "ok": true,
+    "elapsed": 3.3736350536346436,
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All questions were answered correctly according to the rubric. \n\nQ1: The method checks for even length, correctly sums the first and second halves, and returns true only if sums are equal. No deductions.\n\nQ2 Part A: All three private fields are declared, constructor initializes all fields, and standard getters and setters are present. No deductions.\n\nQ2 Part B: Properties teams, maxTeams, currentTeams are declared. Constructor correctly initializes the array and counter. addTeam checks capacity, adds team, increments counter, and returns correct boolean. countComputersNeeded sums numMembers only for teams needing computers, using getters (encapsulation respected). No deductions.\n\nQ3: Method is static, checks length >= 8, checks for uppercase letter, checks for digit, and returns true only if all conditions met. No deductions.",
+      "deductions": []
+    }
+  },
+  {
+    "run": 9,
+    "ok": true,
+    "elapsed": 3.0698039531707764,
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All questions are answered correctly and fully according to the rubric. \n\nQ1: The method checks for even length, correctly sums the two halves with proper loop bounds, and returns true if sums are equal, false otherwise.\n\nQ2 Part A: The Team class declares all three fields as private, has a constructor initializing all fields, and provides standard getters and setters for all attributes.\n\nQ2 Part B: The Hackathon class declares the required properties, constructor correctly initializes the array and counter, addTeam checks capacity and increments counter, countComputersNeeded sums numMembers only for teams needing computers, and uses getters (no encapsulation violation).\n\nQ3: The isValidPassword method is static, checks length >= 8, checks for uppercase letter and digit, and returns true only if all conditions are met.\n\nNo rubric deductions apply.",
+      "deductions": []
+    }
+  },
+  {
+    "run": 10,
+    "ok": true,
+    "elapsed": 3.6225571632385254,
+    "grading": {
+      "final_score": 100,
+      "max_score": 100,
+      "rationale": "All questions were answered correctly according to the rubric. \n\nQ1: The method checks for even length and returns false if odd (correct). It sums the first half and second half correctly with correct loop bounds, and returns true only if sums are equal. No deductions.\n\nQ2 Part A: The Team class declares all three fields as private, has a constructor initializing all fields, and provides standard getters and setters for all attributes. No deductions.\n\nQ2 Part B: The Hackathon class declares all required properties, constructor correctly initializes the array and currentTeams counter, addTeam checks capacity before adding and increments counter, and countComputersNeeded sums numMembers only for teams needing computers using getters. No encapsulation violations. No deductions.\n\nQ3: The isValidPassword method is static, checks length >= 8, checks for uppercase letter, checks for digit, and returns true only if all conditions met. No inverted return. No deductions.",
+      "deductions": []
+    }
+  }
+]

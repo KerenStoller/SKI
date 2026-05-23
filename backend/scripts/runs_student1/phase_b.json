@@ -2,21 +2,51 @@
   {
     "run": 1,
     "ok": true,
-    "elapsed": 3.2533507347106934,
+    "elapsed": 8.444092035293579,
     "grading": {
-      "final_score": 90,
+      "final_score": 48,
       "max_score": 100,
-      "rationale": "The student correctly implemented isSorted with correct loop bounds and comparison direction, returning false on the first out-of-order pair. The Team class meets all rubric requirements with private fields, constructor, and getters. The TeamManager class uses a private array with capacity check in addTeam, has a constructor, and uses getters properly. However, TeamManager is missing the required countTeamsWithMoreThan method, resulting in a 5-point deduction. The isValidPassword method correctly checks length, uppercase letters, and digits but misses the required lowercase letter check, resulting in a 5-point deduction.",
+      "rationale": "Question 1: The student correctly declared the method and attempted to sum halves, but failed to check if the array length is even (missing even-length validation, -5). The loop bounds for the second half start at half + 1 instead of half, causing incorrect summation (loop bounds incorrect, -10). Summation logic is flawed because the second half misses the element at index half (sum2 calculation flawed, -10). Return values are correct (no deduction).\n\nQuestion 2 Part A: The student declared all three fields but as public instead of private (encapsulation violation, -2 per field = -6). The constructor initializes all fields correctly (no deduction). Getters and setters are incomplete; only getTeamName() is provided, missing other getters and all setters (-5).\n\nQuestion 2 Part B: The class declares all required properties as private and initializes them correctly in the constructor (no deduction). The addTeam method adds the team and increments currentTeams but does not check if the array is full before adding (-5). The countComputersNeeded method sums numMembers only if needsComputers is true (correct, no deduction). The method accesses Team fields directly (needsComputers and numMembers) instead of using getters, violating encapsulation (-3).\n\nQuestion 3: The method is declared static (no deduction). It checks length >= 8 (correct). It attempts to check for uppercase letters but returns true immediately upon finding one without checking for digits (missing digit check, -8). It returns false if no uppercase found (correct). The return value is not inverted (no deduction).",
       "deductions": [
         {
-          "question_number": 3,
-          "reason": "Missing countTeamsWithMoreThan(int n) method; the student's answer does not include this method.",
+          "question_number": 1,
+          "reason": "Missing even-length validation: method does not check if array length is even (no check for odd length).",
           "points": 5
         },
         {
-          "question_number": 4,
-          "reason": "Missing check for at least one lowercase letter; the student's code only checks length, uppercase letters, and digits.",
+          "question_number": 1,
+          "reason": "Incorrect loop bounds for second half summation: second loop starts at half + 1 instead of half, missing one element.",
+          "points": 10
+        },
+        {
+          "question_number": 1,
+          "reason": "Flawed summation logic: sum of second half misses element at index half, causing incorrect sums.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields declared public instead of private: teamName, numMembers, needsComputers are all public.",
+          "points": 6
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getters and setters: only getTeamName() provided; missing other getters and all setters.",
           "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method does not check if array is full before adding a team.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded method violates encapsulation by accessing Team fields directly instead of using getters.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing digit check: method does not verify presence of at least one digit in the password.",
+          "points": 8
         }
       ]
     }
@@ -24,21 +54,46 @@
   {
     "run": 2,
     "ok": true,
-    "elapsed": 3.5438449382781982,
+    "elapsed": 8.333698034286499,
     "grading": {
-      "final_score": 90,
+      "final_score": 51,
       "max_score": 100,
-      "rationale": "The student correctly implemented isSorted with proper iteration and comparison, so no deductions on Q1. The Team class in Q2 meets all rubric requirements with private fields, constructor, and getters, so no deductions. In Q3, the TeamManager class uses a private array with a constructor and addTeam method that checks capacity, but it is missing the required countTeamsWithMoreThan(int n) method, resulting in a 5-point deduction. Q4's isValidPassword method correctly checks length, uppercase, and digit presence but misses the required lowercase letter check, resulting in a 5-point deduction.",
+      "rationale": "Question 1: The method isBalanced is static and attempts to sum halves, but misses the even-length check (deduct 5). The second loop starts at half+1 instead of half, so it skips the middle element of the second half (deduct 10). Summation logic is partially flawed due to loop bounds (deduct 10). Return values are correct (no deduction).\n\nQuestion 2 Part A: The class declares all three fields but as public instead of private (deduct 6). The constructor initializes all fields correctly (no deduction). Getters and setters are incomplete: only one getter is present, no setters (deduct 5).\n\nQuestion 2 Part B: Properties are declared correctly and private (no deduction). Constructor correctly sizes array and initializes counter (no deduction). addTeam adds without checking if full (deduct 5). countComputersNeeded sums numMembers only if needsComputers is true (correct, no deduction). Methods access Team fields directly (public fields in Part A), so no encapsulation violation (no deduction).\n\nQuestion 3: Method is static (no deduction). Checks length >=8 (present). Checks uppercase letter but returns true immediately upon finding uppercase, ignoring digit check (missing digit check, deduct 8). Returns false if no uppercase or length fail (correct). Return value logic is correct (no deduction).",
       "deductions": [
         {
-          "question_number": 3,
-          "reason": "Missing countTeamsWithMoreThan(int n) method; student_answer does not include this method.",
+          "question_number": 1,
+          "reason": "Missing even-length validation: method does not check if arr.length is even before proceeding (code shows no such check).",
           "points": 5
         },
         {
-          "question_number": 4,
-          "reason": "Missing check for at least one lowercase letter; student_answer does not check for lowercase letters anywhere.",
+          "question_number": 1,
+          "reason": "Incorrect loop bounds for second half summation: second loop starts at half + 1 instead of half, skipping one element (for (int i = half + 1; i < arr.length; i++)).",
+          "points": 10
+        },
+        {
+          "question_number": 1,
+          "reason": "Summation logic flawed due to incorrect loop bounds causing incorrect sums.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields declared public instead of private: teamName, numMembers, needsComputers are all public.",
+          "points": 6
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing setters and incomplete getters: only getTeamName() is present, no setters for any field.",
           "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method does not check if the array is full before adding a team, potentially causing overflow.",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing digit check: method only checks length and uppercase letter, no check for at least one digit.",
+          "points": 8
         }
       ]
     }
@@ -46,16 +101,46 @@
   {
     "run": 3,
     "ok": true,
-    "elapsed": 2.7295539379119873,
+    "elapsed": 10.653865098953247,
     "grading": {
-      "final_score": 95,
+      "final_score": 58,
       "max_score": 100,
-      "rationale": "The student correctly implemented isSorted with proper loop bounds and comparison direction, and correct return values. The Team class matches the rubric exactly. The TeamManager class has all required methods, uses a private array with capacity check in addTeam, and accesses team names via getter, so no deductions there. The isValidPassword method correctly checks length, uppercase, and digit, but misses the required lowercase letter check, so 5 points deducted.",
+      "rationale": "Question 1: The student implemented isBalanced with sum calculations and a return, but failed to check if the array length is even (missing even-length validation, -5). The loop bounds for the second half start at half + 1 instead of half, skipping the middle element in the second half (incorrect loop bounds, -10). Summation logic is mostly correct except for the skipped element, so no separate deduction. Return values are correct.\n\nQuestion 2 Part A: The class declares all three fields but as public instead of private (-2 per field for encapsulation violation, total -6). The constructor initializes all fields correctly (no deduction). Getters and setters are incomplete: only one getter is provided, no setters (-5).\n\nQuestion 2 Part B: Properties are declared correctly and private. Constructor correctly sizes the array and initializes currentTeams (no deduction). addTeam adds without checking if array is full (missing capacity check, -5), but increments counter and returns true correctly. countComputersNeeded sums numMembers only if needsComputers is true (correct). However, it accesses Team fields directly instead of using getters, violating encapsulation (-3).\n\nQuestion 3: The method is declared static (no deduction). It checks length >= 8 (correct). It attempts to check for uppercase letters but returns true immediately upon finding one without checking for digits (missing digit check, -8). Also, it returns false if no uppercase found, but never checks digits, so missing one condition. Return values are not inverted (no deduction).\n\nTotal deductions: Q1: 15, Q2A: 11, Q2B: 8, Q3: 8, sum 42. Final score = 100 - 42 = 58.",
       "deductions": [
         {
-          "question_number": 4,
-          "reason": "Missing check for at least one lowercase letter; the student code only checks length, uppercase, and digit as shown in the loop and return statement.",
+          "question_number": 1,
+          "reason": "Missing check for even-length array. The code does not return false if arr.length is odd; no such validation is present.",
           "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Incorrect loop bounds for second half summation: for loop starts at half + 1 instead of half, skipping one element. \"for (int i = half + 1; i < arr.length; i++)\"",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields declared public instead of private: \"public String teamName; public int numMembers; public boolean needsComputers;\" violates encapsulation.",
+          "points": 6
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getters and setters for all attributes; only one getter (getTeamName) is provided, no setters.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method does not check if the array is full before adding a team. It always adds and increments currentTeams without capacity check.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded accesses Team fields directly (teams[i].needsComputers and teams[i].numMembers) instead of using getters, violating encapsulation.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing check for digit presence in password. The code only checks length and uppercase letters, but does not verify if the password contains a digit.",
+          "points": 8
         }
       ]
     }
@@ -63,16 +148,41 @@
   {
     "run": 4,
     "ok": true,
-    "elapsed": 3.0681512355804443,
+    "elapsed": 9.686912059783936,
     "grading": {
-      "final_score": 95,
+      "final_score": 65,
       "max_score": 100,
-      "rationale": "The student correctly implemented the isSorted method with correct loop bounds and comparison direction, and correct return values. The Team class correctly declares private fields, constructor, and getters as required. The TeamManager class uses a private array with capacity check in addTeam, has a constructor, and required methods, though removeTeam and getTeamNames are extra but correct. The isValidPassword method correctly checks length, uppercase, and digit but misses the required check for at least one lowercase letter, resulting in a deduction.",
+      "rationale": "Question 1: The student implemented isBalanced with partial correctness. They correctly calculate half and sum the first half, but the second half summation loop starts at half + 1 instead of half, missing one element. Also, they do not check if the array length is even, which is required. The return values are correct. Question 2 Part A: The class Team declares all three fields but as public instead of private (encapsulation violation). The constructor initializes all fields correctly. Getters and setters are incomplete: only getTeamName() is provided, missing others and setters. Question 2 Part B: The Hackathon class declares all required fields as private and constructor correctly initializes them. The addTeam method adds the team and increments currentTeams but does not check if the array is full before adding, violating the requirement. The countComputersNeeded method sums numMembers only for teams needing computers, correctly using fields directly (which is allowed since Part A fields are public). Question 3: The isValidPassword method is static (correct). It checks length >= 8 (correct). It attempts to check for uppercase letters but returns true immediately upon finding one, without checking for digits. It does not check for digits at all. The return value is not inverted. Overall deductions reflect missing even-length check and incorrect loop bounds in Q1, encapsulation and missing getters/setters in Q2A, missing full addTeam check in Q2B, and missing digit check in Q3.",
       "deductions": [
         {
-          "question_number": 4,
-          "reason": "Missing check for at least one lowercase letter; the student code only checks length, uppercase, and digit as seen in the student_answer: \"boolean hasUpper = false; boolean hasDigit = false; ... return hasUpper && hasDigit;\" with no lowercase check.",
+          "question_number": 1,
+          "reason": "Missing even-length validation: the method does not check if arr.length is even before proceeding (student code lacks any such check).",
           "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Incorrect loop bounds for second half summation: the second loop starts at half + 1 instead of half, skipping one element (student code: 'for (int i = half + 1; i < arr.length; i++)').",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields declared public instead of private in Team class (student code: 'public String teamName;' etc.).",
+          "points": 2
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getters and setters for numMembers and needsComputers; only getTeamName() is provided (student code lacks other getters/setters).",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method does not check if the array is full before adding a team (student code adds team unconditionally and increments currentTeams).",
+          "points": 5
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing digit check: the method does not verify that the password contains at least one digit (student code only checks length and uppercase letters).",
+          "points": 8
         }
       ]
     }
@@ -80,16 +190,46 @@
   {
     "run": 5,
     "ok": true,
-    "elapsed": 4.165639877319336,
+    "elapsed": 8.40038776397705,
     "grading": {
-      "final_score": 95,
+      "final_score": 62,
       "max_score": 100,
-      "rationale": "The student correctly implemented isSorted with proper loop bounds and comparison direction, and correct return values. The Team class has all required private fields, constructor, and getters. The TeamManager class uses a private array with capacity check in addTeam, has the constructor, addTeam, and other required methods, and uses getters properly. The isValidPassword method checks length, uppercase letter, and digit but misses the required check for at least one lowercase letter, so 5 points are deducted for that missing check.",
+      "rationale": "Question 1: The student implemented the method with a loop to sum the first half and second half, but the second loop starts at half + 1 instead of half, missing one element. Also, there is no check for even length of the array. Summation logic is mostly correct except for the loop bounds error. Return values are correct.\n\nQuestion 2 Part A: The class declares all three fields but as public instead of private (encapsulation violation). The constructor initializes all fields correctly. Only one getter method is provided (getTeamName), missing other getters and all setters.\n\nQuestion 2 Part B: The class declares all required fields private. The constructor correctly sizes the array and initializes currentTeams. The addTeam method adds the team without checking if the array is full before adding, which is a flaw. The countComputersNeeded method sums numMembers only if needsComputers is true, but accesses fields directly instead of using getters (encapsulation violation).\n\nQuestion 3: The method is static as required. It checks length >= 8. It attempts to check uppercase letters but returns true immediately upon finding one, missing the digit check entirely. It returns false otherwise. So missing digit check and incomplete condition checks. Return values are not inverted.\n\nDeductions are applied accordingly.",
       "deductions": [
         {
-          "question_number": 4,
-          "reason": "Missing check for at least one lowercase letter; the student code only checks length, uppercase letter, and digit but does not check for lowercase letters anywhere in the code.",
+          "question_number": 1,
+          "reason": "Missing check for even length of array. The method does not return false if array length is odd, violating the requirement. (No code checking arr.length % 2 == 0)",
           "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Incorrect loop bounds for summing second half. The second loop starts at half + 1 instead of half, skipping one element. (for (int i = half + 1; i < arr.length; i++))",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields declared public instead of private, violating encapsulation. (public String teamName; public int numMembers; public boolean needsComputers;)",
+          "points": 2
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getters and setters for numMembers and needsComputers. Only getTeamName() is provided; no setters at all.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "In addTeam method, no check if the array is full before adding a team, violating requirement to return false if full. (addTeam always adds and returns true)",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded method accesses Team fields directly instead of using getters, violating encapsulation based on Part A fields being private.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing check for digit presence in password. The method only checks length and uppercase letter, but never checks for digits.",
+          "points": 8
         }
       ]
     }
@@ -97,16 +237,56 @@
   {
     "run": 6,
     "ok": true,
-    "elapsed": 3.620398759841919,
+    "elapsed": 8.54369592666626,
     "grading": {
-      "final_score": 95,
+      "final_score": 44,
       "max_score": 100,
-      "rationale": "The student correctly implemented isSorted with proper loop bounds and comparison direction, returning false on the first out-of-order pair. The Team class correctly declares private fields, constructor, and getters as required. The TeamManager class uses a private array with capacity check in addTeam, has a constructor, and methods addTeam, removeTeam, and getTeamNames; all methods use getters properly. The isValidPassword method checks length, uppercase letter, and digit presence but misses the required check for at least one lowercase letter, resulting in a deduction.",
+      "rationale": "Question 1: The student correctly declared the method and attempted to sum halves, but missed the even-length check (deduct 5), used incorrect loop bounds for the second half (starts at half+1 instead of half, deduct 10), and summation logic is flawed due to this (deduct 10). The return values are correct (no deduction).\n\nQuestion 2 Part A: The student declared all three fields but as public instead of private (deduct 2). The constructor initializes all fields correctly (no deduction). Getters and setters are incomplete; only one getter is provided and no setters (deduct 5).\n\nQuestion 2 Part B: The constructor correctly sizes the array and initializes currentTeams (no deduction). The addTeam method adds the team and increments currentTeams but does not check if the array is full before adding (deduct 5). The countComputersNeeded method sums numMembers only if needsComputers is true (correct). However, it accesses Team fields directly instead of using getters (deduct 3).\n\nQuestion 3: The method is declared static (no deduction). It checks length >= 8 (correct). It attempts to check uppercase letters but returns true immediately upon finding one without checking for digits (missing digit check, deduct 8). It returns false if no uppercase found, but does not check digit presence (deduct 8). The return value logic is not inverted (no deduction).",
       "deductions": [
         {
-          "question_number": 4,
-          "reason": "Missing check for at least one lowercase letter; the student code only checks length, uppercase letter, and digit as seen in the code: no check for lowercase letters in the loop.",
+          "question_number": 1,
+          "reason": "Missing check for even-length array. The code does not verify if arr.length is even before proceeding.",
           "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Incorrect loop bounds for second half summation. The second loop starts at half + 1 instead of half, skipping the middle element.",
+          "points": 10
+        },
+        {
+          "question_number": 1,
+          "reason": "Flawed summation logic due to incorrect loop bounds causing incorrect sums of halves.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields declared public instead of private, violating encapsulation.",
+          "points": 2
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing setters and incomplete getters. Only one getter (getTeamName) is provided; no setters for any fields.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method does not check if the array is full before adding a team.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded accesses Team fields directly instead of using getters, violating encapsulation.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing digit check in password validation. The method does not verify presence of at least one digit.",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing uppercase letter check properly combined with digit check. The method returns true immediately upon finding uppercase without ensuring digit presence.",
+          "points": 8
         }
       ]
     }
@@ -114,16 +294,46 @@
   {
     "run": 7,
     "ok": true,
-    "elapsed": 2.9208428859710693,
+    "elapsed": 6.71086573600769,
     "grading": {
-      "final_score": 95,
+      "final_score": 62,
       "max_score": 100,
-      "rationale": "The student correctly implemented isSorted with proper iteration and comparison, so no deductions for Q1. The Team class in Q2 meets all rubric requirements with private fields, constructor, and getters, so no deductions. For Q3, the TeamManager uses a private array with capacity check in addTeam, has constructor, addTeam, and other methods, so no deductions. Q4 is missing the lowercase letter check required by the rubric, so 5 points are deducted.",
+      "rationale": "Question 1: The student implemented isBalanced with sum calculations and return values, but missed the even-length check and has incorrect loop bounds for the second half summation (starts at half+1 instead of half). Question 2 Part A: All three fields are declared but as public (deduct 2 points), constructor exists and initializes all fields, but getters/setters are incomplete (only one getter provided). Question 2 Part B: All required fields are private and correctly declared, constructor correctly initializes array and counter, addTeam adds without checking if full (deduct 5), countComputersNeeded sums correctly and respects needsComputers flag, but accesses Team fields directly instead of getters (deduct 3). Question 3: Method is static, checks length, but only checks for uppercase letter and returns true immediately upon finding it, missing digit check (deduct 8), and returns false otherwise (no inverted return).",
       "deductions": [
         {
-          "question_number": 4,
-          "reason": "Missing check for at least one lowercase letter; the student code only checks length, uppercase letters, and digits as shown in the code: \"boolean hasUpper = false; boolean hasDigit = false; ... return hasUpper && hasDigit;\" with no lowercase check.",
+          "question_number": 1,
+          "reason": "Missing even-length validation: method does not check if arr.length is even before proceeding.",
           "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Incorrect loop bounds for second half summation: loop starts at half + 1 instead of half, skipping the middle element of the second half.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields declared public instead of private: teamName, numMembers, and needsComputers are public.",
+          "points": 2
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getters and setters: only one getter (getTeamName) is provided; other getters and all setters are missing.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method does not check if the array is full before adding a team, risking array overflow.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded accesses Team fields directly instead of using getters, violating encapsulation.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing digit check: method does not verify if the password contains at least one digit.",
+          "points": 8
         }
       ]
     }
@@ -131,16 +341,56 @@
   {
     "run": 8,
     "ok": true,
-    "elapsed": 3.332533121109009,
+    "elapsed": 9.233821153640747,
     "grading": {
-      "final_score": 95,
+      "final_score": 44,
       "max_score": 100,
-      "rationale": "The student correctly implemented isSorted with correct loop bounds and comparison direction, returning false on the first out-of-order pair. The Team class correctly declares private fields, constructor, and getters. The TeamManager class uses a private array with capacity check in addTeam, has a constructor, and methods addTeam, removeTeam, and getTeamNames; no deduction for missing countTeamsWithMoreThan as it was not asked. The isValidPassword method correctly checks length, uppercase, and digit but misses the required lowercase letter check, resulting in a 5-point deduction.",
+      "rationale": "Question 1: The student implemented the isBalanced method with summation of halves and a return of true/false. However, they missed the check for even length (deduct 5), used incorrect loop bounds for the second half (starts at half+1 instead of half, deduct 10), and summation logic for the second half is flawed (missing the middle element, deduct 10). Return values are correct. Total Q1 deductions: 25/30.\n\nQuestion 2 Part A: The student declared all three fields but as public instead of private (deduct 2). The constructor initializes all fields correctly (no deduction). Getters and setters are incomplete: only one getter (getTeamName) is provided, missing the rest (deduct 5). Total Q2A deductions: 7/15.\n\nQuestion 2 Part B: The Hackathon class declares all required properties as private, constructor correctly initializes array and counter (no deduction). addTeam adds team without checking if array is full (deduct 5), but increments counter and returns boolean correctly. countComputersNeeded sums numMembers only if needsComputers is true (correct). However, it accesses Team fields directly instead of using getters (deduct 3). Total Q2B deductions: 8/25.\n\nQuestion 3: The method is declared static (no deduction). It checks length >= 8 (correct). It attempts to check for uppercase letters but returns true immediately upon finding one without checking for digits (missing digit check, deduct 8). It does not check for digits at all (deduct 8). Return value is not inverted (no deduction). Total Q3 deductions: 16/30.",
       "deductions": [
         {
-          "question_number": 4,
-          "reason": "Missing check for at least one lowercase letter; the student code only checks length, uppercase, and digit as seen in the code: \"boolean hasUpper = false; boolean hasDigit = false;\" and no hasLower variable or check.",
+          "question_number": 1,
+          "reason": "Missing even-length validation: method does not check if arr.length is even before proceeding. (No check found in code)",
           "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Incorrect loop bounds for second half summation: second loop starts at half + 1 instead of half, skipping the middle element. (for (int i = half + 1; i < arr.length; i++))",
+          "points": 10
+        },
+        {
+          "question_number": 1,
+          "reason": "Flawed summation logic for second half: skips one element, thus sums are not correctly computed. (sum2 misses arr[half])",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields declared public instead of private, violating encapsulation. (public String teamName; public int numMembers; public boolean needsComputers;)",
+          "points": 2
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getters and setters for numMembers and needsComputers; only getTeamName() is provided. (No other getters/setters found)",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method does not check if the array is full before adding a team. (No condition to prevent overflow before adding teams[currentTeams] = t;)",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded accesses Team fields directly instead of using getters, violating encapsulation. (teams[i].needsComputers and teams[i].numMembers accessed directly)",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing check for digit presence in password. (No code checks for digits '0'-'9')",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing check for uppercase letter combined with digit: method returns true immediately upon finding uppercase without verifying digit presence. (Returns true inside uppercase check loop without checking digits)",
+          "points": 8
         }
       ]
     }
@@ -148,21 +398,51 @@
   {
     "run": 9,
     "ok": true,
-    "elapsed": 10.5083646774292,
+    "elapsed": 7.415410995483398,
     "grading": {
-      "final_score": 90,
+      "final_score": 48,
       "max_score": 100,
-      "rationale": "The student correctly implemented the isSorted method with correct loop bounds and comparison direction, and correct return values. The Team class fully meets the rubric requirements with private fields, constructor, and getters. The TeamManager class uses a private array with capacity check in addTeam, has a constructor, and uses getters properly, but is missing the required countTeamsWithMoreThan method, resulting in a deduction. The isValidPassword method correctly checks length, uppercase, and digit, but misses the required lowercase letter check, resulting in a deduction.",
+      "rationale": "Question 1: The student correctly declared the method and attempted to sum halves, but failed to check if the array length is even (missing even-length validation, -5). The second loop starts at half + 1 instead of half, skipping the middle element of the second half and resulting in incorrect loop bounds (-10). Summation logic is flawed due to this incorrect loop bound (-10). Return values are correct (no deduction).\n\nQuestion 2 Part A: The student declared all three fields but as public instead of private (-2 per field = -6). The constructor initializes all fields correctly (no deduction). Getters and setters are incomplete: only one getter (getTeamName) is provided, missing others (-5).\n\nQuestion 2 Part B: The class declares all required properties private and initializes them correctly (no deduction). The addTeam method does not check if the array is full before adding, and always increments currentTeams, so it can overflow (-5). The countComputersNeeded method sums numMembers only if needsComputers is true, which is correct (no deduction). The method accesses Team fields directly (needsComputers and numMembers) instead of using getters, violating encapsulation (-3).\n\nQuestion 3: The method is declared static (no deduction). It checks length >= 8 (correct). It attempts to check for uppercase letters but returns true immediately upon finding one without checking for digits, so it misses the digit condition (-8). The return value logic is correct (no deduction).",
       "deductions": [
         {
-          "question_number": 3,
-          "reason": "Missing countTeamsWithMoreThan(int n) method as required by the rubric; student_answer does not include such a method.",
+          "question_number": 1,
+          "reason": "Missing even-length validation: the method does not check if arr.length is even before proceeding.",
           "points": 5
         },
         {
-          "question_number": 4,
-          "reason": "Missing check for at least one lowercase letter; student_answer only checks length, uppercase, and digit but not lowercase.",
+          "question_number": 1,
+          "reason": "Incorrect loop bounds: second loop starts at half + 1 instead of half, skipping one element of the second half.",
+          "points": 10
+        },
+        {
+          "question_number": 1,
+          "reason": "Flawed summation logic: due to incorrect loop bounds, the sum of the second half is incorrect.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields declared public instead of private: teamName, numMembers, and needsComputers are all public.",
+          "points": 6
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getters and setters: only getTeamName() is provided; other getters and all setters are missing.",
           "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method does not check if the array is full before adding and always increments currentTeams, risking overflow.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Methods violate encapsulation by accessing Team fields directly instead of using getters in countComputersNeeded.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing digit check: the method does not verify that the password contains at least one digit.",
+          "points": 8
         }
       ]
     }
@@ -170,21 +450,46 @@
   {
     "run": 10,
     "ok": true,
-    "elapsed": 4.88651704788208,
+    "elapsed": 8.581110954284668,
     "grading": {
-      "final_score": 90,
+      "final_score": 62,
       "max_score": 100,
-      "rationale": "The student correctly implemented isSorted with proper loop bounds and comparison direction, and correct return values. The Team class matches the rubric exactly with private fields, constructor, and getters. The TeamManager class uses a private array with capacity check in addTeam, has a constructor, and addTeam method; however, the rubric requires countTeamsWithMoreThan(int n), which is missing. The isValidPassword method checks length, uppercase, and digit but misses the lowercase letter check required by the rubric.",
+      "rationale": "Question 1: The student implemented the isBalanced method but failed to check if the array length is even (missing even-length validation, -5 points). The loop bounds for the second half summation are incorrect (starts at half + 1 instead of half, -10 points). The summation logic is partially correct but flawed due to incorrect loop bounds (counted as loop bounds deduction). The return values are correct (no deduction).\n\nQuestion 2 Part A: The student declared all three fields but as public instead of private (-2 points). The constructor initializes all fields correctly (no deduction). The student provided only one getter (getTeamName) and no setters or other getters (-5 points for missing getters and setters).\n\nQuestion 2 Part B: The class declares all required properties as private and initializes them correctly (no deduction). The addTeam method does not check if the array is full before adding and increments currentTeams regardless (-5 points). The countComputersNeeded method sums numMembers only if needsComputers is true (correct). However, it accesses Team fields directly instead of using getters, violating encapsulation (-3 points).\n\nQuestion 3: The method is declared static (no deduction). It checks length >= 8 (correct). It attempts to check for uppercase letters but returns true immediately upon finding one without checking for digits, thus missing the digit check (-8 points). The return value is not inverted (no deduction).",
       "deductions": [
         {
-          "question_number": 3,
-          "reason": "Missing countTeamsWithMoreThan(int n) method as required by the rubric; the student's answer does not include this method.",
+          "question_number": 1,
+          "reason": "Missing even-length validation: method does not check if arr.length is even before proceeding (code lacks any length check).",
           "points": 5
         },
         {
-          "question_number": 4,
-          "reason": "Missing check for at least one lowercase letter; the student's code only checks length, uppercase, and digit but not lowercase.",
+          "question_number": 1,
+          "reason": "Incorrect loop bounds for second half summation: loop starts at half + 1 instead of half, missing one element in second half sum.",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "Fields declared public instead of private: teamName, numMembers, and needsComputers are public.",
+          "points": 2
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getters and setters: only getTeamName() is provided; other getters and all setters are missing.",
           "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method does not check if array is full before adding and increments currentTeams regardless.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded method violates encapsulation by accessing Team fields directly instead of using getters.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Missing digit check in isValidPassword: method only checks length and uppercase letter, does not check for digits.",
+          "points": 8
         }
       ]
     }

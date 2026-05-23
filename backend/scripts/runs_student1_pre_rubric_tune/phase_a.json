@@ -2,55 +2,60 @@
   {
     "run": 1,
     "ok": true,
-    "elapsed": 24.679619789123535,
+    "elapsed": 25.035638093948364,
     "ocr": {
       "questions_markdown": "## Page 1\n\n# Computer Science Bagrut Simulation – 5 Units\n\nSubject: Java / C# Fundamentals, Arrays, and Object-Oriented Programming\nTime: 90 Minutes\nGrade: 11/12\n\n## Instructions:\n\n- Answer all questions in the spaces provided.\n- You may write your code in Java or C#.\n- You can assume all standard libraries are imported (הנח כי כל המחלקות הדרושות מיובאות).\n\n## Page 2\n\nQuestion 1: Arrays &amp; Algorithmic Thinking (מערכים ואלגוריתמיקה)\n\nAn array of integers is considered a \"Balanced Array\" (מערך מאוזן) if its length is an even number, and the sum of the elements in its first half is exactly equal to the sum of the elements in its second half.\n\nFor example:\n\n- The array [2, 4, 1, 5, 0, 2] is a מערך מאוזן because the sum of the first half (2+4+1 = 7) equals the sum of the second half (5+0+2 = 7).\n- The array [1, 2, 3, 4] is not balanced (1+2 ≠ 3+4).\n\nYour Task:\n\nWrite a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).\n\nAnswer / תשובה:\n\n## Page 3\n\nQuestion 2: Object-Oriented Programming (תכנות מונחה עצמים)\n\nA local high school is organizing a hackathon and needs a system to manage the participating teams.\n\n## Part A (סעיף א):\n\nWrite the class Team (קבוצה). The class should include the following properties:\n\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).\n\nAnswer Part A / א תשובה סעיף:\n\n## Page 4\n\n|  |   |   |\n| --- | --- | --- |\n\n## Page 5\n\nPart B (סעיף ב):\n\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.\n\n## Page 6\n\nAnswer Part B / תשובה סעיף ב':\n\n## Page 7\n\nQuestion 3: String Manipulation (מחרוזות)\n\nA string is defined as a \"Strong Password\" (סיסמה חזקה) if it meets all of the following conditions:\n\n1. Its length is at least 8 characters.\n2. It contains at least one uppercase letter ('A' - 'Z').\n3. It contains at least one digit ('0' - '9').\n\nYour Task:\n\nWrite a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).\n\nAnswer / תשובה:\n\nבהצלחה! (Good luck!)",
       "answers_markdown": "## Page 1\n\n# סימולציית בגרות במדעי המחשב – 5 יח\"ל\n\nנושא: יסודות #Java/C, מערכים, ותכנות מונחה עצמים\nזמן: 90 דקות\nשם התלמיד: עידו ל.\nשפת תכנות: Java\n\n## הנחיות:\n\n- ענה על כל השאלות במקומות המיועדים לכך.\n- ניתן לכתוב ב-Java או ב-C.\n- הנח כי כל המחלקות הדרושות מיובאות.\n\n## שאלה 1: מערכים ואלגוריתמיקה\n\nמערך של מספרים שלמים נחשב ל\"מערך מאוזן\" אם אורכו זוגי, וסכום האיברים בחציו הראשון שווה בדיוק לסכום האיברים בחציו השני.\n\nתשובה:\n```java\npublic static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i &lt; half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i &lt; arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}\n```\n\n## Page 2\n\nשאלה 2: תכנות מונחה עצמים\n\n## סעיף א: המחלקה Team\n\nכתב את המחלקה Team. המחלקה תכלול: שם קבוצה (String), מספר חברים (int), וצורך במחשבים (boolean).\n\n```java\npublic class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}\n```\n\n## Page 3\n\nסעיף ב: המחלקה Hackathon\n\nניהול מערך של אובייקטים מסוג Team\n\nתשובה סעיף ב:\n\n```java\npublic class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i &lt; teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}\n```\n\n## Page 4\n\nשאלה 3: מחרוזות\n\nבדיקת סיסמה חזקה (אורך 8 לפחות, אות גדולה וספרה).\n\n```java\npublic static boolean isValidPassword(String pass) {\nif (pass.length() &gt;= 8) {\nfor (int i = 0; i &lt; pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}\n```\n\nבהצלחה!"
     },
     "grading": {
-      "final_score": 57,
+      "final_score": 53,
       "max_score": 100,
-      "rationale": "Question 1: The student implemented the method with a check for sums of halves but missed the even-length validation and made an error in loop bounds for the second half (starts at half+1 instead of half). Summation logic is correct. Return values are correct.\n\nQuestion 2 Part A: The student declared fields but as public instead of private (encapsulation violation). The constructor initializes all fields correctly. Getters and setters are incomplete (only one getter provided).\n\nQuestion 2 Part B: The Hackathon class declares required fields as private, constructor correctly initializes array and counter. addTeam adds teams without checking if array is full and always returns true, violating requirements. countComputersNeeded sums correctly and respects needsComputers flag. It accesses Team fields directly, violating encapsulation given Part A's private fields requirement.\n\nQuestion 3: The method isValidPassword is static but only checks length and uppercase letter, missing the digit check. The return value is inverted because it returns true immediately upon finding uppercase without checking digit, and returns false otherwise, so it does not correctly validate all conditions.",
+      "rationale": "Question 1: The method signature is correct and static (5/5). The length validation is missing (0/5) because the code does not check if the array length is even and never returns false for odd length. The iteration partially covers the first half correctly but incorrectly skips the middle element in the second half (starts at half+1 instead of half), so iteration is partially correct but flawed (5/8). Summation logic is mostly correct but affected by the iteration flaw (6/8). Return logic correctly compares sums and returns boolean (4/4). Total Q1: 20/30.\n\nQuestion 2 Part A: Attributes are public, not private, so no encapsulation (0/5). Constructor correctly initializes all attributes (5/5). Getters and setters are incomplete: only one getter is provided, no setters (2/5). Total Part A: 7/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes maxTeams, array, and currentTeams (5/5). addTeam method lacks capacity check and always adds team and increments currentTeams, so it fails to return false when full (0/9). countComputersNeeded loops over entire array length instead of currentTeams, risking null pointer exceptions; also no null check (0/8). Total Part B: 8/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition is checked properly (6/6). Iteration over string characters is done (4/4). Uppercase condition is checked but returns true immediately upon finding uppercase, ignoring digit condition (partial credit 4/8). Digit condition is missing entirely (0/8). Total Q3: 18/30.",
       "deductions": [
         {
           "question_number": 1,
-          "reason": "Missing even-length validation: method does not check if array length is even before proceeding (no return false for odd length).",
+          "reason": "Missing length validation: no check if array length is even; no return false for odd length. Student code: \"public static boolean isBalanced(int[] arr) { ...\" with no length check.",
           "points": 5
         },
         {
           "question_number": 1,
-          "reason": "Incorrect loop bounds for second half summation: second loop starts at half + 1 instead of half, skipping the middle element of the array.",
-          "points": 10
+          "reason": "Incorrect iteration over second half: loop starts at half + 1 instead of half, skipping the middle element. Student code: \"for (int i = half + 1; i < arr.length; i++) { sum2 += arr[i]; }\"",
+          "points": 3
         },
         {
-          "question_number": 2,
-          "reason": "Fields declared public instead of private, violating encapsulation: 'public String teamName;' etc.",
+          "question_number": 1,
+          "reason": "Summation logic affected by iteration flaw: second half sum misses one element due to loop start at half + 1. Student code as above.",
           "points": 2
         },
         {
           "question_number": 2,
-          "reason": "Missing getters and setters for all attributes: only one getter (getTeamName) is provided; others are missing.",
+          "reason": "Attributes are public, not private as required. Student code: \"public String teamName; public int numMembers; public boolean needsComputers;\"",
           "points": 5
         },
         {
           "question_number": 2,
-          "reason": "In addTeam method, no check if array is full before adding team; always adds and increments currentTeams, returning true regardless.",
-          "points": 5
-        },
-        {
-          "question_number": 2,
-          "reason": "countComputersNeeded method accesses Team fields directly (teams[i].needsComputers, teams[i].numMembers) instead of using getters, violating encapsulation.",
+          "reason": "Getters and setters incomplete: only one getter present, no setters for any attribute. Student code: only \"public String getTeamName() { return teamName; }\"",
           "points": 3
         },
         {
-          "question_number": 3,
-          "reason": "Missing digit check in isValidPassword method: no code verifies presence of at least one digit.",
+          "question_number": 2,
+          "reason": "addTeam method lacks capacity check and always adds team, ignoring full array condition. Student code: \"public boolean addTeam(Team t) { this.teams[currentTeams] = t; currentTeams++; return true; }\"",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array length instead of currentTeams, risking null pointer exceptions and counting uninitialized slots. Student code: \"for (int i = 0; i < teams.length; i++) { if (teams[i].needsComputers) { total += teams[i].numMembers; } }\"",
           "points": 8
         },
         {
           "question_number": 3,
-          "reason": "Return value logic flawed: method returns true immediately upon finding uppercase letter without checking digit, so invalid passwords may return true.",
-          "points": 5
+          "reason": "Uppercase condition incomplete: returns true immediately upon finding uppercase, ignoring digit condition. Student code: \"if (ch >= 'A' && ch <= 'Z') { return true; }\" inside loop.",
+          "points": 4
+        },
+        {
+          "question_number": 3,
+          "reason": "Digit condition missing entirely: no check for presence of digit '0'-'9'. Student code: no digit check found.",
+          "points": 8
         }
       ]
     }
@@ -58,49 +63,59 @@
   {
     "run": 2,
     "ok": true,
-    "elapsed": 15.302245140075684,
+    "elapsed": 12.282293796539307,
     "ocr": {
       "questions_markdown": "## Page 1\n\n# Computer Science Bagrut Simulation – 5 Units\n\nSubject: Java / C# Fundamentals, Arrays, and Object-Oriented Programming\nTime: 90 Minutes\nGrade: 11/12\n\n## Instructions:\n\n- Answer all questions in the spaces provided.\n- You may write your code in Java or C#.\n- You can assume all standard libraries are imported (הנח כי כל המחלקות הדרושות מיובאות).\n\n## Page 2\n\nQuestion 1: Arrays &amp; Algorithmic Thinking (מערכים ואלגוריתמיקה)\n\nAn array of integers is considered a \"Balanced Array\" (מערך מאוזן) if its length is an even number, and the sum of the elements in its first half is exactly equal to the sum of the elements in its second half.\n\nFor example:\n\n- The array [2, 4, 1, 5, 0, 2] is a מערך מאוזן because the sum of the first half (2+4+1 = 7) equals the sum of the second half (5+0+2 = 7).\n- The array [1, 2, 3, 4] is not balanced (1+2 ≠ 3+4).\n\nYour Task:\n\nWrite a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).\n\nAnswer / תשובה:\n\n## Page 3\n\nQuestion 2: Object-Oriented Programming (תכנות מונחה עצמים)\n\nA local high school is organizing a hackathon and needs a system to manage the participating teams.\n\n## Part A (סעיף א):\n\nWrite the class Team (קבוצה). The class should include the following properties:\n\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).\n\nAnswer Part A / א תשובה סעיף:\n\n## Page 4\n\n|  |   |   |\n| --- | --- | --- |\n\n## Page 5\n\nPart B (סעיף ב):\n\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.\n\n## Page 6\n\nAnswer Part B / תשובה סעיף ב':\n\n## Page 7\n\nQuestion 3: String Manipulation (מחרוזות)\n\nA string is defined as a \"Strong Password\" (סיסמה חזקה) if it meets all of the following conditions:\n\n1. Its length is at least 8 characters.\n2. It contains at least one uppercase letter ('A' - 'Z').\n3. It contains at least one digit ('0' - '9').\n\nYour Task:\n\nWrite a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).\n\nAnswer / תשובה:\n\nבהצלחה! (Good luck!)",
       "answers_markdown": "## Page 1\n\n# סימולציית בגרות במדעי המחשב – 5 יח\"ל\n\nנושא: יסודות #Java/C, מערכים, ותכנות מונחה עצמים\nזמן: 90 דקות\nשם התלמיד: עידו ל.\nשפת תכנות: Java\n\n## הנחיות:\n\n- ענה על כל השאלות במקומות המיועדים לכך.\n- ניתן לכתוב ב-Java או ב-C.\n- הנח כי כל המחלקות הדרושות מיובאות.\n\n## שאלה 1: מערכים ואלגוריתמיקה\n\nמערך של מספרים שלמים נחשב ל\"מערך מאוזן\" אם אורכו זוגי, וסכום האיברים בחציו הראשון שווה בדיוק לסכום האיברים בחציו השני.\n\nתשובה:\n```java\npublic static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i &lt; half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i &lt; arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}\n```\n\n## Page 2\n\nשאלה 2: תכנות מונחה עצמים\n\n## סעיף א: המחלקה Team\n\nכתב את המחלקה Team. המחלקה תכלול: שם קבוצה (String), מספר חברים (int), וצורך במחשבים (boolean).\n\n```java\npublic class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}\n```\n\n## Page 3\n\nסעיף ב: המחלקה Hackathon\n\nניהול מערך של אובייקטים מסוג Team\n\nתשובה סעיף ב:\n\n```java\npublic class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i &lt; teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}\n```\n\n## Page 4\n\nשאלה 3: מחרוזות\n\nבדיקת סיסמה חזקה (אורך 8 לפחות, אות גדולה וספרה).\n\n```java\npublic static boolean isValidPassword(String pass) {\nif (pass.length() &gt;= 8) {\nfor (int i = 0; i &lt; pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}\n```\n\nבהצלחה!"
     },
     "grading": {
-      "final_score": 62,
+      "final_score": 59,
       "max_score": 100,
-      "rationale": "Question 1: The student implemented isBalanced with sum calculations and return values, but missed the even-length check and has incorrect loop bounds for the second half summation (starts at half+1 instead of half). Summation logic is correct otherwise. Return values are correct. Deducted 5 for missing even-length validation and 10 for incorrect loop bounds. No deduction for summation logic or return values.\n\nQuestion 2 Part A: The class Team declares all three fields but as public instead of private (deduct 2 points). The constructor initializes all fields correctly (no deduction). Getters and setters are incomplete: only getTeamName is provided, missing others (deduct 5). \n\nQuestion 2 Part B: The Hackathon class declares all required fields private and initializes them correctly (no deduction). addTeam adds without checking if full (deduct 5) but increments counter and returns boolean correctly. countComputersNeeded sums numMembers only if needsComputers is true (correct). However, it accesses Team fields directly instead of using getters (deduct 3). \n\nQuestion 3: The method isValidPassword is static (no deduction). It checks length correctly (no deduction). It attempts to check uppercase letters but returns true immediately upon finding one, missing the digit check entirely (deduct 8 for missing digit check). Also, it returns false if no uppercase found, so return logic is correct (no deduction).",
+      "rationale": "Question 1: The method signature is correct and static (5/5). The length validation is missing (0/5) because the student does not check if the array length is even and never returns false for odd length. The iteration partially covers the first half correctly but incorrectly skips the middle element in the second half (starts at half+1 instead of half), so iteration is partially correct but flawed (4/8). Summation logic is mostly correct but affected by the iteration flaw (6/8). Return logic is correct (4/4). Total for Q1: 19/30.\n\nQuestion 2 Part A: Attributes are public, not private, so no encapsulation (0/5). Constructor correctly initializes all attributes (5/5). Getters and setters are incomplete; only one getter is provided, no setters (2/5). Total Part A: 7/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes maxTeams, array, and currentTeams (5/5). addTeam method lacks capacity check before adding and always returns true, so it does not handle full array case (0/9). countComputersNeeded loops over entire array (teams.length) instead of currentTeams, which may cause null pointer exceptions or incorrect counts (partial deduction) (6/8). Total Part B: 14/25.\n\nQuestion 3: Method signature is correct and static (4/4). Length condition is checked correctly (6/6). Iteration loops through characters (4/4). Uppercase condition is checked but returns true immediately upon finding uppercase without checking digit condition (partial deduction) (5/8). Digit condition is missing entirely (0/8). Total Q3: 19/30.",
       "deductions": [
         {
           "question_number": 1,
-          "reason": "Missing even-length validation: no check for arr.length % 2 == 0, so method does not return false for odd-length arrays (student code has no such check).",
+          "reason": "Missing length validation: no check if array length is even; no return false for odd length. Student code starts summing halves without length check.",
           "points": 5
         },
         {
           "question_number": 1,
-          "reason": "Incorrect loop bounds for second half summation: second loop starts at half + 1 instead of half, skipping the middle element in even-length arrays (e.g., for length 6, skips index 3).",
-          "points": 10
+          "reason": "Iteration logic flawed: second half summation starts at half + 1 instead of half, skipping the middle element in even-length arrays. Code: 'for (int i = half + 1; i < arr.length; i++)'.",
+          "points": 4
         },
         {
-          "question_number": 2,
-          "reason": "Fields declared public instead of private: teamName, numMembers, needsComputers are all public in Team class.",
+          "question_number": 1,
+          "reason": "Summation logic affected by iteration flaw; sums do not include all elements correctly. Code sums first half fully but second half misses one element.",
           "points": 2
         },
         {
           "question_number": 2,
-          "reason": "Missing getters and setters: only getTeamName() is provided; missing getNumMembers(), getNeedsComputers(), and all setters.",
+          "reason": "Attributes are public, not private as required for encapsulation. Code: 'public String teamName; public int numMembers; public boolean needsComputers;'.",
           "points": 5
         },
         {
           "question_number": 2,
-          "reason": "addTeam method does not check if the array is full before adding a team, risking array overflow and violating requirements.",
-          "points": 5
+          "reason": "Getters and setters incomplete: only one getter provided (getTeamName), no setters for any attribute.",
+          "points": 3
         },
         {
           "question_number": 2,
-          "reason": "countComputersNeeded accesses private fields of Team directly (teams[i].needsComputers and teams[i].numMembers) instead of using getters, violating encapsulation.",
+          "reason": "addTeam method lacks capacity check and always returns true, ignoring full array condition. Code: 'public boolean addTeam(Team t) { this.teams[currentTeams] = t; currentTeams++; return true; }'.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array (teams.length) instead of currentTeams, risking null pointer exceptions or counting uninitialized elements. Code: 'for (int i = 0; i < teams.length; i++)'.",
+          "points": 2
+        },
+        {
+          "question_number": 3,
+          "reason": "Uppercase condition incomplete: returns true immediately upon finding uppercase without checking digit condition. Code returns true inside uppercase check loop.",
           "points": 3
         },
         {
           "question_number": 3,
-          "reason": "Missing digit check: method does not check if the password contains at least one digit ('0'-'9').",
+          "reason": "Digit condition missing entirely: no check for presence of at least one digit in the password.",
           "points": 8
         }
       ]
@@ -109,54 +124,64 @@
   {
     "run": 3,
     "ok": true,
-    "elapsed": 14.115329027175903,
+    "elapsed": 15.26899003982544,
     "ocr": {
       "questions_markdown": "## Page 1\n\n# Computer Science Bagrut Simulation – 5 Units\n\nSubject: Java / C# Fundamentals, Arrays, and Object-Oriented Programming\nTime: 90 Minutes\nGrade: 11/12\n\n## Instructions:\n\n- Answer all questions in the spaces provided.\n- You may write your code in Java or C#.\n- You can assume all standard libraries are imported (הנח כי כל המחלקות הדרושות מיובאות).\n\n## Page 2\n\nQuestion 1: Arrays &amp; Algorithmic Thinking (מערכים ואלגוריתמיקה)\n\nAn array of integers is considered a \"Balanced Array\" (מערך מאוזן) if its length is an even number, and the sum of the elements in its first half is exactly equal to the sum of the elements in its second half.\n\nFor example:\n\n- The array [2, 4, 1, 5, 0, 2] is a מערך מאוזן because the sum of the first half (2+4+1 = 7) equals the sum of the second half (5+0+2 = 7).\n- The array [1, 2, 3, 4] is not balanced (1+2 ≠ 3+4).\n\nYour Task:\n\nWrite a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).\n\nAnswer / תשובה:\n\n## Page 3\n\nQuestion 2: Object-Oriented Programming (תכנות מונחה עצמים)\n\nA local high school is organizing a hackathon and needs a system to manage the participating teams.\n\n## Part A (סעיף א):\n\nWrite the class Team (קבוצה). The class should include the following properties:\n\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).\n\nAnswer Part A / א תשובה סעיף:\n\n## Page 4\n\n|  |   |   |\n| --- | --- | --- |\n\n## Page 5\n\nPart B (סעיף ב):\n\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.\n\n## Page 6\n\nAnswer Part B / תשובה סעיף ב':\n\n## Page 7\n\nQuestion 3: String Manipulation (מחרוזות)\n\nA string is defined as a \"Strong Password\" (סיסמה חזקה) if it meets all of the following conditions:\n\n1. Its length is at least 8 characters.\n2. It contains at least one uppercase letter ('A' - 'Z').\n3. It contains at least one digit ('0' - '9').\n\nYour Task:\n\nWrite a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).\n\nAnswer / תשובה:\n\nבהצלחה! (Good luck!)",
       "answers_markdown": "## Page 1\n\n# סימולציית בגרות במדעי המחשב – 5 יח\"ל\n\nנושא: יסודות #Java/C, מערכים, ותכנות מונחה עצמים\nזמן: 90 דקות\nשם התלמיד: עידו ל.\nשפת תכנות: Java\n\n## הנחיות:\n\n- ענה על כל השאלות במקומות המיועדים לכך.\n- ניתן לכתוב ב-Java או ב-C.\n- הנח כי כל המחלקות הדרושות מיובאות.\n\n## שאלה 1: מערכים ואלגוריתמיקה\n\nמערך של מספרים שלמים נחשב ל\"מערך מאוזן\" אם אורכו זוגי, וסכום האיברים בחציו הראשון שווה בדיוק לסכום האיברים בחציו השני.\n\nתשובה:\n```java\npublic static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i &lt; half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i &lt; arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}\n```\n\n## Page 2\n\nשאלה 2: תכנות מונחה עצמים\n\n## סעיף א: המחלקה Team\n\nכתב את המחלקה Team. המחלקה תכלול: שם קבוצה (String), מספר חברים (int), וצורך במחשבים (boolean).\n\n```java\npublic class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}\n```\n\n## Page 3\n\nסעיף ב: המחלקה Hackathon\n\nניהול מערך של אובייקטים מסוג Team\n\nתשובה סעיף ב:\n\n```java\npublic class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i &lt; teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}\n```\n\n## Page 4\n\nשאלה 3: מחרוזות\n\nבדיקת סיסמה חזקה (אורך 8 לפחות, אות גדולה וספרה).\n\n```java\npublic static boolean isValidPassword(String pass) {\nif (pass.length() &gt;= 8) {\nfor (int i = 0; i &lt; pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}\n```\n\nבהצלחה!"
     },
     "grading": {
-      "final_score": 50,
+      "final_score": 55,
       "max_score": 100,
-      "rationale": "Question 1: The student implemented the isBalanced method with partial correctness. They correctly calculate half the array length and sum the first half elements. However, the second half summation loop starts at half + 1 instead of half, missing one element, which is a loop bounds error (-10). They also do not check if the array length is even, missing the validation (-5). Summation logic is mostly correct except for the loop bounds, so no additional deduction. Return values are correct. Total deduction for Q1: 15 points.\n\nQuestion 2 Part A: The student declared all three fields but as public instead of private (-2 per field = -6). They wrote a constructor initializing all fields correctly (no deduction). They provided only one getter method and no setters, missing getters and setters for two fields and setters for all three (-5). Total deduction for Q2A: 11 points.\n\nQuestion 2 Part B: The student declared all required properties with correct access modifiers. The constructor correctly initializes the array and currentTeams (no deduction). The addTeam method adds the team without checking if the array is full (missing capacity check) and always returns true (-5). The countComputersNeeded method sums numMembers only if needsComputers is true (correct). However, it accesses Team fields directly instead of using getters (encapsulation violation) (-3). Total deduction for Q2B: 8 points.\n\nQuestion 3: The method is declared static (no deduction). It checks length >= 8 (correct). It attempts to check for uppercase letters but returns true immediately upon finding one without checking for digits, and never checks for digits at all (-8). It also returns false if no uppercase letter is found, but does not verify the digit condition, so missing a required condition (-8). Return values are not inverted (no deduction). Total deduction for Q3: 16 points.\n\nTotal deductions: 15 + 11 + 8 + 16 = 50 points. Final score: 100 - 50 = 50.",
+      "rationale": "Question 1: The method signature is correct and static (5/5). The length check for evenness is missing (0/5). The iteration over the first half is correct (4/8), but the second half loop incorrectly starts at half+1 instead of half, missing one element (4/8). Summation logic is mostly correct except for the second half missing one element (6/8). Return logic correctly compares sums (4/4). Total for Q1: 23/30.\n\nQuestion 2 Part A: Attributes are public instead of private, so no encapsulation (0/5). Constructor correctly initializes all attributes (5/5). Getters and setters are incomplete; only one getter is provided, no setters (2/5). Total Part A: 7/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes array and currentTeams (5/5). addTeam method lacks capacity check before adding, so it always adds and increments currentTeams even if full (0/9). countComputersNeeded loops over entire array instead of only currentTeams, risking null pointer exceptions (5/8). Total Part B: 13/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition is checked (6/6). Iteration over string is present (4/4). Uppercase condition is checked but returns true immediately upon finding uppercase without checking digit condition (4/8). Digit condition is missing entirely (0/8). Total Q3: 18/30.",
       "deductions": [
         {
           "question_number": 1,
-          "reason": "Missing even-length validation: the code does not check if arr.length is even before proceeding.",
+          "reason": "Missing length evenness check: student code does not check if arr.length is even before proceeding (\"public static boolean isBalanced(int[] arr) { ...\" no length check).",
           "points": 5
         },
         {
           "question_number": 1,
-          "reason": "Incorrect loop bounds for second half summation: loop starts at half + 1 instead of half, missing one element.",
-          "points": 10
+          "reason": "Second half iteration starts at half+1 instead of half, missing one element in summation (\"for (int i = half + 1; i < arr.length; i++) { sum2 += arr[i]; }\").",
+          "points": 4
+        },
+        {
+          "question_number": 1,
+          "reason": "Summation logic for second half is incorrect due to missing element as above, causing inaccurate sum2 calculation.",
+          "points": 2
         },
         {
           "question_number": 2,
-          "reason": "Fields declared public instead of private: teamName, numMembers, and needsComputers are all public.",
-          "points": 6
-        },
-        {
-          "question_number": 2,
-          "reason": "Missing getters and setters: only one getter provided, missing getters and setters for other fields.",
+          "reason": "Attributes are public, not private as required for encapsulation (\"public String teamName; public int numMembers; public boolean needsComputers;\").",
           "points": 5
         },
         {
           "question_number": 2,
-          "reason": "addTeam method does not check if the array is full before adding a team and always returns true.",
-          "points": 5
-        },
-        {
-          "question_number": 2,
-          "reason": "Encapsulation violation: countComputersNeeded accesses Team fields directly instead of using getters.",
+          "reason": "Getters and setters incomplete: only one getter (getTeamName) is provided, no setters or other getters (\"public String getTeamName() { return teamName; }\").",
           "points": 3
         },
         {
-          "question_number": 3,
-          "reason": "Missing digit check: method does not verify presence of at least one digit in the password.",
-          "points": 8
+          "question_number": 2,
+          "reason": "addTeam method lacks capacity check before adding team, always adds and increments currentTeams even if full (\"public boolean addTeam(Team t) { this.teams[currentTeams] = t; currentTeams++; return true; }\").",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array instead of only currentTeams, risking null pointer exceptions (\"for (int i = 0; i < teams.length; i++) { if (teams[i].needsComputers) ... }\").",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded does not check for null teams entries, which may cause runtime errors.",
+          "points": 2
         },
         {
           "question_number": 3,
-          "reason": "Missing uppercase letter check properly: method returns true immediately upon finding uppercase without checking digit condition, thus incomplete condition checks.",
+          "reason": "Uppercase condition is checked but returns true immediately upon finding uppercase without verifying digit condition (\"if (ch >= 'A' && ch <= 'Z') { return true; }\").",
+          "points": 4
+        },
+        {
+          "question_number": 3,
+          "reason": "Digit condition is missing entirely; no check for presence of digits in password.",
           "points": 8
         }
       ]
@@ -165,50 +190,50 @@
   {
     "run": 4,
     "ok": true,
-    "elapsed": 10.651859283447266,
+    "elapsed": 11.916000127792358,
     "ocr": {
       "questions_markdown": "## Page 1\n\n# Computer Science Bagrut Simulation – 5 Units\n\nSubject: Java / C# Fundamentals, Arrays, and Object-Oriented Programming\nTime: 90 Minutes\nGrade: 11/12\n\n## Instructions:\n\n- Answer all questions in the spaces provided.\n- You may write your code in Java or C#.\n- You can assume all standard libraries are imported (הנח כי כל המחלקות הדרושות מיובאות).\n\n## Page 2\n\nQuestion 1: Arrays &amp; Algorithmic Thinking (מערכים ואלגוריתמיקה)\n\nAn array of integers is considered a \"Balanced Array\" (מערך מאוזן) if its length is an even number, and the sum of the elements in its first half is exactly equal to the sum of the elements in its second half.\n\nFor example:\n\n- The array [2, 4, 1, 5, 0, 2] is a מערך מאוזן because the sum of the first half (2+4+1 = 7) equals the sum of the second half (5+0+2 = 7).\n- The array [1, 2, 3, 4] is not balanced (1+2 ≠ 3+4).\n\nYour Task:\n\nWrite a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).\n\nAnswer / תשובה:\n\n## Page 3\n\nQuestion 2: Object-Oriented Programming (תכנות מונחה עצמים)\n\nA local high school is organizing a hackathon and needs a system to manage the participating teams.\n\n## Part A (סעיף א):\n\nWrite the class Team (קבוצה). The class should include the following properties:\n\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).\n\nAnswer Part A / א תשובה סעיף:\n\n## Page 4\n\n|  |   |   |\n| --- | --- | --- |\n\n## Page 5\n\nPart B (סעיף ב):\n\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.\n\n## Page 6\n\nAnswer Part B / תשובה סעיף ב':\n\n## Page 7\n\nQuestion 3: String Manipulation (מחרוזות)\n\nA string is defined as a \"Strong Password\" (סיסמה חזקה) if it meets all of the following conditions:\n\n1. Its length is at least 8 characters.\n2. It contains at least one uppercase letter ('A' - 'Z').\n3. It contains at least one digit ('0' - '9').\n\nYour Task:\n\nWrite a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).\n\nAnswer / תשובה:\n\nבהצלחה! (Good luck!)",
       "answers_markdown": "## Page 1\n\n# סימולציית בגרות במדעי המחשב – 5 יח\"ל\n\nנושא: יסודות #Java/C, מערכים, ותכנות מונחה עצמים\nזמן: 90 דקות\nשם התלמיד: עידו ל.\nשפת תכנות: Java\n\n## הנחיות:\n\n- ענה על כל השאלות במקומות המיועדים לכך.\n- ניתן לכתוב ב-Java או ב-C.\n- הנח כי כל המחלקות הדרושות מיובאות.\n\n## שאלה 1: מערכים ואלגוריתמיקה\n\nמערך של מספרים שלמים נחשב ל\"מערך מאוזן\" אם אורכו זוגי, וסכום האיברים בחציו הראשון שווה בדיוק לסכום האיברים בחציו השני.\n\nתשובה:\n```java\npublic static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i &lt; half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i &lt; arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}\n```\n\n## Page 2\n\nשאלה 2: תכנות מונחה עצמים\n\n## סעיף א: המחלקה Team\n\nכתב את המחלקה Team. המחלקה תכלול: שם קבוצה (String), מספר חברים (int), וצורך במחשבים (boolean).\n\n```java\npublic class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}\n```\n\n## Page 3\n\nסעיף ב: המחלקה Hackathon\n\nניהול מערך של אובייקטים מסוג Team\n\nתשובה סעיף ב:\n\n```java\npublic class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i &lt; teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}\n```\n\n## Page 4\n\nשאלה 3: מחרוזות\n\nבדיקת סיסמה חזקה (אורך 8 לפחות, אות גדולה וספרה).\n\n```java\npublic static boolean isValidPassword(String pass) {\nif (pass.length() &gt;= 8) {\nfor (int i = 0; i &lt; pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}\n```\n\nבהצלחה!"
     },
     "grading": {
-      "final_score": 55,
+      "final_score": 56,
       "max_score": 100,
-      "rationale": "Question 1: The method checks sums of halves but incorrectly calculates the second half sum starting from half+1 instead of half, missing the middle element of the second half. Also, it does not check if the array length is even. Return values are correct. Deduct 5 for missing even-length check, 10 for incorrect loop bounds, and 10 for flawed summation logic. Question 2 Part A: All three fields are declared but as public, not private (deduct 2). Constructor exists and initializes all fields (no deduction). Getters and setters are incomplete (only one getter for teamName provided), deduct 5. Question 2 Part B: Constructor correctly initializes array and counter (no deduction). addTeam adds team and increments counter but does not check if array is full before adding (deduct 5). countComputersNeeded sums numMembers only if needsComputers is true (correct). It accesses Team fields directly (public fields in Part A), so no encapsulation violation deduction. Question 3: Method is static (correct). Checks length >=8 (correct). Checks uppercase letter but returns true immediately upon finding uppercase without checking for digit. Missing digit check (deduct 8). Return value logic is correct (no deduction).",
+      "rationale": "Question 1: The method signature is correct and static (5/5). The length validation is missing (0/5) because the student does not check if the array length is even and return false if odd. The iteration partially covers the first half correctly but incorrectly skips the middle element in the second half (for loop starts at half + 1 instead of half), so iteration and summation logic are flawed (iteration 4/8, summation 4/8). The return logic correctly compares sums and returns true/false (4/4). Total for Q1: 17/30.\n\nQuestion 2 Part A: Attributes are public instead of private, so no encapsulation (0/5). Constructor correctly initializes all attributes (5/5). Getters and setters are incomplete; only one getter is provided and no setters (0/5). Total for Q2A: 5/15.\n\nQuestion 2 Part B: Attributes are correctly declared private and named (3/3). Constructor correctly initializes maxTeams, array, and currentTeams (5/5). addTeam method does not check if there is space before adding; it always adds and increments currentTeams, so it does not return false when full (0/9). countComputersNeeded loops over entire array length instead of currentTeams, risking null pointer exceptions; however, logic to sum members of teams needing computers is correct (partial credit 4/8). Total for Q2B: 12/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition is checked (6/6). Iteration is done (4/4). Uppercase condition is checked but the method returns true immediately upon finding uppercase without checking digit condition, so digit condition is missing (0/8). Total for Q3: 14/30.",
       "deductions": [
         {
           "question_number": 1,
-          "reason": "Missing check for even length: method does not return false if array length is odd (code lacks any length check).",
+          "reason": "Length validation missing: no check if array length is even; no return false for odd length. Student code: no length check before summations.",
           "points": 5
         },
         {
           "question_number": 1,
-          "reason": "Incorrect loop bounds for second half summation: second loop starts at half + 1 instead of half, skipping one element.",
-          "points": 10
-        },
-        {
-          "question_number": 1,
-          "reason": "Flawed summation logic: second half sum misses one element due to incorrect loop bounds.",
-          "points": 10
-        },
-        {
-          "question_number": 2,
-          "reason": "Fields declared public instead of private: teamName, numMembers, needsComputers are public.",
-          "points": 2
-        },
-        {
-          "question_number": 2,
-          "reason": "Missing getters and setters: only one getter (getTeamName) is provided; no setters or other getters.",
-          "points": 5
-        },
-        {
-          "question_number": 3,
-          "reason": "Missing digit check: method does not verify presence of at least one digit ('0'-'9').",
+          "reason": "Iteration and summation logic flawed: second half loop starts at half + 1, skipping the middle element. Student code: 'for (int i = half + 1; i < arr.length; i++)' misses element at index half.",
           "points": 8
         },
         {
           "question_number": 2,
-          "reason": "addTeam does not check if array is full before adding a team, risking overflow.",
+          "reason": "Attributes not encapsulated: teamName, numMembers, needsComputers are public instead of private. Student code: 'public String teamName;' etc.",
           "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Getters and setters incomplete: only one getter provided, no setters. Student code: only 'getTeamName()' present.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method lacks capacity check and always adds team, ignoring full array condition. Student code: no if condition before adding; always returns true.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array length instead of currentTeams, risking null pointer exceptions. Student code: 'for (int i = 0; i < teams.length; i++)'.",
+          "points": 4
+        },
+        {
+          "question_number": 3,
+          "reason": "Digit condition missing: method returns true immediately upon finding uppercase letter without checking for digit presence. Student code: no digit check in loop or elsewhere.",
+          "points": 8
         }
       ]
     }
@@ -216,49 +241,59 @@
   {
     "run": 5,
     "ok": true,
-    "elapsed": 13.782321214675903,
+    "elapsed": 11.960787057876587,
     "ocr": {
       "questions_markdown": "## Page 1\n\n# Computer Science Bagrut Simulation – 5 Units\n\nSubject: Java / C# Fundamentals, Arrays, and Object-Oriented Programming\nTime: 90 Minutes\nGrade: 11/12\n\n## Instructions:\n\n- Answer all questions in the spaces provided.\n- You may write your code in Java or C#.\n- You can assume all standard libraries are imported (הנח כי כל המחלקות הדרושות מיובאות).\n\n## Page 2\n\nQuestion 1: Arrays &amp; Algorithmic Thinking (מערכים ואלגוריתמיקה)\n\nAn array of integers is considered a \"Balanced Array\" (מערך מאוזן) if its length is an even number, and the sum of the elements in its first half is exactly equal to the sum of the elements in its second half.\n\nFor example:\n\n- The array [2, 4, 1, 5, 0, 2] is a מערך מאוזן because the sum of the first half (2+4+1 = 7) equals the sum of the second half (5+0+2 = 7).\n- The array [1, 2, 3, 4] is not balanced (1+2 ≠ 3+4).\n\nYour Task:\n\nWrite a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).\n\nAnswer / תשובה:\n\n## Page 3\n\nQuestion 2: Object-Oriented Programming (תכנות מונחה עצמים)\n\nA local high school is organizing a hackathon and needs a system to manage the participating teams.\n\n## Part A (סעיף א):\n\nWrite the class Team (קבוצה). The class should include the following properties:\n\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).\n\nAnswer Part A / א תשובה סעיף:\n\n## Page 4\n\n|  |   |   |\n| --- | --- | --- |\n\n## Page 5\n\nPart B (סעיף ב):\n\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.\n\n## Page 6\n\nAnswer Part B / תשובה סעיף ב':\n\n## Page 7\n\nQuestion 3: String Manipulation (מחרוזות)\n\nA string is defined as a \"Strong Password\" (סיסמה חזקה) if it meets all of the following conditions:\n\n1. Its length is at least 8 characters.\n2. It contains at least one uppercase letter ('A' - 'Z').\n3. It contains at least one digit ('0' - '9').\n\nYour Task:\n\nWrite a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).\n\nAnswer / תשובה:\n\nבהצלחה! (Good luck!)",
       "answers_markdown": "## Page 1\n\n# סימולציית בגרות במדעי המחשב – 5 יח\"ל\n\nנושא: יסודות #Java/C, מערכים, ותכנות מונחה עצמים\nזמן: 90 דקות\nשם התלמיד: עידו ל.\nשפת תכנות: Java\n\n## הנחיות:\n\n- ענה על כל השאלות במקומות המיועדים לכך.\n- ניתן לכתוב ב-Java או ב-C.\n- הנח כי כל המחלקות הדרושות מיובאות.\n\n## שאלה 1: מערכים ואלגוריתמיקה\n\nמערך של מספרים שלמים נחשב ל\"מערך מאוזן\" אם אורכו זוגי, וסכום האיברים בחציו הראשון שווה בדיוק לסכום האיברים בחציו השני.\n\nתשובה:\n```java\npublic static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i &lt; half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i &lt; arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}\n```\n\n## Page 2\n\nשאלה 2: תכנות מונחה עצמים\n\n## סעיף א: המחלקה Team\n\nכתב את המחלקה Team. המחלקה תכלול: שם קבוצה (String), מספר חברים (int), וצורך במחשבים (boolean).\n\n```java\npublic class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}\n```\n\n## Page 3\n\nסעיף ב: המחלקה Hackathon\n\nניהול מערך של אובייקטים מסוג Team\n\nתשובה סעיף ב:\n\n```java\npublic class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i &lt; teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}\n```\n\n## Page 4\n\nשאלה 3: מחרוזות\n\nבדיקת סיסמה חזקה (אורך 8 לפחות, אות גדולה וספרה).\n\n```java\npublic static boolean isValidPassword(String pass) {\nif (pass.length() &gt;= 8) {\nfor (int i = 0; i &lt; pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}\n```\n\nבהצלחה!"
     },
     "grading": {
-      "final_score": 62,
+      "final_score": 44,
       "max_score": 100,
-      "rationale": "Question 1: The student implemented isBalanced with a check for sums of halves but missed checking if the array length is even (deduct 5). The loop bounds for the second half start at half + 1 instead of half, skipping the middle element (deduct 10). Summation logic is mostly correct except for the skipped element, so no separate deduction. Return values are correct.\n\nQuestion 2 Part A: The class declares all three fields but as public instead of private (deduct 2). The constructor initializes all fields correctly. Getters and setters are incomplete; only one getter is provided and no setters (deduct 5).\n\nQuestion 2 Part B: The Hackathon class declares all properties correctly and constructor initializes array and counter properly. The addTeam method does not check if the array is full before adding (deduct 5). The countComputersNeeded method sums numMembers only if needsComputers is true, but accesses private fields directly (deduct 3). \n\nQuestion 3: The method isValidPassword is static (correct). It checks length >= 8 (correct). It checks for uppercase letters but returns true immediately upon finding one without checking for digits (missing digit check, deduct 8). It returns false otherwise, so return values are not inverted. Missing digit check is a major flaw.\n\nTotal deductions: Q1(5+10=15), Q2A(2+5=7), Q2B(5+3=8), Q3(8) = 38 points deducted from 100, final score 62. However, the summation logic flaw in Q1 is partially overlapping with loop bounds deduction, so no extra deduction there. Final deductions sum to 45 points, final score 55.",
+      "rationale": "Question 1: The method signature is correct and static (5/5). It checks length parity indirectly by dividing length by 2 but does NOT explicitly return false if length is odd (0/5). It iterates over the first half correctly (sum1) but the second half loop starts at half+1, skipping the middle element in odd length arrays and missing the first element of the second half in even length arrays (should start at half). So iteration and summation logic are flawed (Iteration 4/8, Summation 4/8). Return logic correctly compares sums and returns true/false (4/4).\n\nQuestion 2 Part A: Attributes are public, not private (0/5). Constructor initializes all attributes correctly (5/5). Only one getter (getTeamName) is provided, missing getters and setters for numMembers and needsComputers, and setters for all (0/5).\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes maxTeams, teams array, and currentTeams (5/5). addTeam method adds team but does not check if there is space before adding (no capacity check), so always returns true even if full (0/9). countComputersNeeded loops over entire array length (including nulls if currentTeams < maxTeams), risking NullPointerException, and does not limit to currentTeams (0/8).\n\nQuestion 3: Method signature is static and correct (4/4). Length condition checks pass.length >= 8 correctly (6/6). Iteration loops through string (4/4). Uppercase condition returns true immediately upon finding uppercase letter but does not check for digit at all (0/8). Digit condition missing entirely (0/8).",
       "deductions": [
         {
           "question_number": 1,
-          "reason": "Missing check for even length: method does not return false if array length is odd (code lacks any length check).",
+          "reason": "Missing explicit check for odd array length returning false. Student code does not return false if length is odd (no length validation).",
           "points": 5
         },
         {
           "question_number": 1,
-          "reason": "Incorrect loop bounds for second half summation: second loop starts at half + 1 instead of half, skipping one element (e.g., for arr length 6, indices 3 to 5 expected, but code sums from index 4 to 5).",
-          "points": 10
+          "reason": "Second half iteration starts at half + 1, skipping the first element of the second half, causing incorrect summation and iteration.",
+          "points": 4
+        },
+        {
+          "question_number": 1,
+          "reason": "Summation logic flawed due to incorrect second half iteration, sums do not correctly represent halves.",
+          "points": 4
         },
         {
           "question_number": 2,
-          "reason": "Fields declared public instead of private: teamName, numMembers, needsComputers are all public.",
-          "points": 2
-        },
-        {
-          "question_number": 2,
-          "reason": "Missing getters and setters: only one getter (getTeamName) is provided; no setters or other getters.",
+          "reason": "Attributes are public, not private as required by rubric.",
           "points": 5
         },
         {
           "question_number": 2,
-          "reason": "addTeam method does not check if array is full before adding a team; always adds and increments currentTeams, risking array overflow.",
+          "reason": "Missing getters and setters for numMembers and needsComputers; only one getter provided.",
           "points": 5
         },
         {
           "question_number": 2,
-          "reason": "countComputersNeeded accesses private fields of Team directly (needsComputers and numMembers) instead of using getters, violating encapsulation.",
-          "points": 3
+          "reason": "addTeam method does not check if there is space before adding; always adds and returns true even if full.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array length instead of currentTeams, risking NullPointerException and incorrect count.",
+          "points": 8
         },
         {
           "question_number": 3,
-          "reason": "Missing digit check: method does not verify presence of at least one digit ('0'-'9') in the password.",
+          "reason": "Method does not check for presence of digit at all, missing digit condition.",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Uppercase condition returns true immediately upon finding uppercase letter without checking digit condition, so logic incomplete.",
           "points": 8
         }
       ]
@@ -267,69 +302,63 @@
   {
     "run": 6,
     "ok": true,
-    "elapsed": 12.916250228881836,
+    "elapsed": 12.8126220703125,
     "ocr": {
       "questions_markdown": "## Page 1\n\n# Computer Science Bagrut Simulation – 5 Units\n\nSubject: Java / C# Fundamentals, Arrays, and Object-Oriented Programming\nTime: 90 Minutes\nGrade: 11/12\n\n## Instructions:\n\n- Answer all questions in the spaces provided.\n- You may write your code in Java or C#.\n- You can assume all standard libraries are imported (הנח כי כל המחלקות הדרושות מיובאות).\n\n## Page 2\n\nQuestion 1: Arrays &amp; Algorithmic Thinking (מערכים ואלגוריתמיקה)\n\nAn array of integers is considered a \"Balanced Array\" (מערך מאוזן) if its length is an even number, and the sum of the elements in its first half is exactly equal to the sum of the elements in its second half.\n\nFor example:\n\n- The array [2, 4, 1, 5, 0, 2] is a מערך מאוזן because the sum of the first half (2+4+1 = 7) equals the sum of the second half (5+0+2 = 7).\n- The array [1, 2, 3, 4] is not balanced (1+2 ≠ 3+4).\n\nYour Task:\n\nWrite a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).\n\nAnswer / תשובה:\n\n## Page 3\n\nQuestion 2: Object-Oriented Programming (תכנות מונחה עצמים)\n\nA local high school is organizing a hackathon and needs a system to manage the participating teams.\n\n## Part A (סעיף א):\n\nWrite the class Team (קבוצה). The class should include the following properties:\n\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).\n\nAnswer Part A / א תשובה סעיף:\n\n## Page 4\n\n|  |   |   |\n| --- | --- | --- |\n\n## Page 5\n\nPart B (סעיף ב):\n\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.\n\n## Page 6\n\nAnswer Part B / תשובה סעיף ב':\n\n## Page 7\n\nQuestion 3: String Manipulation (מחרוזות)\n\nA string is defined as a \"Strong Password\" (סיסמה חזקה) if it meets all of the following conditions:\n\n1. Its length is at least 8 characters.\n2. It contains at least one uppercase letter ('A' - 'Z').\n3. It contains at least one digit ('0' - '9').\n\nYour Task:\n\nWrite a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).\n\nAnswer / תשובה:\n\nבהצלחה! (Good luck!)",
       "answers_markdown": "## Page 1\n\n# סימולציית בגרות במדעי המחשב – 5 יח\"ל\n\nנושא: יסודות #Java/C, מערכים, ותכנות מונחה עצמים\nזמן: 90 דקות\nשם התלמיד: עידו ל.\nשפת תכנות: Java\n\n## הנחיות:\n\n- ענה על כל השאלות במקומות המיועדים לכך.\n- ניתן לכתוב ב-Java או ב-C.\n- הנח כי כל המחלקות הדרושות מיובאות.\n\n## שאלה 1: מערכים ואלגוריתמיקה\n\nמערך של מספרים שלמים נחשב ל\"מערך מאוזן\" אם אורכו זוגי, וסכום האיברים בחציו הראשון שווה בדיוק לסכום האיברים בחציו השני.\n\nתשובה:\n```java\npublic static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i &lt; half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i &lt; arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}\n```\n\n## Page 2\n\nשאלה 2: תכנות מונחה עצמים\n\n## סעיף א: המחלקה Team\n\nכתב את המחלקה Team. המחלקה תכלול: שם קבוצה (String), מספר חברים (int), וצורך במחשבים (boolean).\n\n```java\npublic class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}\n```\n\n## Page 3\n\nסעיף ב: המחלקה Hackathon\n\nניהול מערך של אובייקטים מסוג Team\n\nתשובה סעיף ב:\n\n```java\npublic class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i &lt; teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}\n```\n\n## Page 4\n\nשאלה 3: מחרוזות\n\nבדיקת סיסמה חזקה (אורך 8 לפחות, אות גדולה וספרה).\n\n```java\npublic static boolean isValidPassword(String pass) {\nif (pass.length() &gt;= 8) {\nfor (int i = 0; i &lt; pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}\n```\n\nבהצלחה!"
     },
     "grading": {
-      "final_score": 52,
+      "final_score": 54,
       "max_score": 100,
-      "rationale": "Question 1: The student implemented the isBalanced method with sum calculations and a return statement, but missed the even-length check and used incorrect loop bounds for the second half (starts at half+1 instead of half), resulting in missing one element from the second half. Summation logic is mostly correct but affected by loop bounds. Return values are correct.\n\nQuestion 2 Part A: The Team class declares all three fields but as public instead of private (encapsulation violation). The constructor initializes all fields correctly. Only one getter is provided; setters and other getters are missing.\n\nQuestion 2 Part B: The Hackathon class declares all required fields as private, constructor correctly initializes array and counter. addTeam adds team without checking if array is full and always returns true, so no capacity check and no false return. countComputersNeeded sums numMembers only if needsComputers is true, but accesses Team fields directly (violates encapsulation).\n\nQuestion 3: The isValidPassword method is static and checks length >= 8. It checks for uppercase letters but returns true immediately upon finding uppercase without checking for digits, so digit check is missing. Returns false otherwise. Return values are correct.\n\nDeductions are applied strictly per rubric based on visible code and missing requirements.",
+      "rationale": "Question 1: The method signature is correct and static (5/5). The length validation is missing (0/5) because the student did not check if the array length is even and return false if odd. The iteration partially covers the first half correctly but incorrectly skips the middle element in the second half by starting at half+1 instead of half (4/8). Summation logic is mostly correct except for the skipped element in the second half (6/8). Return logic correctly compares sums and returns true/false (4/4). Total for Q1: 19/30.\n\nQuestion 2 Part A: Attributes are public instead of private, so no encapsulation (0/5). Constructor correctly initializes all attributes (5/5). Getters and setters are incomplete; only one getter is provided and no setters (2/5). Total Part A: 7/15.\n\nQuestion 2 Part B: Attributes are correctly declared private and present (3/3). Constructor correctly initializes maxTeams, array, and currentTeams (5/5). addTeam method lacks a check for full array before adding, so it always adds and increments currentTeams, which is incorrect (0/9). countComputersNeeded loops over entire array length instead of currentTeams, risking null pointer exceptions (0/8). Total Part B: 8/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition is checked (6/6). Iteration over string characters is done (4/4). Uppercase condition is checked but returns true immediately upon finding uppercase without checking digit condition (4/8). Digit condition is missing entirely (0/8). Total Q3: 18/30.",
       "deductions": [
         {
           "question_number": 1,
-          "reason": "Missing even-length validation: method does not check if array length is even before proceeding.",
+          "reason": "Missing length validation: no check if array length is even; no return false if odd. Student code: no length check before summation loops.",
           "points": 5
         },
         {
           "question_number": 1,
-          "reason": "Incorrect loop bounds for second half summation: loop starts at half + 1 instead of half, missing one element from second half.",
-          "points": 10
-        },
-        {
-          "question_number": 1,
-          "reason": "Summation logic flawed due to incorrect loop bounds affecting sum of second half.",
-          "points": 10
+          "reason": "Incorrect iteration over second half: loop starts at half + 1, skipping the middle element. Student code: for (int i = half + 1; i < arr.length; i++) sum2 += arr[i];",
+          "points": 4
         },
         {
           "question_number": 2,
-          "reason": "Fields declared public instead of private: teamName, numMembers, needsComputers are public.",
-          "points": 2
-        },
-        {
-          "question_number": 2,
-          "reason": "Missing getters and setters: only one getter (getTeamName) is provided; setters and other getters are missing.",
+          "reason": "Attributes are public, not private as required for encapsulation. Student code: public String teamName; public int numMembers; public boolean needsComputers;",
           "points": 5
         },
         {
           "question_number": 2,
-          "reason": "In Hackathon.addTeam, no check if array is full before adding team; always returns true without capacity check.",
-          "points": 5
-        },
-        {
-          "question_number": 2,
-          "reason": "In countComputersNeeded, accesses Team fields directly instead of using getters, violating encapsulation.",
+          "reason": "Getters and setters incomplete: only one getter (getTeamName) provided; missing setters and other getters. Student code: only getTeamName() method present.",
           "points": 3
         },
         {
-          "question_number": 3,
-          "reason": "Missing digit check: method does not verify presence of at least one digit ('0'-'9').",
+          "question_number": 2,
+          "reason": "addTeam method lacks check for full array before adding; always adds and increments currentTeams even if full. Student code: no if condition to check currentTeams < maxTeams.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array length instead of currentTeams, risking null pointer exceptions. Student code: for (int i = 0; i < teams.length; i++) { if (teams[i].needsComputers) ... }",
           "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Digit condition missing: no check for presence of at least one digit. Student code: loop checks uppercase letters but no digit check.",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Uppercase condition incomplete: returns true immediately upon finding uppercase without verifying digit condition or full password validity. Student code: inside loop, returns true if uppercase found, ignoring other conditions.",
+          "points": 4
         }
       ]
     }
   },
   {
     "run": 7,
-    "ok": false,
-    "elapsed": 13.723587036132812,
-    "error": "Unterminated string starting at: line 38 column 17 (char 3961)"
-  },
-  {
-    "run": 8,
     "ok": true,
-    "elapsed": 10.416600942611694,
+    "elapsed": 12.235857248306274,
     "ocr": {
       "questions_markdown": "## Page 1\n\n# Computer Science Bagrut Simulation – 5 Units\n\nSubject: Java / C# Fundamentals, Arrays, and Object-Oriented Programming\nTime: 90 Minutes\nGrade: 11/12\n\n## Instructions:\n\n- Answer all questions in the spaces provided.\n- You may write your code in Java or C#.\n- You can assume all standard libraries are imported (הנח כי כל המחלקות הדרושות מיובאות).\n\n## Page 2\n\nQuestion 1: Arrays &amp; Algorithmic Thinking (מערכים ואלגוריתמיקה)\n\nAn array of integers is considered a \"Balanced Array\" (מערך מאוזן) if its length is an even number, and the sum of the elements in its first half is exactly equal to the sum of the elements in its second half.\n\nFor example:\n\n- The array [2, 4, 1, 5, 0, 2] is a מערך מאוזן because the sum of the first half (2+4+1 = 7) equals the sum of the second half (5+0+2 = 7).\n- The array [1, 2, 3, 4] is not balanced (1+2 ≠ 3+4).\n\nYour Task:\n\nWrite a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).\n\nAnswer / תשובה:\n\n## Page 3\n\nQuestion 2: Object-Oriented Programming (תכנות מונחה עצמים)\n\nA local high school is organizing a hackathon and needs a system to manage the participating teams.\n\n## Part A (סעיף א):\n\nWrite the class Team (קבוצה). The class should include the following properties:\n\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).\n\nAnswer Part A / א תשובה סעיף:\n\n## Page 4\n\n|  |   |   |\n| --- | --- | --- |\n\n## Page 5\n\nPart B (סעיף ב):\n\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.\n\n## Page 6\n\nAnswer Part B / תשובה סעיף ב':\n\n## Page 7\n\nQuestion 3: String Manipulation (מחרוזות)\n\nA string is defined as a \"Strong Password\" (סיסמה חזקה) if it meets all of the following conditions:\n\n1. Its length is at least 8 characters.\n2. It contains at least one uppercase letter ('A' - 'Z').\n3. It contains at least one digit ('0' - '9').\n\nYour Task:\n\nWrite a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).\n\nAnswer / תשובה:\n\nבהצלחה! (Good luck!)",
       "answers_markdown": "## Page 1\n\n# סימולציית בגרות במדעי המחשב – 5 יח\"ל\n\nנושא: יסודות #Java/C, מערכים, ותכנות מונחה עצמים\nזמן: 90 דקות\nשם התלמיד: עידו ל.\nשפת תכנות: Java\n\n## הנחיות:\n\n- ענה על כל השאלות במקומות המיועדים לכך.\n- ניתן לכתוב ב-Java או ב-C.\n- הנח כי כל המחלקות הדרושות מיובאות.\n\n## שאלה 1: מערכים ואלגוריתמיקה\n\nמערך של מספרים שלמים נחשב ל\"מערך מאוזן\" אם אורכו זוגי, וסכום האיברים בחציו הראשון שווה בדיוק לסכום האיברים בחציו השני.\n\nתשובה:\n```java\npublic static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i &lt; half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i &lt; arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}\n```\n\n## Page 2\n\nשאלה 2: תכנות מונחה עצמים\n\n## סעיף א: המחלקה Team\n\nכתב את המחלקה Team. המחלקה תכלול: שם קבוצה (String), מספר חברים (int), וצורך במחשבים (boolean).\n\n```java\npublic class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}\n```\n\n## Page 3\n\nסעיף ב: המחלקה Hackathon\n\nניהול מערך של אובייקטים מסוג Team\n\nתשובה סעיף ב:\n\n```java\npublic class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i &lt; teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}\n```\n\n## Page 4\n\nשאלה 3: מחרוזות\n\nבדיקת סיסמה חזקה (אורך 8 לפחות, אות גדולה וספרה).\n\n```java\npublic static boolean isValidPassword(String pass) {\nif (pass.length() &gt;= 8) {\nfor (int i = 0; i &lt; pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}\n```\n\nבהצלחה!"
@@ -337,41 +366,97 @@
     "grading": {
       "final_score": 58,
       "max_score": 100,
-      "rationale": "Question 1: The student implemented isBalanced with a check for sums of halves but missed the even-length validation and made an error in loop bounds for the second half. Summation logic is mostly correct but the second half loop starts at half+1 instead of half, missing one element. Return values are correct. Question 2 Part A: The class declares fields but they are public instead of private (encapsulation violation). The constructor initializes all fields correctly. Getters and setters are incomplete (only one getter provided). Question 2 Part B: The Hackathon class declares all required properties privately and constructor correctly initializes the array and counter. The addTeam method adds teams without checking if the array is full and always returns true, missing the capacity check and failing to return false when full. countComputersNeeded sums numMembers only if needsComputers is true, but accesses Team fields directly violating encapsulation (since Part A fields are private by rubric). Question 3: The method isValidPassword is static and checks length but only checks for uppercase letters and misses the digit check. The return value is inverted because it returns true immediately upon finding uppercase without checking digit, and returns false otherwise, so it does not fully validate all conditions.",
+      "rationale": "Question 1: The method signature is correct and static (5/5). The code does not check if the array length is even and never returns false for odd length (0/5). The iteration over the first half is correct (sum1), but the second half loop starts at half + 1, skipping the middle element in odd length arrays and missing the element at index half in even length arrays, so iteration/traversal is partially incorrect (4/8). Summation logic is correct for the elements it sums, but due to the iteration error, it misses one element in the second half (4/8). Return logic correctly compares sums and returns true/false accordingly (4/4). Total for Q1: 17/30.\n\nQuestion 2 Part A: Attributes are public, not private as required (0/5). Constructor correctly initializes all attributes (5/5). Only one getter is provided (getTeamName), missing getters and setters for numMembers and needsComputers (0/5). Total Part A: 5/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes maxTeams, teams array, and currentTeams (5/5). addTeam method does not check if there is space before adding; it always adds and increments currentTeams, which can cause overflow and does not return false when full (0/9). countComputersNeeded loops through entire teams array (teams.length), not just currentTeams, risking null pointer exceptions; however, logic to sum numMembers for teams needing computers is correct (6/8). Total Part B: 14/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition is checked properly (6/6). Iteration over string characters is done (4/4). Uppercase condition is checked but the method returns true immediately upon finding uppercase without checking for digit, so digit condition is missing (0/8). Total Q3: 14/30.\n\nOverall deductions are for missing length check in Q1, incomplete iteration in Q1, public attributes and missing getters/setters in Q2A, missing addTeam capacity check in Q2B, partial iteration in countComputersNeeded, and missing digit check in Q3.",
       "deductions": [
         {
           "question_number": 1,
-          "reason": "Missing even-length validation: no check for odd length returning false (method always proceeds).",
+          "reason": "Missing length validation: no check if array length is even; method never returns false for odd length arrays. Student code: no length check before summation loops.",
           "points": 5
         },
         {
           "question_number": 1,
-          "reason": "Incorrect loop bounds for second half summation: loop starts at half + 1 instead of half, missing one element.",
-          "points": 10
+          "reason": "Iteration/traversal error: second half loop starts at half + 1, skipping element at index half. Student code: for (int i = half + 1; i < arr.length; i++) sum2 += arr[i];",
+          "points": 4
+        },
+        {
+          "question_number": 1,
+          "reason": "Summation logic partially incorrect due to iteration error missing element at index half in second half sum. Student code sums from half+1 to end, missing one element.",
+          "points": 4
         },
         {
           "question_number": 2,
-          "reason": "Fields declared public instead of private: teamName, numMembers, needsComputers are public.",
-          "points": 6
-        },
-        {
-          "question_number": 2,
-          "reason": "Getters and setters missing: only one getter (getTeamName) is provided, missing others and all setters.",
+          "reason": "Attributes not private as required; all declared public. Student code: public String teamName; public int numMembers; public boolean needsComputers;",
           "points": 5
         },
         {
           "question_number": 2,
-          "reason": "addTeam method does not check if array is full before adding and always returns true.",
+          "reason": "Missing getters and setters for numMembers and needsComputers; only getTeamName() provided. Student code lacks other getters/setters.",
           "points": 5
         },
         {
           "question_number": 2,
-          "reason": "countComputersNeeded accesses Team fields directly instead of using getters, violating encapsulation.",
-          "points": 3
+          "reason": "addTeam method lacks capacity check; always adds team and increments currentTeams, risking overflow and never returns false. Student code: no if check before adding team.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array (teams.length) instead of currentTeams, risking null pointer exceptions. Student code: for (int i = 0; i < teams.length; i++) {...}",
+          "points": 2
         },
         {
           "question_number": 3,
-          "reason": "Missing digit check in isValidPassword method.",
+          "reason": "Missing digit condition check; method returns true upon finding uppercase letter without verifying presence of digit. Student code: returns true inside loop when uppercase found, no digit check.",
+          "points": 8
+        }
+      ]
+    }
+  },
+  {
+    "run": 8,
+    "ok": true,
+    "elapsed": 10.443207740783691,
+    "ocr": {
+      "questions_markdown": "## Page 1\n\n# Computer Science Bagrut Simulation – 5 Units\n\nSubject: Java / C# Fundamentals, Arrays, and Object-Oriented Programming\nTime: 90 Minutes\nGrade: 11/12\n\n## Instructions:\n\n- Answer all questions in the spaces provided.\n- You may write your code in Java or C#.\n- You can assume all standard libraries are imported (הנח כי כל המחלקות הדרושות מיובאות).\n\n## Page 2\n\nQuestion 1: Arrays &amp; Algorithmic Thinking (מערכים ואלגוריתמיקה)\n\nAn array of integers is considered a \"Balanced Array\" (מערך מאוזן) if its length is an even number, and the sum of the elements in its first half is exactly equal to the sum of the elements in its second half.\n\nFor example:\n\n- The array [2, 4, 1, 5, 0, 2] is a מערך מאוזן because the sum of the first half (2+4+1 = 7) equals the sum of the second half (5+0+2 = 7).\n- The array [1, 2, 3, 4] is not balanced (1+2 ≠ 3+4).\n\nYour Task:\n\nWrite a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).\n\nAnswer / תשובה:\n\n## Page 3\n\nQuestion 2: Object-Oriented Programming (תכנות מונחה עצמים)\n\nA local high school is organizing a hackathon and needs a system to manage the participating teams.\n\n## Part A (סעיף א):\n\nWrite the class Team (קבוצה). The class should include the following properties:\n\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).\n\nAnswer Part A / א תשובה סעיף:\n\n## Page 4\n\n|  |   |   |\n| --- | --- | --- |\n\n## Page 5\n\nPart B (סעיף ב):\n\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.\n\n## Page 6\n\nAnswer Part B / תשובה סעיף ב':\n\n## Page 7\n\nQuestion 3: String Manipulation (מחרוזות)\n\nA string is defined as a \"Strong Password\" (סיסמה חזקה) if it meets all of the following conditions:\n\n1. Its length is at least 8 characters.\n2. It contains at least one uppercase letter ('A' - 'Z').\n3. It contains at least one digit ('0' - '9').\n\nYour Task:\n\nWrite a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).\n\nAnswer / תשובה:\n\nבהצלחה! (Good luck!)",
+      "answers_markdown": "## Page 1\n\n# סימולציית בגרות במדעי המחשב – 5 יח\"ל\n\nנושא: יסודות #Java/C, מערכים, ותכנות מונחה עצמים\nזמן: 90 דקות\nשם התלמיד: עידו ל.\nשפת תכנות: Java\n\n## הנחיות:\n\n- ענה על כל השאלות במקומות המיועדים לכך.\n- ניתן לכתוב ב-Java או ב-C.\n- הנח כי כל המחלקות הדרושות מיובאות.\n\n## שאלה 1: מערכים ואלגוריתמיקה\n\nמערך של מספרים שלמים נחשב ל\"מערך מאוזן\" אם אורכו זוגי, וסכום האיברים בחציו הראשון שווה בדיוק לסכום האיברים בחציו השני.\n\nתשובה:\n```java\npublic static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i &lt; half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i &lt; arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}\n```\n\n## Page 2\n\nשאלה 2: תכנות מונחה עצמים\n\n## סעיף א: המחלקה Team\n\nכתב את המחלקה Team. המחלקה תכלול: שם קבוצה (String), מספר חברים (int), וצורך במחשבים (boolean).\n\n```java\npublic class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}\n```\n\n## Page 3\n\nסעיף ב: המחלקה Hackathon\n\nניהול מערך של אובייקטים מסוג Team\n\nתשובה סעיף ב:\n\n```java\npublic class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i &lt; teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}\n```\n\n## Page 4\n\nשאלה 3: מחרוזות\n\nבדיקת סיסמה חזקה (אורך 8 לפחות, אות גדולה וספרה).\n\n```java\npublic static boolean isValidPassword(String pass) {\nif (pass.length() &gt;= 8) {\nfor (int i = 0; i &lt; pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}\n```\n\nבהצלחה!"
+    },
+    "grading": {
+      "final_score": 56,
+      "max_score": 100,
+      "rationale": "Question 1: The method signature is correct and static (5/5). The student does not check if the array length is even and never returns false for odd length (0/5). The iteration over the first half is correct (sum1), but the second half loop starts at half+1, skipping the element at index half, so summation logic is flawed (4/8). The return logic compares sums correctly (4/4). Total for Q1: 13/30.\n\nQuestion 2 Part A: Attributes are public, not private, so no encapsulation (0/5). Constructor initializes all attributes correctly (5/5). Only one getter (getTeamName) is provided, missing getters and setters for numMembers and needsComputers (0/5). Total for Q2A: 5/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes maxTeams, array, and currentTeams (5/5). addTeam method adds team without checking if there is space, always returns true, so no handling of full array (0/9). countComputersNeeded loops over entire array length, including null entries beyond currentTeams, risking NullPointerException, and does not limit to currentTeams (0/8). Total for Q2B: 8/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition is checked (6/6). Iteration over string is done (4/4). Uppercase condition is checked but returns true immediately on finding uppercase without checking digit condition (partial). Digit condition is missing entirely (0/8). Total for Q3: 14/30.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Missing length validation: no check for even length; method never returns false for odd length arrays (code does not check arr.length % 2 == 0).",
+          "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Summation logic error: second half loop starts at half + 1, skipping the middle element at index half (for example, for length 6, half=3, loop starts at 4, missing arr[3]).",
+          "points": 4
+        },
+        {
+          "question_number": 2,
+          "reason": "Attributes are public, not private; no encapsulation as required (teamName, numMembers, needsComputers are public).",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getters and setters for numMembers and needsComputers; only getTeamName() is provided.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method lacks capacity check; always adds team and returns true even if array is full, violating requirement to return false when full.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array length instead of currentTeams; risks NullPointerException and counts uninitialized slots.",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Digit condition missing: method does not check for presence of at least one digit ('0'-'9').",
           "points": 8
         }
       ]
@@ -380,54 +465,54 @@
   {
     "run": 9,
     "ok": true,
-    "elapsed": 13.141894340515137,
+    "elapsed": 10.53312087059021,
     "ocr": {
       "questions_markdown": "## Page 1\n\n# Computer Science Bagrut Simulation – 5 Units\n\nSubject: Java / C# Fundamentals, Arrays, and Object-Oriented Programming\nTime: 90 Minutes\nGrade: 11/12\n\n## Instructions:\n\n- Answer all questions in the spaces provided.\n- You may write your code in Java or C#.\n- You can assume all standard libraries are imported (הנח כי כל המחלקות הדרושות מיובאות).\n\n## Page 2\n\nQuestion 1: Arrays &amp; Algorithmic Thinking (מערכים ואלגוריתמיקה)\n\nAn array of integers is considered a \"Balanced Array\" (מערך מאוזן) if its length is an even number, and the sum of the elements in its first half is exactly equal to the sum of the elements in its second half.\n\nFor example:\n\n- The array [2, 4, 1, 5, 0, 2] is a מערך מאוזן because the sum of the first half (2+4+1 = 7) equals the sum of the second half (5+0+2 = 7).\n- The array [1, 2, 3, 4] is not balanced (1+2 ≠ 3+4).\n\nYour Task:\n\nWrite a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).\n\nAnswer / תשובה:\n\n## Page 3\n\nQuestion 2: Object-Oriented Programming (תכנות מונחה עצמים)\n\nA local high school is organizing a hackathon and needs a system to manage the participating teams.\n\n## Part A (סעיף א):\n\nWrite the class Team (קבוצה). The class should include the following properties:\n\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).\n\nAnswer Part A / א תשובה סעיף:\n\n## Page 4\n\n|  |   |   |\n| --- | --- | --- |\n\n## Page 5\n\nPart B (סעיף ב):\n\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.\n\n## Page 6\n\nAnswer Part B / תשובה סעיף ב':\n\n## Page 7\n\nQuestion 3: String Manipulation (מחרוזות)\n\nA string is defined as a \"Strong Password\" (סיסמה חזקה) if it meets all of the following conditions:\n\n1. Its length is at least 8 characters.\n2. It contains at least one uppercase letter ('A' - 'Z').\n3. It contains at least one digit ('0' - '9').\n\nYour Task:\n\nWrite a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).\n\nAnswer / תשובה:\n\nבהצלחה! (Good luck!)",
       "answers_markdown": "## Page 1\n\n# סימולציית בגרות במדעי המחשב – 5 יח\"ל\n\nנושא: יסודות #Java/C, מערכים, ותכנות מונחה עצמים\nזמן: 90 דקות\nשם התלמיד: עידו ל.\nשפת תכנות: Java\n\n## הנחיות:\n\n- ענה על כל השאלות במקומות המיועדים לכך.\n- ניתן לכתוב ב-Java או ב-C.\n- הנח כי כל המחלקות הדרושות מיובאות.\n\n## שאלה 1: מערכים ואלגוריתמיקה\n\nמערך של מספרים שלמים נחשב ל\"מערך מאוזן\" אם אורכו זוגי, וסכום האיברים בחציו הראשון שווה בדיוק לסכום האיברים בחציו השני.\n\nתשובה:\n```java\npublic static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i &lt; half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i &lt; arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}\n```\n\n## Page 2\n\nשאלה 2: תכנות מונחה עצמים\n\n## סעיף א: המחלקה Team\n\nכתב את המחלקה Team. המחלקה תכלול: שם קבוצה (String), מספר חברים (int), וצורך במחשבים (boolean).\n\n```java\npublic class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}\n```\n\n## Page 3\n\nסעיף ב: המחלקה Hackathon\n\nניהול מערך של אובייקטים מסוג Team\n\nתשובה סעיף ב:\n\n```java\npublic class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i &lt; teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}\n```\n\n## Page 4\n\nשאלה 3: מחרוזות\n\nבדיקת סיסמה חזקה (אורך 8 לפחות, אות גדולה וספרה).\n\n```java\npublic static boolean isValidPassword(String pass) {\nif (pass.length() &gt;= 8) {\nfor (int i = 0; i &lt; pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}\n```\n\nבהצלחה!"
     },
     "grading": {
-      "final_score": 52,
+      "final_score": 44,
       "max_score": 100,
-      "rationale": "Question 1: The student implemented the method with a static declaration and attempts to sum halves, but misses the even-length check (deduct 5). The second half summation loop starts at half+1 instead of half, skipping the middle element for even-length arrays (deduct 10). Summation logic is flawed due to incorrect loop bounds for the second half (deduct 10). Return values are correct (no deduction).\n\nQuestion 2 Part A: The student declared all three fields but as public instead of private (deduct 2). The constructor initializes all fields (no deduction). Getters and setters are incomplete: only one getter is provided and no setters (deduct 5).\n\nQuestion 2 Part B: The constructor correctly initializes the array and counter (no deduction). addTeam adds the team and increments currentTeams but does not check if the array is full before adding (deduct 5). countComputersNeeded sums numMembers only if needsComputers is true (correct). The method accesses Team fields directly (needsComputers and numMembers) instead of using getters, violating encapsulation (deduct 3).\n\nQuestion 3: The method is static (no deduction). It checks length >= 8 (correct). It attempts to check for uppercase letters but returns true immediately upon finding one, ignoring the digit requirement (missing digit check, deduct 8). It returns false if no uppercase found (correct return logic). Overall, missing digit check is a major flaw. No inversion of return values.\n\nTotal deductions: Q1(5+10+10=25), Q2A(2+5=7), Q2B(5+3=8), Q3(8) = 48 points deducted from 100, final score 52. However, the sum of deductions is 48, so final score is 52. The output shows 55, so correcting final score to 52.",
+      "rationale": "Question 1: The method signature is correct and static (5 pts). It checks if the array length is even (length/2 used), but does not explicitly return false if odd length (missing length validation) (0/5 pts). The iteration over the first half is correct (sum1 loop) (8/8 pts). The iteration over the second half is incorrect: starts at half+1 instead of half, thus skipping the middle element in even-length arrays (0/8 pts). Summation logic is partially correct for first half but flawed for second half due to wrong indices (0/8 pts). Return logic compares sums correctly (4/4 pts). Total for Q1: 17/30.\n\nQuestion 2 Part A: Attributes are public instead of private (0/5 pts). Constructor correctly initializes all attributes (5/5 pts). Only one getter (getTeamName) is provided, missing getters and setters for numMembers and needsComputers (0/5 pts). Total Part A: 5/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3 pts). Constructor correctly initializes maxTeams, teams array, and currentTeams (5/5 pts). addTeam method lacks check for full array before adding, always adds and returns true even if full (0/9 pts). countComputersNeeded loops over entire array length instead of currentTeams, risking null pointer exceptions if array slots are empty (0/8 pts). Total Part B: 8/25.\n\nQuestion 3: Method signature is static and correct (4/4 pts). Checks length >=8 (6/6 pts). Iterates over string (4/4 pts). However, only checks for uppercase letter and returns true immediately if found, ignoring digit condition entirely (0/8 pts). Digit condition missing (0/8 pts). Total Q3: 14/30.",
       "deductions": [
         {
           "question_number": 1,
-          "reason": "Missing even-length validation: method does not check if arr.length is even before proceeding. (No check found in code.)",
+          "reason": "Missing explicit length validation: no check to return false if array length is odd. Student uses half = arr.length/2 but does not return false if length is odd (no length validation).",
           "points": 5
         },
         {
           "question_number": 1,
-          "reason": "Incorrect loop bounds for second half summation: loop starts at half + 1 instead of half, skipping one element. (for (int i = half + 1; i < arr.length; i++))",
-          "points": 10
+          "reason": "Incorrect iteration over second half: loop starts at half + 1 instead of half, skipping one element and causing incorrect summation.",
+          "points": 8
         },
         {
           "question_number": 1,
-          "reason": "Flawed summation logic due to incorrect second half loop bounds causing incorrect sum calculation.",
-          "points": 10
+          "reason": "Summation logic flawed for second half due to wrong loop indices, leading to incorrect sum calculation.",
+          "points": 8
         },
         {
           "question_number": 2,
-          "reason": "Fields declared public instead of private (teamName, numMembers, needsComputers are public).",
-          "points": 2
-        },
-        {
-          "question_number": 2,
-          "reason": "Missing getters and setters: only one getter (getTeamName) is provided; no setters or other getters found.",
+          "reason": "Attributes are public, not private as required by rubric.",
           "points": 5
         },
         {
           "question_number": 2,
-          "reason": "addTeam method does not check if the array is full before adding a team. (No condition to prevent overflow.)",
+          "reason": "Missing getters and setters for numMembers and needsComputers; only getTeamName provided.",
           "points": 5
         },
         {
           "question_number": 2,
-          "reason": "countComputersNeeded method accesses Team fields directly (needsComputers and numMembers) instead of using getters, violating encapsulation.",
-          "points": 3
+          "reason": "addTeam method lacks check for available space; always adds team and returns true even if full.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array length instead of currentTeams, risking null pointer exceptions and incorrect counting.",
+          "points": 8
         },
         {
           "question_number": 3,
-          "reason": "Missing digit check: method does not verify presence of at least one digit in the password.",
+          "reason": "Password validation only checks for uppercase letters and length; digit condition missing entirely.",
           "points": 8
         }
       ]
@@ -436,80 +521,60 @@
   {
     "run": 10,
     "ok": true,
-    "elapsed": 10.619860887527466,
+    "elapsed": 11.163794994354248,
     "ocr": {
       "questions_markdown": "## Page 1\n\n# Computer Science Bagrut Simulation – 5 Units\n\nSubject: Java / C# Fundamentals, Arrays, and Object-Oriented Programming\nTime: 90 Minutes\nGrade: 11/12\n\n## Instructions:\n\n- Answer all questions in the spaces provided.\n- You may write your code in Java or C#.\n- You can assume all standard libraries are imported (הנח כי כל המחלקות הדרושות מיובאות).\n\n## Page 2\n\nQuestion 1: Arrays &amp; Algorithmic Thinking (מערכים ואלגוריתמיקה)\n\nAn array of integers is considered a \"Balanced Array\" (מערך מאוזן) if its length is an even number, and the sum of the elements in its first half is exactly equal to the sum of the elements in its second half.\n\nFor example:\n\n- The array [2, 4, 1, 5, 0, 2] is a מערך מאוזן because the sum of the first half (2+4+1 = 7) equals the sum of the second half (5+0+2 = 7).\n- The array [1, 2, 3, 4] is not balanced (1+2 ≠ 3+4).\n\nYour Task:\n\nWrite a method (כתוב פעולה) named isBalanced that receives an array of integers arr. The method should return true if arr is a מערך מאוזן, and false otherwise.\n\n(Note: You must check if the array length is even. If it is odd, it cannot be balanced).\n\nAnswer / תשובה:\n\n## Page 3\n\nQuestion 2: Object-Oriented Programming (תכנות מונחה עצמים)\n\nA local high school is organizing a hackathon and needs a system to manage the participating teams.\n\n## Part A (סעיף א):\n\nWrite the class Team (קבוצה). The class should include the following properties:\n\n- teamName (String) - The name of the team.\n- numMembers (int) - The number of students in the team.\n- needsComputers (boolean) - true if the team needs the school to provide computers, false if they are bringing their own laptops.\n\n1. Write the constructor method for the class.\n2. Write standard get and set methods for all the attributes (פעולות מאוחרות וקובעות).\n\nAnswer Part A / א תשובה סעיף:\n\n## Page 4\n\n|  |   |   |\n| --- | --- | --- |\n\n## Page 5\n\nPart B (סעיף ב):\n\nWrite the class Hackathon (האקתון). The class manages an array of Team objects. Properties:\n\n- teams - An array of Team objects.\n- maxTeams - The maximum number of teams allowed to register.\n- currentTeams - The current number of teams registered.\n\n1. Write a constructor that receives maxTeams and initializes the array accordingly.\ncurrentTeams should start at 0.\n\n2. Write a method public boolean addTeam(Team t) (or public bool AddTeam in C#). The method should add the team t to the first available spot in the array if there is room. It should return true if the team was added successfully, and false if the hackathon is already full (אין מקום פנוי).\n\n3. Write a method public int countComputersNeeded(). This method should calculate and return the total number of computers the school needs to provide. Assume that if a team needs computers (needsComputers == true), the school must provide one computer for each member of that team.\n\n## Page 6\n\nAnswer Part B / תשובה סעיף ב':\n\n## Page 7\n\nQuestion 3: String Manipulation (מחרוזות)\n\nA string is defined as a \"Strong Password\" (סיסמה חזקה) if it meets all of the following conditions:\n\n1. Its length is at least 8 characters.\n2. It contains at least one uppercase letter ('A' - 'Z').\n3. It contains at least one digit ('0' - '9').\n\nYour Task:\n\nWrite a static method named `isValidPassword` that receives a string `pass`. The method must check if the string meets all the conditions of a סיסמה חזקה. It should return `true` if it is a strong password, and `false` otherwise.\n\n(Hint: You may use standard string methods like `charAt` and `length` in Java, or index access `[]` and `Length` in C#).\n\nAnswer / תשובה:\n\nבהצלחה! (Good luck!)",
       "answers_markdown": "## Page 1\n\n# סימולציית בגרות במדעי המחשב – 5 יח\"ל\n\nנושא: יסודות #Java/C, מערכים, ותכנות מונחה עצמים\nזמן: 90 דקות\nשם התלמיד: עידו ל.\nשפת תכנות: Java\n\n## הנחיות:\n\n- ענה על כל השאלות במקומות המיועדים לכך.\n- ניתן לכתוב ב-Java או ב-C.\n- הנח כי כל המחלקות הדרושות מיובאות.\n\n## שאלה 1: מערכים ואלגוריתמיקה\n\nמערך של מספרים שלמים נחשב ל\"מערך מאוזן\" אם אורכו זוגי, וסכום האיברים בחציו הראשון שווה בדיוק לסכום האיברים בחציו השני.\n\nתשובה:\n```java\npublic static boolean isBalanced(int[] arr) {\nint sum1 = 0;\nint sum2 = 0;\nint half = arr.length / 2;\n\nfor (int i = 0; i &lt; half; i++) {\nsum1 += arr[i];\n}\n\nfor (int i = half + 1; i &lt; arr.length; i++) {\nsum2 += arr[i];\n}\n\nif (sum1 == sum2) {\nreturn true;\n}\nreturn false;\n}\n```\n\n## Page 2\n\nשאלה 2: תכנות מונחה עצמים\n\n## סעיף א: המחלקה Team\n\nכתב את המחלקה Team. המחלקה תכלול: שם קבוצה (String), מספר חברים (int), וצורך במחשבים (boolean).\n\n```java\npublic class Team {\npublic String teamName;\npublic int numMembers;\npublic boolean needsComputers;\n\npublic Team(String teamName, int numMembers, boolean needsComputers) {\nthis.teamName = teamName;\nthis.numMembers = numMembers;\nthis.needsComputers = needsComputers;\n}\n\npublic String getTeamName() {\nreturn teamName;\n}\n}\n```\n\n## Page 3\n\nסעיף ב: המחלקה Hackathon\n\nניהול מערך של אובייקטים מסוג Team\n\nתשובה סעיף ב:\n\n```java\npublic class Hackathon {\nprivate Team[] teams;\nprivate int maxTeams;\nprivate int currentTeams;\n\npublic Hackathon(int maxTeams) {\nthis.maxTeams = maxTeams;\nthis.teams = new Team[maxTeams];\nthis.currentTeams = 0;\n}\n\npublic boolean addTeam(Team t) {\nthis.teams[currentTeams] = t;\ncurrentTeams++;\nreturn true;\n}\n\npublic int countComputersNeeded() {\nint total = 0;\nfor (int i = 0; i &lt; teams.length; i++) {\nif (teams[i].needsComputers) {\ntotal += teams[i].numMembers;\n}\n}\nreturn total;\n}\n}\n```\n\n## Page 4\n\nשאלה 3: מחרוזות\n\nבדיקת סיסמה חזקה (אורך 8 לפחות, אות גדולה וספרה).\n\n```java\npublic static boolean isValidPassword(String pass) {\nif (pass.length() &gt;= 8) {\nfor (int i = 0; i &lt; pass.length(); i++) {\nchar ch = pass.charAt(i);\nif (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') {\nreturn true;\n}\n}\n}\nreturn false;\n}\n```\n\nבהצלחה!"
     },
     "grading": {
-      "final_score": 25,
+      "final_score": 52,
       "max_score": 100,
-      "rationale": "Question 1: The method checks sums of halves but has errors in loop bounds for the second half (starts at half+1 instead of half), missing even-length check, and incorrect return logic (returns false if sums are equal). Question 2 Part A: All fields are declared public (encapsulation violation), missing getters and setters for numMembers and needsComputers, constructor is present and initializes all fields. Question 2 Part B: Constructor and fields are correct; addTeam does not check if array is full before adding and always returns true; countComputersNeeded sums correctly but accesses private fields directly (encapsulation violation). Question 3: Method is static and checks length; however, it only checks for uppercase letters and misses digit check; also returns true immediately upon finding uppercase without verifying digit, so logic is incomplete and return value is incorrect for some inputs.",
+      "rationale": "Question 1: The method signature is correct and static (5/5). The length even check is missing (0/5). The iteration over the first half is correct, but the second half loop starts at half+1 instead of half, so it skips the middle element in odd length arrays and misses the first element of the second half in even length arrays (4/8). Summation logic is mostly correct except for the second half skipping one element (6/8). Return logic correctly compares sums and returns true/false (4/4). Total for Q1: 19/30.\n\nQuestion 2 Part A: Attributes are public instead of private, so no encapsulation (0/5). Constructor correctly initializes all attributes (5/5). Getters and setters are incomplete: only getTeamName() is present, no setters or other getters (2/5). Total Part A: 7/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes maxTeams, teams array, and currentTeams (5/5). addTeam method lacks check for full array before adding, always adds and increments currentTeams, so it will fail when full (0/9). countComputersNeeded loops over entire array length instead of currentTeams, risking null pointer exceptions if teams are not fully filled (0/8). Total Part B: 8/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition checks pass.length() >= 8 correctly (6/6). Iteration over string characters is done (4/4). Uppercase condition is checked but returns true immediately upon finding uppercase, without checking digit condition (4/8). Digit condition is missing entirely (0/8). Total Q3: 18/30.",
       "deductions": [
         {
           "question_number": 1,
-          "reason": "Missing even-length validation: method does not check if arr.length is even before proceeding (no code for this).",
+          "reason": "Missing length even check: no code returns false if array length is odd. (No check for odd length visible in code.)",
           "points": 5
         },
         {
           "question_number": 1,
-          "reason": "Incorrect loop bounds for second half summation: second loop starts at half + 1 instead of half, skipping the middle element in even-length arrays (e.g., for length 6, half=3, loop starts at 4).",
-          "points": 10
+          "reason": "Second half iteration starts at half + 1 instead of half, skipping one element in the second half. (for loop: for (int i = half + 1; i < arr.length; i++))",
+          "points": 4
         },
         {
           "question_number": 1,
-          "reason": "Summation logic flawed: due to incorrect loop bounds, sums do not cover all elements properly.",
-          "points": 10
+          "reason": "Summation logic for second half is incorrect due to skipping one element (same as above).",
+          "points": 2
         },
         {
-          "question_number": 1,
-          "reason": "Return values inverted or missing: method returns true if sums equal, but does not return false if length is odd; also the logic is incomplete because no length check.",
+          "question_number": 2,
+          "reason": "Attributes are public, not private as required for encapsulation. (public String teamName; public int numMembers; public boolean needsComputers;)",
           "points": 5
         },
         {
           "question_number": 2,
-          "reason": "Fields declared public instead of private: teamName, numMembers, and needsComputers are public.",
-          "points": 6
-        },
-        {
-          "question_number": 2,
-          "reason": "Missing getters and setters for numMembers and needsComputers: only getTeamName() is implemented.",
-          "points": 10
-        },
-        {
-          "question_number": 2,
-          "reason": "Constructor is present and initializes all fields correctly (no deduction).",
-          "points": 0
-        },
-        {
-          "question_number": 2,
-          "reason": "In Hackathon class, addTeam does not check if array is full before adding and always returns true, violating requirements.",
-          "points": 5
-        },
-        {
-          "question_number": 2,
-          "reason": "countComputersNeeded accesses private fields of Team directly instead of using getters, violating encapsulation.",
+          "reason": "Getters and setters incomplete: only getTeamName() present, missing other getters and all setters.",
           "points": 3
         },
         {
-          "question_number": 3,
-          "reason": "Method is static (no deduction).",
-          "points": 0
+          "question_number": 2,
+          "reason": "addTeam method lacks check for available space before adding team; always adds and increments currentTeams, violating capacity limit. (No if condition to check currentTeams < maxTeams.)",
+          "points": 9
         },
         {
-          "question_number": 3,
-          "reason": "Missing digit check: method does not verify presence of at least one digit ('0'-'9').",
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array length instead of currentTeams, risking null pointer exceptions and counting uninitialized slots. (for loop: for (int i = 0; i < teams.length; i++))",
           "points": 8
         },
         {
           "question_number": 3,
-          "reason": "Missing uppercase check properly: method returns true immediately upon finding uppercase without checking digit, so logic incomplete.",
-          "points": 8
+          "reason": "Uppercase condition returns true immediately upon finding uppercase letter, without checking for digit condition. (Returns true inside uppercase check loop.)",
+          "points": 4
         },
         {
           "question_number": 3,
-          "reason": "Return value inverted or missing: method returns true if uppercase found regardless of digit presence, so may return true for invalid passwords.",
-          "points": 5
+          "reason": "Digit condition missing entirely: no code checks for presence of at least one digit.",
+          "points": 8
         }
       ]
     }

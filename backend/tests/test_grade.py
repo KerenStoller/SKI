@@ -45,10 +45,10 @@ def client():
     return TestClient(app)
 
 
-SAMPLE_QUESTIONS = [
-    {"question_number": 1, "question_text": "What is 2+2?", "student_answer": "4"},
-    {"question_number": 2, "question_text": "Capital of France?", "student_answer": "Paris"},
-]
+SAMPLE_TRANSCRIPTS = {
+    "questions_markdown": "## Page 1\n\nWhat is 2+2?",
+    "answers_markdown": "## Page 1\n\n4",
+}
 
 SAMPLE_GRADING = {
     "final_score": 95.0,
@@ -61,13 +61,19 @@ SAMPLE_GRADING = {
 
 
 def test_build_prompt_inserts_inputs():
-    prompt = grader.build_prompt("Use evidence.", SAMPLE_QUESTIONS)
+    prompt = grader.build_prompt(
+        "Use evidence.",
+        SAMPLE_TRANSCRIPTS["questions_markdown"],
+        SAMPLE_TRANSCRIPTS["answers_markdown"],
+    )
 
     assert "Use evidence." in prompt
     assert "What is 2+2?" in prompt
-    assert "Paris" in prompt
+    assert "## Page 1" in prompt
+    assert "4" in prompt
     assert "[Insert rubric here]" not in prompt
-    assert "[Insert questions and answers here]" not in prompt
+    assert "[Insert questions transcript here]" not in prompt
+    assert "[Insert answers transcript here]" not in prompt
 
 
 def test_grade_exam_parses_json():
@@ -76,12 +82,15 @@ def test_grade_exam_parses_json():
     )
 
     with patch.object(grader, "client", FakeClient(fake_response)):
-        result = grader.grade_exam("Rubric", SAMPLE_QUESTIONS)
+        result = grader.grade_exam(
+            "Rubric",
+            SAMPLE_TRANSCRIPTS["questions_markdown"],
+            SAMPLE_TRANSCRIPTS["answers_markdown"],
+        )
 
     assert result["max_score"] == 100
     assert result["rationale"] == "Good"
     assert result["deductions"] == []
-    # No deductions → score is max_score regardless of what GPT returned
     assert result["final_score"] == 100
 
 
@@ -91,37 +100,47 @@ def test_grade_exam_strips_json_fences():
     )
 
     with patch.object(grader, "client", FakeClient(fake_response)):
-        result = grader.grade_exam("Rubric", SAMPLE_QUESTIONS)
+        result = grader.grade_exam(
+            "Rubric",
+            SAMPLE_TRANSCRIPTS["questions_markdown"],
+            SAMPLE_TRANSCRIPTS["answers_markdown"],
+        )
 
     assert result["max_score"] == 100
 
 
 def test_grade_exam_recomputes_final_score_from_deductions():
-    # GPT says 75, but deductions sum to 15 → real score is max_score (100) - 15 = 85.
     fake_response = FakeResponse(
         '{"final_score": 75, "max_score": 100, "rationale": "ok", "deductions": ['
         '{"question_number": 1, "reason": "a", "points": 5},'
         '{"question_number": 2, "reason": "b", "points": 5},'
         '{"question_number": 3, "reason": "c", "points": 5}'
-        ']}'
+        "]}"
     )
 
     with patch.object(grader, "client", FakeClient(fake_response)):
-        result = grader.grade_exam("Rubric", SAMPLE_QUESTIONS)
+        result = grader.grade_exam(
+            "Rubric",
+            SAMPLE_TRANSCRIPTS["questions_markdown"],
+            SAMPLE_TRANSCRIPTS["answers_markdown"],
+        )
 
     assert result["final_score"] == 85
 
 
 def test_grade_exam_floors_final_score_at_zero():
-    # Deductions exceeding max_score must not produce a negative score.
     fake_response = FakeResponse(
         '{"final_score": -10, "max_score": 100, "rationale": "ok", "deductions": ['
         '{"question_number": 1, "reason": "a", "points": 150}'
-        ']}'
+        "]}"
     )
 
     with patch.object(grader, "client", FakeClient(fake_response)):
-        result = grader.grade_exam("Rubric", SAMPLE_QUESTIONS)
+        result = grader.grade_exam(
+            "Rubric",
+            SAMPLE_TRANSCRIPTS["questions_markdown"],
+            SAMPLE_TRANSCRIPTS["answers_markdown"],
+        )
 
     assert result["final_score"] == 0
 
@@ -136,12 +155,12 @@ def _post_grade(client, **overrides):
 
 
 def test_grade_endpoint_returns_grading(client):
-    with patch("backend.api.grade.extract_answers", return_value=SAMPLE_QUESTIONS), \
+    with patch("backend.api.grade.extract_exam_transcripts", return_value=SAMPLE_TRANSCRIPTS), \
          patch("backend.api.grade.grade_exam", return_value=SAMPLE_GRADING):
         response = _post_grade(client)
 
     assert response.status_code == 200
-    assert response.json() == {**SAMPLE_GRADING, "extracted_questions": SAMPLE_QUESTIONS}
+    assert response.json() == {**SAMPLE_GRADING, "ocr_transcripts": SAMPLE_TRANSCRIPTS}
 
 
 def test_grade_endpoint_rejects_non_pdf(client):
@@ -162,7 +181,7 @@ def test_grade_endpoint_rejects_empty_rubric(client):
 
 
 def test_grade_endpoint_returns_502_when_ocr_fails(client):
-    with patch("backend.api.grade.extract_answers", side_effect=RuntimeError("mistral down")):
+    with patch("backend.api.grade.extract_exam_transcripts", side_effect=RuntimeError("mistral down")):
         response = _post_grade(client)
 
     assert response.status_code == 502
@@ -170,7 +189,7 @@ def test_grade_endpoint_returns_502_when_ocr_fails(client):
 
 
 def test_grade_endpoint_returns_502_when_grading_fails(client):
-    with patch("backend.api.grade.extract_answers", return_value=SAMPLE_QUESTIONS), \
+    with patch("backend.api.grade.extract_exam_transcripts", return_value=SAMPLE_TRANSCRIPTS), \
          patch("backend.api.grade.grade_exam", side_effect=RuntimeError("openai down")):
         response = _post_grade(client)
 

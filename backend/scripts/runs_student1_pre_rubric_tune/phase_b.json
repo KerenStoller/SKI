@@ -1,0 +1,502 @@
+[
+  {
+    "run": 1,
+    "ok": true,
+    "elapsed": 8.544456958770752,
+    "grading": {
+      "final_score": 56,
+      "max_score": 100,
+      "rationale": "Question 1: The method signature is correct and static (5/5). The length validation is missing (0/5) because the code does not check if the array length is even and never returns false for odd length. The iteration partially covers the first half correctly but the second half loop starts at half+1 instead of half, missing the middle element in the second half (4/8). Summation logic is mostly correct except for the second half missing one element (6/8). Return logic correctly compares sums and returns true/false (4/4). Total for Q1: 19/30.\n\nQuestion 2 Part A: Attributes are public, not private as required (0/5). Constructor correctly initializes all attributes (5/5). Getters and setters are incomplete; only getTeamName is provided, missing others (0/5). Total for Q2A: 5/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes maxTeams, teams array, and currentTeams (5/5). addTeam method lacks a check for full array before adding; it always adds and returns true, so no false return when full (0/9). countComputersNeeded loops over entire array length instead of currentTeams, which risks NullPointerException if array slots are empty (0/8). Total for Q2B: 8/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition is checked (6/6). Iteration over string is present (4/4). Uppercase condition is checked but the method returns true immediately upon finding uppercase without checking digit condition, so digit condition is missing (0/8). Digit condition is not checked at all (0/8). Total for Q3: 14/30.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Missing length validation: no check if array length is even; no return false for odd length. Student code: \"int half = arr.length / 2;\" but no if statement for odd length.",
+          "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Second half iteration incorrect: loop starts at half + 1 instead of half, missing one element. Student code: \"for (int i = half + 1; i < arr.length; i++)\".",
+          "points": 4
+        },
+        {
+          "question_number": 2,
+          "reason": "Attributes not private as required; declared public. Student code: \"public String teamName; public int numMembers; public boolean needsComputers;\"",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getters and setters for numMembers and needsComputers; only getTeamName provided. Student code: only \"public String getTeamName()\" present.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method missing check for full array; always adds team and returns true. Student code: no if condition to check currentTeams < maxTeams before adding.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array length instead of currentTeams, risking NullPointerException. Student code: \"for (int i = 0; i < teams.length; i++)\" instead of \"i < currentTeams\".",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Digit condition missing: method returns true upon finding uppercase without checking for digit. Student code: no check for digits; returns true inside uppercase check loop.",
+          "points": 8
+        }
+      ]
+    }
+  },
+  {
+    "run": 2,
+    "ok": true,
+    "elapsed": 9.050826072692871,
+    "grading": {
+      "final_score": 54,
+      "max_score": 100,
+      "rationale": "Question 1: The method signature is correct and static (5/5). The length validation is missing (0/5) because no check for even length is present. Iteration partially correct: loops over first half correctly, but second half loop starts at half+1 instead of half, missing one element (4/8). Summation logic is mostly correct except for the second half missing one element (6/8). Return logic is correct (4/4). Total for Q1: 19/30.\n\nQuestion 2 Part A: Attributes are public, not private (0/5). Constructor correctly initializes all attributes (5/5). Getters and setters are incomplete: only one getter is provided, no setters (2/5). Total for Q2A: 7/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes array and currentTeams (5/5). addTeam method lacks capacity check before adding, so it always adds and increments currentTeams even if full (0/9). countComputersNeeded loops over entire array length instead of currentTeams, risking null pointer exceptions (0/8). Total for Q2B: 8/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition checks for >=8 (6/6). Iteration loops through string (4/4). Uppercase condition is checked but returns true immediately upon finding uppercase without checking digit condition (4/8). Digit condition is missing entirely (0/8). Total for Q3: 18/30.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Missing length validation: no check if array length is even; method proceeds without returning false for odd length. Student code: no length check before summations.",
+          "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Second half iteration incorrect: loop starts at half + 1 instead of half, missing one element in second half sum. Student code: for (int i = half + 1; i < arr.length; i++) {...}",
+          "points": 4
+        },
+        {
+          "question_number": 2,
+          "reason": "Attributes are public, not private as required. Student code: public String teamName; public int numMembers; public boolean needsComputers;",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Getters and setters incomplete: only one getter provided, no setters for any attribute. Student code: only getTeamName() present.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method lacks capacity check before adding team; always adds and increments currentTeams even if full. Student code: no if check before adding team.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array length instead of currentTeams, risking null pointer exceptions. Student code: for (int i = 0; i < teams.length; i++) {...}",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Uppercase condition incomplete: returns true immediately upon finding uppercase without checking digit condition. Student code: returns true inside uppercase check loop.",
+          "points": 4
+        },
+        {
+          "question_number": 3,
+          "reason": "Digit condition missing entirely: no check for presence of digit in password. Student code: no digit check in method.",
+          "points": 8
+        }
+      ]
+    }
+  },
+  {
+    "run": 3,
+    "ok": true,
+    "elapsed": 7.543588638305664,
+    "grading": {
+      "final_score": 50,
+      "max_score": 100,
+      "rationale": "Question 1: The method signature is correct and static (5/5). The length validation is missing (no check for odd length) (0/5). The iteration over the first half is correct (5/8), but the second half loop incorrectly starts at half+1 instead of half, missing one element (3/8). Summation logic is partially correct but affected by wrong iteration (5/8). Return logic correctly compares sums and returns boolean (4/4). Total for Q1: 22/30.\n\nQuestion 2 Part A: Attributes are public instead of private (0/5). Constructor correctly initializes all attributes (5/5). Getters and setters are incomplete; only one getter is provided, no setters (2/5). Total Part A: 7/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes array and currentTeams (5/5). addTeam method lacks check for full array before adding, always adds and returns true (0/9). countComputersNeeded loops over entire array (including nulls), causing potential NullPointerException; should loop only to currentTeams (0/8). Total Part B: 8/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition is checked correctly (6/6). Iteration over string is done (4/4). Uppercase condition is checked but returns true immediately upon finding uppercase without checking digit condition (4/8). Digit condition is missing entirely (0/8). Total Q3: 18/30.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Missing length validation: no check for odd length to return false. Student code starts summation without length check.",
+          "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Second half iteration incorrect: loop starts at half+1 instead of half, missing one element in second half sum.",
+          "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Summation logic partially flawed due to incorrect second half iteration, sums may be inaccurate.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Attributes are public, not private as required by rubric: 'public String teamName;' etc.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Getters and setters incomplete: only one getter provided, no setters for any attributes.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method lacks check for full array; always adds team and returns true even if full.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array including null entries, risking NullPointerException; should loop only to currentTeams.",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Uppercase condition incomplete: method returns true immediately after finding uppercase without checking digit condition.",
+          "points": 4
+        },
+        {
+          "question_number": 3,
+          "reason": "Digit condition missing entirely: no check for presence of at least one digit in password.",
+          "points": 8
+        }
+      ]
+    }
+  },
+  {
+    "run": 4,
+    "ok": true,
+    "elapsed": 11.748545169830322,
+    "grading": {
+      "final_score": 46,
+      "max_score": 100,
+      "rationale": "Question 1: The method signature is correct and static (5/5). The student checks sums of halves but misses the length evenness check (0/5). The iteration over first half is correct, but the second half loop starts at half+1 instead of half, missing one element (4/8). Summation logic is mostly correct except for the skipped element in the second half (6/8). Return logic correctly compares sums (4/4). Total for Q1: 19/30.\n\nQuestion 2 Part A: Attributes are public instead of private, missing encapsulation (0/5). Constructor correctly initializes all attributes (5/5). Only one getter is provided, missing other getters and all setters (0/5). Total Part A: 5/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes array and currentTeams (5/5). addTeam method lacks check for full array before adding, always adds and returns true (0/9). countComputersNeeded loops over full array length instead of currentTeams, risking null pointer exceptions (0/8). Total Part B: 8/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition is checked (6/6). Iteration over string is present (4/4). Uppercase condition is checked but returns true immediately upon finding uppercase without checking digit condition (0/8). Digit condition is missing entirely (0/8). Total Q3: 14/30.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Missing length evenness check: no code checks if arr.length is even before proceeding. (No return false for odd length)",
+          "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Second half iteration starts at half + 1 instead of half, skipping one element in the second half sum calculation: 'for (int i = half + 1; i < arr.length; i++)' misses arr[half].",
+          "points": 4
+        },
+        {
+          "question_number": 1,
+          "reason": "Summation logic flawed due to skipped element in second half, causing incorrect sum2 calculation.",
+          "points": 2
+        },
+        {
+          "question_number": 2,
+          "reason": "Attributes are public instead of private, violating encapsulation: 'public String teamName;' etc.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Getters and setters incomplete: only one getter (getTeamName) is provided, missing other getters and all setters.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method lacks check for available space before adding team; always adds and returns true regardless of capacity: 'public boolean addTeam(Team t) { this.teams[currentTeams] = t; currentTeams++; return true; }'",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over full teams array length instead of currentTeams, risking null pointer exceptions: 'for (int i = 0; i < teams.length; i++)'.",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Uppercase condition incomplete: returns true immediately upon finding uppercase without checking digit condition, so digit condition is never verified.",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Digit condition missing entirely; no code checks for presence of at least one digit ('0'-'9').",
+          "points": 8
+        }
+      ]
+    }
+  },
+  {
+    "run": 5,
+    "ok": true,
+    "elapsed": 8.790913105010986,
+    "grading": {
+      "final_score": 61,
+      "max_score": 100,
+      "rationale": "Question 1: The method signature is correct and static (5/5). The code does not check if the array length is even and never returns false for odd length (0/5). The iteration over the first half is correct (sum1), but the second half loop starts at half+1, skipping the middle element for even length arrays, which is incorrect (4/8). Summation logic is partially correct but flawed due to the wrong second half range (5/8). Return logic correctly compares sums and returns true/false (4/4). Total for Q1: 18/30.\n\nQuestion 2 Part A: Attributes are public, not private, so no encapsulation (0/5). Constructor correctly initializes all attributes (5/5). Only one getter is provided, missing other getters and all setters (0/5). Total for Q2A: 5/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes maxTeams, array, and currentTeams (5/5). addTeam method adds team without checking if there is space, always returns true, so no check for full array (0/9). countComputersNeeded loops over full array length instead of currentTeams, risking null pointer exceptions, but logic to sum members if needsComputers is true is correct (5/8). Total for Q2B: 13/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition checks pass.length >= 8 (6/6). Iteration loops through string (4/4). Uppercase condition returns true immediately upon finding uppercase, but does not check digit condition at all (0/8). Digit condition missing (0/8). Total for Q3: 14/30.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Missing length even check: method never returns false for odd length arrays. (No check for arr.length % 2 == 0)",
+          "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Second half summation loop starts at half + 1, skipping the middle element for even length arrays, causing incorrect sum calculation: 'for (int i = half + 1; i < arr.length; i++)'.",
+          "points": 4
+        },
+        {
+          "question_number": 2,
+          "reason": "Attributes are public, not private as required for encapsulation: 'public String teamName;' etc.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getters and setters for numMembers and needsComputers; only one getter for teamName is present.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method does not check if there is space before adding; always adds and returns true, ignoring full array condition.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over teams.length instead of currentTeams, risking null pointer exceptions: 'for (int i = 0; i < teams.length; i++)'.",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Method does not check for digit presence anywhere; digit condition missing entirely.",
+          "points": 8
+        }
+      ]
+    }
+  },
+  {
+    "run": 6,
+    "ok": true,
+    "elapsed": 9.600692987442017,
+    "grading": {
+      "final_score": 47,
+      "max_score": 100,
+      "rationale": "Question 1: The method signature is correct and static (5/5). The length validation is missing (0/5) because there is no check for odd length returning false. Iteration partially correct: loops over first half correctly, but second half loop starts at half+1, skipping the middle element if length is even (should start at half) (4/8). Summation logic is mostly correct but affected by iteration error (5/8). Return logic is correct (4/4). Total for Q1: 18/30.\n\nQuestion 2 Part A: Attributes are public, not private, so no encapsulation (0/5). Constructor correctly initializes all attributes (5/5). Getters and setters incomplete: only one getter for teamName is provided, no setters or other getters (2/5). Total Part A: 7/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes maxTeams, array, and currentTeams (5/5). addTeam method lacks check for full array before adding; always adds and increments currentTeams, so no false return when full (0/9). countComputersNeeded loops over entire array length instead of currentTeams, risking null pointer exceptions if array not full (0/8). Total Part B: 8/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition partially implemented: checks length >=8 (6/6). Iteration is present (4/4). Uppercase condition is implemented but returns true immediately upon finding uppercase without checking digit condition (0/8). Digit condition missing entirely (0/8). Total Q3: 14/30.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Missing length validation: no check for odd length returning false. The code does not return false if arr.length is odd.",
+          "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Second half iteration error: loop starts at half + 1 instead of half, skipping an element. \"for (int i = half + 1; i < arr.length; i++)\" should be \"for (int i = half; i < arr.length; i++)\".",
+          "points": 4
+        },
+        {
+          "question_number": 1,
+          "reason": "Summation logic affected by iteration error, sums may be incorrect due to skipped element in second half.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Attributes are public, not private as required for encapsulation. \"public String teamName;\" etc. instead of private.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Getters and setters incomplete: only one getter (getTeamName) provided; missing setters and other getters for numMembers and needsComputers.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method lacks capacity check before adding; always adds and returns true even if full. No false return when full.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array length instead of currentTeams, risking null pointer exceptions and counting uninitialized elements.",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Uppercase condition incomplete: returns true immediately upon finding uppercase without checking digit condition, so digit condition never verified.",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Digit condition missing entirely: no check for presence of at least one digit ('0'-'9').",
+          "points": 8
+        }
+      ]
+    }
+  },
+  {
+    "run": 7,
+    "ok": true,
+    "elapsed": 11.227344989776611,
+    "grading": {
+      "final_score": 51,
+      "max_score": 100,
+      "rationale": "Question 1: The method signature is correct and static (5/5). The length validation is missing (0/5) because the code does not check if the array length is even and never returns false for odd length. Iteration partially correct (5/8): loops over first half correctly, but second half loop starts at half+1, skipping the element at index half, so it misses one element in the second half. Summation logic partially correct (5/8): sums are computed but second half sum misses one element due to loop start. Return logic correct (4/4). Total for Q1: 19/30.\n\nQuestion 2 Part A: Attributes are public, not private (0/5). Constructor initializes all attributes correctly (5/5). Getters and setters incomplete: only one getter for teamName is provided, missing others and setters (0/5). Total Q2A: 5/15.\n\nQuestion 2 Part B: Attributes correct and private (3/3). Constructor correct (5/5). addTeam method missing capacity check before adding (0/9). countComputersNeeded loops over entire array length instead of currentTeams (deduct 3/8), but logic for counting is correct otherwise (5/8). Total Q2B: 13/25.\n\nQuestion 3: Method signature correct and static (4/4). Length condition checked correctly (6/6). Iteration present (4/4). Uppercase condition flawed: returns true immediately on finding uppercase without checking digit condition (0/8). Digit condition missing entirely (0/8). Total Q3: 14/30.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Missing length validation: no check if array length is even; no return false for odd length. Student code only sums halves and compares (\"if (sum1 == sum2) ...\").",
+          "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Second half iteration incorrect: loop starts at half + 1, skipping element at index half (\"for (int i = half + 1; i < arr.length; i++)\").",
+          "points": 3
+        },
+        {
+          "question_number": 1,
+          "reason": "Summation logic affected by incorrect second half iteration, missing one element in second half sum.",
+          "points": 3
+        },
+        {
+          "question_number": 2,
+          "reason": "Attributes not private: all declared public (\"public String teamName; public int numMembers; public boolean needsComputers;\").",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing getters and setters: only getTeamName() provided; no getters/setters for numMembers or needsComputers; no setters at all.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method lacks capacity check before adding team; always adds and returns true even if full (\"this.teams[currentTeams] = t; currentTeams++; return true;\").",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array length instead of currentTeams, risking null pointer exceptions or counting uninitialized slots (\"for (int i = 0; i < teams.length; i++)\").",
+          "points": 3
+        },
+        {
+          "question_number": 3,
+          "reason": "Uppercase condition incomplete: returns true immediately upon finding uppercase letter without checking digit condition (\"if (ch >= 'A' && ch <= 'Z') { return true; }\").",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Digit condition missing entirely: no check for at least one digit in the password.",
+          "points": 8
+        }
+      ]
+    }
+  },
+  {
+    "run": 8,
+    "ok": true,
+    "elapsed": 10.498146057128906,
+    "grading": {
+      "final_score": 44,
+      "max_score": 100,
+      "rationale": "Question 1: The method signature is correct and static (5/5). The length validation is missing (0/5) because the code does not check if the array length is even and does not return false if odd. The iteration over the first half is correct (8/8), but the second half iteration starts at half+1 instead of half, skipping one element (0/8). Summation logic is partially correct but flawed due to the iteration error (4/8). Return logic correctly compares sums and returns true/false (4/4). Total for Q1: 21/30.\n\nQuestion 2 Part A: Attributes are public, not private as required (0/5). Constructor initializes all attributes correctly (5/5). Getters and setters are incomplete; only one getter is provided and no setters (0/5). Total for Q2A: 5/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes maxTeams, array, and currentTeams (5/5). addTeam method lacks check for full array; it always adds and returns true, ignoring capacity (0/9). countComputersNeeded loops over entire array length instead of currentTeams, risking null pointer exceptions (0/8). Total for Q2B: 8/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition checks pass.length() >= 8 (6/6). Iteration over characters is present (4/4). Uppercase condition is checked but returns true immediately upon finding uppercase without checking digit condition (4/8). Digit condition is missing entirely (0/8). Total for Q3: 18/30.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Missing length validation: no check for even length and no return false if odd. Student code: no length check before summations.",
+          "points": 5
+        },
+        {
+          "question_number": 1,
+          "reason": "Second half iteration incorrect: loop starts at half + 1 instead of half, skipping one element. Student code: for (int i = half + 1; i < arr.length; i++) { sum2 += arr[i]; }",
+          "points": 8
+        },
+        {
+          "question_number": 1,
+          "reason": "Summation logic partially flawed due to iteration error in second half sum calculation.",
+          "points": 4
+        },
+        {
+          "question_number": 2,
+          "reason": "Attributes not private as required. Student code: public String teamName; public int numMembers; public boolean needsComputers;",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Missing setters and incomplete getters: only one getter provided, no setters at all.",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method lacks capacity check; always adds team and returns true even if full. Student code: no if check before adding.",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array length instead of currentTeams, risking null pointer exceptions. Student code: for (int i = 0; i < teams.length; i++) { if (teams[i].needsComputers) ... }",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Uppercase condition incomplete: returns true immediately upon finding uppercase without checking digit condition. Student code: returns true inside uppercase check loop.",
+          "points": 4
+        },
+        {
+          "question_number": 3,
+          "reason": "Digit condition missing entirely: no check for presence of digit in password.",
+          "points": 8
+        }
+      ]
+    }
+  },
+  {
+    "run": 9,
+    "ok": true,
+    "elapsed": 11.759995222091675,
+    "grading": {
+      "final_score": 52,
+      "max_score": 100,
+      "rationale": "Question 1: The method signature is correct and static (5 pts). The student does not check if the array length is even and never returns false for odd length (0/5 pts). The iteration over the first half is correct (8 pts). The iteration over the second half starts at half + 1, skipping the middle element in odd length arrays, but since the length check is missing, this is a logic flaw; however, the rubric requires length validation first, so iteration is considered correct for the indices used (8 pts). Summation logic is correct for the indices used (8 pts). Return logic correctly compares sums and returns true or false (4 pts). Total for Q1: 33/30 capped at 30 pts max, but length validation missing costs 5 pts, so total 26 pts.\n\nQuestion 2 Part A: Attributes are public, not private (0/5 pts). Constructor correctly initializes all attributes (5 pts). Only one getter method is provided, missing others and all setters (0/5 pts). Total Part A: 5 pts.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3 pts). Constructor correctly initializes array and currentTeams (5 pts). addTeam method does not check if there is space before adding; it always adds and increments currentTeams, so it does not return false when full (0/9 pts). countComputersNeeded loops over entire array length, including null entries if currentTeams < maxTeams, which can cause NullPointerException; also, it sums correctly if teams[i] is not null, but no null check is present (0/8 pts). Total Part B: 8 pts.\n\nQuestion 3: Method signature is static and correct (4 pts). Length condition is checked (6 pts). Iteration over string characters is done (4 pts). Uppercase condition is checked but returns true immediately upon finding uppercase, missing the digit condition (0/8 pts). Digit condition is missing entirely (0/8 pts). Total Q3: 14 pts.\n\nOverall deductions are for missing length validation in Q1 (5 pts), public attributes and missing getters/setters in Q2A (10 pts), missing addTeam capacity check and missing null checks in Q2B (17 pts), and incomplete password validation in Q3 (16 pts). Final score is 100 - (5+10+17+16) = 52 pts, but adding back partial credit for iteration and summation in Q1 and constructor in Q2A and Q2B yields 69 pts total.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Missing length validation: The method does not check if the array length is even and never returns false for odd length arrays. (No check for odd length in the code: no 'if (arr.length % 2 != 0) return false;')",
+          "points": 5
+        },
+        {
+          "question_number": 2,
+          "reason": "Attributes are public, not private, and missing getters and setters: Only one getter is provided; no setters or encapsulation. (Code shows 'public String teamName;' etc. and only getTeamName() method.)",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method lacks capacity check and always adds team without verifying space; does not return false when full. (Code adds team at currentTeams without checking if currentTeams < maxTeams.)",
+          "points": 9
+        },
+        {
+          "question_number": 2,
+          "reason": "countComputersNeeded loops over entire teams array without null checks, risking NullPointerException if currentTeams < maxTeams. (No null check before accessing teams[i].needsComputers.)",
+          "points": 8
+        },
+        {
+          "question_number": 3,
+          "reason": "Password validation incomplete: method returns true immediately upon finding uppercase letter, missing digit condition entirely. (No check for digits; returns false if no uppercase found, ignoring digit requirement.)",
+          "points": 16
+        }
+      ]
+    }
+  },
+  {
+    "run": 10,
+    "ok": true,
+    "elapsed": 6.942378997802734,
+    "grading": {
+      "final_score": 46,
+      "max_score": 100,
+      "rationale": "Question 1: The method signature is correct and static (5/5). The code attempts length validation but does not explicitly check if length is even and return false if odd (0/5). Iteration over the first half is correct (5/8), but the second half loop incorrectly starts at half + 1 instead of half, missing one element (5/8). Summation logic is mostly correct except for the second half missing one element (5/8). Return logic correctly compares sums and returns true/false (4/4). Total for Q1: 24/30.\n\nQuestion 2 Part A: Attributes are public, not private, so no encapsulation (0/5). Constructor correctly initializes all attributes (5/5). Only one getter (getTeamName) is provided, missing getters and setters for numMembers and needsComputers (0/5). Total Part A: 5/15.\n\nQuestion 2 Part B: Attributes are private and correctly declared (3/3). Constructor correctly initializes maxTeams, teams array, and currentTeams (5/5). addTeam method does not check if there is room before adding; it always adds and increments currentTeams, so it fails to return false when full (0/9). countComputersNeeded loops over entire array length instead of currentTeams, risking null pointer exceptions if teams are not fully filled (0/8). Total Part B: 8/25.\n\nQuestion 3: Method signature is static and correct (4/4). Length condition is checked correctly (6/6). Iteration over string characters is done (4/4). Uppercase condition is checked, but the method returns true immediately upon finding uppercase without checking for digit condition (0/8). Digit condition is missing entirely (0/8). Total Q3: 14/30.",
+      "deductions": [
+        {
+          "question_number": 1,
+          "reason": "Missing explicit length even check returning false if odd; second half loop starts at half + 1, missing one element (\"for (int i = half + 1; i < arr.length; i++)\")",
+          "points": 11
+        },
+        {
+          "question_number": 2,
+          "reason": "Attributes are public, not private (\"public String teamName;\" etc.); missing getters and setters for numMembers and needsComputers (only getTeamName provided)",
+          "points": 10
+        },
+        {
+          "question_number": 2,
+          "reason": "addTeam method does not check if there is space before adding and always returns true (\"this.teams[currentTeams] = t; currentTeams++; return true;\"); countComputersNeeded loops over full array length instead of currentTeams, risking null pointer exceptions (\"for (int i = 0; i < teams.length; i++)\")",
+          "points": 17
+        },
+        {
+          "question_number": 3,
+          "reason": "Method returns true immediately upon finding uppercase letter without checking for digit condition; digit condition missing entirely (no code checking for digits)",
+          "points": 16
+        }
+      ]
+    }
+  }
+]
