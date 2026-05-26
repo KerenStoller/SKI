@@ -18,6 +18,12 @@ dist/
 venv/
 env/
 
+# frontend env
+frontend/.env
+
+# vite cache
+frontend/node_modules/.vite/
+
 # Node
 node_modules/
 npm-debug.log*

@@ -554,3 +554,122 @@ body,
   max-height: 260px;
   overflow-y: auto;
 }
+
+/* --- Auth & History Styles --- */
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  padding: 40px;
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.login-box h2 {
+  color: var(--blue-dark);
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.login-box p {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #fbfdff;
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: var(--blue-main);
+  box-shadow: 0 0 0 3px rgba(44, 107, 178, 0.1);
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: #e53935;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 4px;
+  text-decoration: underline;
+}
+
+.logout-button:hover {
+  color: #b71c1c;
+}
+
+.exam-name-input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.history-panel {
+  margin-bottom: 24px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f9fcff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: 0.2s;
+}
+
+.history-item:hover {
+  background: #f1f8ff;
+  border-color: rgba(44, 107, 178, 0.3);
+}
+
+.history-title {
+  font-weight: bold;
+  color: var(--blue-dark);
+}
+
+.history-score {
+  background: var(--green-soft);
+  color: var(--green-main);
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}

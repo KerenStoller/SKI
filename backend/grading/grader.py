@@ -11,6 +11,9 @@ load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=api_key) if api_key else None
 
+if not api_key:
+    raise RuntimeError("OPENAI_API_KEY is not set in backend/.env")
+
 with open(os.path.join(os.path.dirname(__file__), "prompt.md"), "r") as f:
     PROMPT_TEMPLATE = f.read()
 

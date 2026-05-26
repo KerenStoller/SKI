@@ -1,14 +1,21 @@
+# main.py
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from contextlib import asynccontextmanager
 
+from backend.api import grade, auth, admin
+from backend.database import models
+from backend.database.database import engine
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    async with engine.begin() as conn:
+        await conn.run_sync(models.Base.metadata.create_all)
+    yield
 
-from backend.api import grade
+app = FastAPI(lifespan=lifespan)
 
-app = FastAPI()
-
-# Allow CORS for frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
@@ -17,11 +24,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mount grading API
 app.include_router(grade.router, prefix="/api")
+app.include_router(auth.router, prefix="/api")
+app.include_router(admin.router, prefix="/api")
 
 
-# Health check endpoint
 @app.get("/health")
 def health():
     return {"status": "ok"}
