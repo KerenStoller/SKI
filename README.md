@@ -41,7 +41,7 @@ Both keys are required. Mistral OCR is billed per page when billing is active â€
 cd backend
 pip install -r requirements.txt
 cd ..
-uvicorn backend.main:app --reload --port 8002
+uvicorn backend.main:app --reload --port 8000
 ```
 
 Runs at http://localhost:8002
