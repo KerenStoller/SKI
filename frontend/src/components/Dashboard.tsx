@@ -27,6 +27,11 @@ type HistoryItem = {
   exam_name: string;
   final_score: number;
   max_score: number;
+
+  // --- NEW WORKSPACE FIELDS ---
+  class_folder?: string;
+  student_id?: string;
+  file_path?: string;
 };
 
 interface DashboardProps {
@@ -55,6 +60,8 @@ export default function Dashboard({ token, username, onLogout }: DashboardProps)
 
   const [showDeductions, setShowDeductions] = useState(false);
   const [showOcr, setShowOcr] = useState(false);
+  //Added to see what folder we are currently looking at
+  const [currentFolder, setCurrentFolder] = useState<string | null>(null);
 
   const authFetch = useCallback(
     async (url: string, options: RequestInit = {}) => {
@@ -391,8 +398,73 @@ export default function Dashboard({ token, username, onLogout }: DashboardProps)
               )}
             </div>
           </div>
-
+          
           <div className="panel comments-panel">
+            <h2>התיקיות שלי</h2>
+            <p className="panel-subtitle">ניהול מבחנים ומעקב ציונים לפי כיתה</p>
+
+            <div className="comments-list">
+              {history.length === 0 ? (
+                <div className="comment-card placeholder">
+                  עדיין אין מבחנים שמורים במערכת.
+                </div>
+              ) : !currentFolder ? (
+                /* FOLDER VIEW: Show unique folders */
+                Array.from(new Set(history.map(item => item.class_folder || "כללי"))).map((folder) => (
+                  <div 
+                    key={folder} 
+                    className="comment-card folder-card" 
+                    onClick={() => setCurrentFolder(folder)}
+                    style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", backgroundColor: "#f8fafc" }}
+                  >
+                    <span style={{ fontSize: "1.5rem" }}>📁</span>
+                    <strong>{folder}</strong>
+                  </div>
+                ))
+              ) : (
+                /* FILE VIEW: Show tests inside the selected folder */
+                <>
+                  <button 
+                    type="button" 
+                    className="main-button" 
+                    onClick={() => setCurrentFolder(null)}
+                    style={{ marginBottom: "15px", backgroundColor: "#64748b" }}
+                  >
+                    חזור לתיקיות
+                  </button>
+                  
+                  {history
+                    .filter(item => (item.class_folder || "כללי") === currentFolder)
+                    .map((item) => (
+                    <div key={item.id} className="comment-card">
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start" }}>
+                        <div>
+                          <strong>{item.exam_name}</strong>
+                          <div style={{ fontSize: "0.9rem", color: "#64748b" }}>ת"ז תלמיד: {item.student_id || "לא צוין"}</div>
+                        </div>
+                        <div style={{ fontWeight: "bold", color: item.final_score > 60 ? "#10b981" : "#ef4444" }}>
+                          {item.final_score}/{item.max_score}
+                        </div>
+                      </div>
+                      
+                      {item.file_path && (
+                        <a 
+                          href={item.file_path} 
+                          target="_blank" 
+                          rel="noreferrer"
+                          style={{ display: "block", marginTop: "10px", color: "#3b82f6", textDecoration: "none", fontSize: "0.9rem" }}
+                        >
+                          📄 פתח מבחן סרוק (PDF)
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
+          </div>
+
+          {/*<div className="panel comments-panel">
             <h2>היסטוריית בדיקות</h2>
             <p className="panel-subtitle">המבחנים האחרונים שנבדקו במערכת</p>
 
@@ -411,7 +483,7 @@ export default function Dashboard({ token, username, onLogout }: DashboardProps)
                 ))
               )}
             </div>
-          </div>
+          </div>*/}
         </section>
 
         <section className="right-column">
