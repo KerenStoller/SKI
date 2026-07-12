@@ -1,37 +1,31 @@
-Note: This document describes the proof-of-concept (POC) plan only — not a final product or full production architecture.
+# AutoGrade 📝
+
+> **Note:** This document describes the proof-of-concept (POC) plan only — not a final product or full production architecture.
 
 AutoGrade is a web app for uploading an empty exam, a solved exam, and a rubric at once, grading them through a two-stage AI pipeline, and managing them in a dynamic cloud workspace.
 
-🌊 Flow
+## 🌊 Flow
 
-Upload: Submit an empty exam, a solved exam, and a rubric, assigning them to a specific class folder and student ID.
+- **Upload:** Submit an empty exam, a solved exam, and a rubric, assigning them to a specific class folder and student ID.
+- **API Routing:** The /api/grade endpoint accepts the PDFs, rubric text, and workspace metadata.
+- **OCR Stage (Mistral Document AI):** Each PDF is processed with mistral-ocr-latest → markdown transcript. Low-confidence pages are rejected (with one retry).
+- **Grading Stage (OpenAI):** The questions transcript, answers transcript, and rubric are sent to GPT-4o-mini in one call. OpenAI aligns questions with student work and applies the rubric.
+- **Deterministic Math:** The final score is computed deterministically as max_score - sum(deductions) (the LLM's own score math is overridden to prevent hallucinations).
+- **Cloud Archiving:** The uploaded PDFs are routed directly to Supabase Storage using dynamically generated virtual class folders (with URL-safe encoding for Hebrew characters).
+- **Dashboard UI:** The API returns the score, deductions, rationale, OCR transcripts, and the cloud file link. The frontend dashboard displays the test history organized interactively by these class folders.
 
-API Routing: The /api/grade endpoint accepts the PDFs, rubric text, and workspace metadata.
+## 🛠️ Stack
 
-OCR Stage (Mistral Document AI): Each PDF is processed with mistral-ocr-latest → markdown transcript. Low-confidence pages are rejected (with one retry).
+- **Backend:** Python + FastAPI
+- **Frontend:** React + TypeScript + Vite
+- **Database:** PostgreSQL (SQLAlchemy + JSONB payloads)
+- **Storage:** Supabase Storage (Cloud PDF hosting)
 
-Grading Stage (OpenAI): The questions transcript, answers transcript, and rubric are sent to GPT-4o-mini in one call. OpenAI aligns questions with student work and applies the rubric.
+## 🔐 Environment Variables
 
-Deterministic Math: The final score is computed deterministically as max_score - sum(deductions) (the LLM's own score math is overridden to prevent hallucinations).
+Create a `backend/.env` file (ensure this is gitignored) with the following credentials:
 
-Cloud Archiving: The uploaded PDFs are routed directly to Supabase Storage using dynamically generated virtual class folders (with URL-safe encoding for Hebrew characters).
-
-Dashboard UI: The API returns the score, deductions, rationale, OCR transcripts, and the cloud file link. The frontend dashboard displays the test history organized interactively by these class folders.
-
-🛠️ Stack
-
-Backend: Python + FastAPI
-
-Frontend: React + TypeScript + Vite
-
-Database: PostgreSQL (SQLAlchemy + JSONB payloads)
-
-Storage: Supabase Storage (Cloud PDF hosting)
-
-🔐 Environment Variables
-
-Create a backend/.env file (ensure this is gitignored) with the following credentials:
-
+```env
 # AI Keys
 MISTRAL_API_KEY=your_mistral_key              # Mistral Document OCR
 OPENAI_API_KEY=your_openai_key                # Grading (GPT-4o-mini)
@@ -46,36 +40,3 @@ MISTRAL_OCR_MIN_PAGE_MINIMUM=0.50             # optional; also enforce page-mini
 DATABASE_URL=postgresql+asyncpg://user:password@localhost:5432/autograde
 SUPABASE_URL=[https://your-project.supabase.co](https://your-project.supabase.co)
 SUPABASE_KEY=your_service_role_key            # Requires Service Role key to bypass RLS for uploads
-
-
-Note: Both AI keys are required. Mistral OCR is billed per page when billing is active — see Mistral billing. New accounts may include free API credits before a card is required.
-
-🚀 Getting Started
-
-Running the Backend
-
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
-
-
-API runs at http://localhost:8000
-
-Running the Frontend
-
-cd frontend
-npm install
-npm run dev
-
-
-Frontend runs at http://localhost:5173
-
-🗺️ Roadmap / Next Steps
-
-[x] Integrate Cloud Storage (Supabase) for PDF archiving.
-
-[x] Build dynamic class folder UI and sanitize file paths.
-
-[ ] PDF Stamping: Automatically append the AI's grading rationale and point deductions as a new page at the end of the student's PDF.
-
-[ ] Implement full Supabase Auth & Row Level Security (RLS) for multi-tenant isolation.
