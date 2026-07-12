@@ -1,8 +1,11 @@
 # backend/api/grade.py
+import os
 from typing import List
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile, Depends
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
+from supabase import create_client ,Client
 
 from backend.grading.grader import grade_exam
 from backend.ocr.extractor import extract_exam_transcripts
@@ -12,6 +15,16 @@ from backend.database import models
 from sqlalchemy import select
 
 router = APIRouter()
+
+# --- Initialize Supabase Admin Client ---
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+
+if not SUPABASE_URL or not SUPABASE_KEY:
+    raise RuntimeError("Missing SUPABASE_KEY or SUPABASE_URL in .env")
+
+supabase : Client = create_client(SUPABASE_URL,SUPABASE_KEY)
+
 
 # --- Existing Response Validation Schemas ---
 class Deduction(BaseModel):
@@ -30,6 +43,7 @@ class GradeExamResponse(BaseModel):
     rationale: str
     deductions: List[Deduction]
     ocr_transcripts: OcrTranscripts
+    file_path : str
 
 
 @router.post("/grade", response_model=GradeExamResponse)
@@ -38,6 +52,8 @@ async def grade_exam_endpoint(
     solved_exam: UploadFile = File(...),
     rubric: str = Form(...),
     exam_name: str = Form("Untitled Exam"), # Added name capture for the cloud folder asset
+    class_folder :str = Form(...),# Captured folder name
+    student_id: str = Form(...),# Captured Student ID
     db: AsyncSession = Depends(get_db),      # PostgreSQL Connection Session
     current_user: str = Depends(get_current_user) # Auto-identifies user via header token
 ):
@@ -51,8 +67,23 @@ async def grade_exam_endpoint(
 
     empty_bytes = await empty_exam.read()
     solved_bytes = await solved_exam.read()
+    
+    storage_path = f"{current_user}/{class_folder}/{student_id}_{exam_name}.pdf"
 
-    # 2. Trigger Document AI Pipelines
+    # 2. Upload Solved Exam to Supabase Bucket
+    # Path schema: username/class_folder/student_id_exam_name.pdf
+    try:
+        supabase.storage.from_("workspace-files").upload(
+            file = solved_bytes,
+            path = storage_path,
+            file_options = {"content-type":"application/pdf"}
+        )
+        public_url = supabase.storage.from_("workspace-files").get_public_url(storage_path)
+        
+    except Exception as e:
+        raise HTTPException(status_code=502,detail=f"Supabase storage upload failed: {e}")
+    
+    # 3. Trigger Document AI Pipelines
     try:
         transcripts = extract_exam_transcripts(empty_bytes, solved_bytes)
     except Exception as e:
@@ -65,16 +96,20 @@ async def grade_exam_endpoint(
             transcripts["answers_markdown"],
         )
     except Exception as e:
+        supabase.storage.from_("workspace-files").remove([storage_path])
         raise HTTPException(status_code=502, detail=f"Grading failed: {e}")
 
     # Build the full response tree
     full_result = {**grading, "ocr_transcripts": transcripts}
 
-    # 3. Persistent Database Archive
+    # 4. Persistent Database Archive
     # Create the hardcoded row object to save this job under the correct user
     db_job = models.GradingJob(
         username=current_user,
         exam_name=exam_name,
+        class_folder=class_folder,
+        student_id=student_id,
+        file_path=public_url,
         final_score=float(full_result.get("final_score", 0.0)),
         max_score=float(full_result.get("max_score", 100.0)),
         payload=full_result # Dumps deductions, rationale, and transcripts into JSONB
@@ -87,6 +122,7 @@ async def grade_exam_endpoint(
     # Return everything back to the UI, appending the database record id
     return {
         "id": db_job.id,
+        "file_path":public_url,
         **full_result
     }
     
@@ -105,6 +141,9 @@ async def get_user_cloud_items(
         {
             "id": job.id,
             "exam_name": job.exam_name,
+            "class_folder":job.class_folder,
+            "student_id":job.student_id,
+            "file_path":job.file_path,
             "final_score": job.final_score,
             "max_score": job.max_score,
             **job.payload

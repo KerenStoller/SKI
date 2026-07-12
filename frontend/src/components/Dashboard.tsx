@@ -179,6 +179,9 @@ export default function Dashboard({ token, username, onLogout }: DashboardProps)
     formData.append("rubric", rubric);
     formData.append("exam_name", examName);
 
+    formData.append("class_folder", "Test_Class");
+    formData.append("student_id", "999");
+
     try {
       const res = await fetch(`${BACKEND_URL}/api/grade`, {
         method: "POST",
