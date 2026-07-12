@@ -18,6 +18,13 @@ class GradingJob(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     username: Mapped[str] = mapped_column(String, ForeignKey("users.username"), index=True)
+    
+    # --- NEW FIELDS FOR WORKSPACE ---
+    class_folder: Mapped[str] = mapped_column(String, index=True, nullable=False, server_default="General")
+    student_id: Mapped[str] = mapped_column(String, index=True, nullable=False)
+    file_path: Mapped[str] = mapped_column(String, nullable=True) # Where it lives on disk
+    # --------------------------------
+    
     exam_name: Mapped[str] = mapped_column(String, nullable=False)
     final_score: Mapped[float] = mapped_column(Float, nullable=False)
     max_score: Mapped[float] = mapped_column(Float, nullable=False)
