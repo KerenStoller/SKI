@@ -1,57 +1,81 @@
-# AutoGrade
+Note: This document describes the proof-of-concept (POC) plan only — not a final product or full production architecture.
 
-Smart grading, happy teaching
+AutoGrade is a web app for uploading an empty exam, a solved exam, and a rubric at once, grading them through a two-stage AI pipeline, and managing them in a dynamic cloud workspace.
 
-**This document describes the proof-of-concept (POC) plan only** — not a final product or full production architecture.
+🌊 Flow
 
-Web app for uploading an empty exam, a solved exam, and a rubric at once, grading them through a two-stage AI pipeline, and showing the score in the UI.
+Upload: Submit an empty exam, a solved exam, and a rubric, assigning them to a specific class folder and student ID.
 
-## Flow
+API Routing: The /api/grade endpoint accepts the PDFs, rubric text, and workspace metadata.
 
-- Upload an empty exam, a solved exam, and a rubric.
-- The `/api/grade` endpoint accepts both PDFs and the rubric text.
-- **OCR stage (Mistral Document AI)**: each PDF is processed with `mistral-ocr-latest` → markdown transcript. Low-confidence pages are rejected (with one retry).
-- **Grading stage (OpenAI)**: the questions transcript, answers transcript, and rubric are sent to GPT-4.1-mini in one call. OpenAI aligns questions with student work and applies the rubric.
-- The final score is computed deterministically as `max_score - sum(deductions)` (the grader's own score is overridden).
-- The API returns the score, deductions, rationale, and both OCR transcripts to the frontend.
+OCR Stage (Mistral Document AI): Each PDF is processed with mistral-ocr-latest → markdown transcript. Low-confidence pages are rejected (with one retry).
 
-## Stack
+Grading Stage (OpenAI): The questions transcript, answers transcript, and rubric are sent to GPT-4o-mini in one call. OpenAI aligns questions with student work and applies the rubric.
 
-- **Backend**: Python + FastAPI
-- **Frontend**: React + TypeScript + Vite
+Deterministic Math: The final score is computed deterministically as max_score - sum(deductions) (the LLM's own score math is overridden to prevent hallucinations).
 
-## Environment variables
+Cloud Archiving: The uploaded PDFs are routed directly to Supabase Storage using dynamically generated virtual class folders (with URL-safe encoding for Hebrew characters).
 
-Create `backend/.env` (gitignored) with:
+Dashboard UI: The API returns the score, deductions, rationale, OCR transcripts, and the cloud file link. The frontend dashboard displays the test history organized interactively by these class folders.
 
-```
-MISTRAL_API_KEY=...                        # Mistral Document OCR
-OPENAI_API_KEY=...                         # grading (GPT-4.1-mini)
-MISTRAL_OCR_MODEL=mistral-ocr-latest       # optional
-MISTRAL_OCR_MIN_CONFIDENCE=0.80            # optional; min page-average (content pages only)
+🛠️ Stack
+
+Backend: Python + FastAPI
+
+Frontend: React + TypeScript + Vite
+
+Database: PostgreSQL (SQLAlchemy + JSONB payloads)
+
+Storage: Supabase Storage (Cloud PDF hosting)
+
+🔐 Environment Variables
+
+Create a backend/.env file (ensure this is gitignored) with the following credentials:
+
+# AI Keys
+MISTRAL_API_KEY=your_mistral_key              # Mistral Document OCR
+OPENAI_API_KEY=your_openai_key                # Grading (GPT-4o-mini)
+
+# Optional Mistral Settings
+MISTRAL_OCR_MODEL=mistral-ocr-latest          # optional
+MISTRAL_OCR_MIN_CONFIDENCE=0.80               # optional; min page-average
 MISTRAL_OCR_MIN_PAGE_CHARS_FOR_CONFIDENCE=80  # optional; skip gate on near-blank pages
-MISTRAL_OCR_MIN_PAGE_MINIMUM=0.50          # optional; also enforce page-minimum score
-```
+MISTRAL_OCR_MIN_PAGE_MINIMUM=0.50             # optional; also enforce page-minimum score
 
-Both keys are required. Mistral OCR is billed per page when billing is active — see [Mistral billing](https://docs.mistral.ai/admin/user-management-finops/billing). New accounts may include free API credits before a card is required.
+# Database & Storage
+DATABASE_URL=postgresql+asyncpg://user:password@localhost:5432/autograde
+SUPABASE_URL=[https://your-project.supabase.co](https://your-project.supabase.co)
+SUPABASE_KEY=your_service_role_key            # Requires Service Role key to bypass RLS for uploads
 
-## Running the backend
 
-```bash
+Note: Both AI keys are required. Mistral OCR is billed per page when billing is active — see Mistral billing. New accounts may include free API credits before a card is required.
+
+🚀 Getting Started
+
+Running the Backend
+
 cd backend
 pip install -r requirements.txt
-cd ..
-uvicorn backend.main:app --reload --port 8000
-```
+uvicorn main:app --reload --port 8000
 
-Runs at http://localhost:8002
 
-## Running the frontend
+API runs at http://localhost:8000
 
-```bash
+Running the Frontend
+
 cd frontend
 npm install
 npm run dev
-```
 
-Runs at http://localhost:5173
+
+Frontend runs at http://localhost:5173
+
+🗺️ Roadmap / Next Steps
+
+[x] Integrate Cloud Storage (Supabase) for PDF archiving.
+
+[x] Build dynamic class folder UI and sanitize file paths.
+
+[ ] PDF Stamping: Automatically append the AI's grading rationale and point deductions as a new page at the end of the student's PDF.
+
+[ ] Implement full Supabase Auth & Row Level Security (RLS) for multi-tenant isolation.
