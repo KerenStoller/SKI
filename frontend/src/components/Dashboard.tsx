@@ -20,6 +20,7 @@ type GradingResult = {
   rationale: string;
   deductions: Deduction[];
   ocr_transcripts: OcrTranscripts;
+  file_path?: string;
 };
 
 type HistoryItem = {
@@ -50,6 +51,9 @@ export default function Dashboard({ token, username, onLogout }: DashboardProps)
   const [emptyExam, setEmptyExam] = useState<File | null>(null);
   const [solvedExam, setSolvedExam] = useState<File | null>(null);
   const [rubric, setRubric] = useState("");
+  //For choosing foldersand entering student ID per test 
+  const [classFolder, setClassFolder] = useState("");
+  const [studentId, setStudentId] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -62,6 +66,12 @@ export default function Dashboard({ token, username, onLogout }: DashboardProps)
   const [showOcr, setShowOcr] = useState(false);
   //Added to see what folder we are currently looking at
   const [currentFolder, setCurrentFolder] = useState<string | null>(null);
+
+  // Extract unique folder names from history for the dropdown
+  const existingFolders = useMemo(() => {
+    const folders = history.map(item => item.class_folder).filter(Boolean) as string[];
+    return Array.from(new Set(folders));
+  }, [history]);
 
   const authFetch = useCallback(
     async (url: string, options: RequestInit = {}) => {
@@ -170,7 +180,7 @@ export default function Dashboard({ token, username, onLogout }: DashboardProps)
     };
 
   const canSubmit =
-    !!emptyExam && !!solvedExam && rubric.trim().length > 0 && !loading;
+    !!emptyExam && !!solvedExam && rubric.trim().length > 0 && classFolder.trim().length > 0 && studentId.trim().length > 0 && !loading;
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -186,8 +196,8 @@ export default function Dashboard({ token, username, onLogout }: DashboardProps)
     formData.append("rubric", rubric);
     formData.append("exam_name", examName);
 
-    formData.append("class_folder", "Test_Class");
-    formData.append("student_id", "999");
+    formData.append("class_folder", classFolder.trim());
+    formData.append("student_id", studentId.trim());
 
     try {
       const res = await fetch(`${BACKEND_URL}/api/grade`, {
@@ -219,6 +229,9 @@ export default function Dashboard({ token, username, onLogout }: DashboardProps)
           exam_name: data.exam_name ?? examName,
           final_score: data.final_score,
           max_score: data.max_score,
+          class_folder:classFolder,
+          student_id:studentId,
+          file_path: data.file_path,
         },
         ...prev,
       ]);
@@ -283,6 +296,34 @@ export default function Dashboard({ token, username, onLogout }: DashboardProps)
                 value={examName}
                 onChange={(e) => setExamName(e.target.value)}
                 placeholder="לדוגמה: מבחן מתמטיקה - כיתה ח"
+              />
+            </label>
+
+            <label className="rubric-field">
+              <span className="rubric-label">שיוך לכיתה / תיקייה</span>
+              <input
+                className="rubric-textarea"
+                value={classFolder}
+                onChange={(e) => setClassFolder(e.target.value)}
+                placeholder="בחרי תיקייה קיימת או הקלידי שם חדש..."
+                list="folder-options"
+                style={{ height: "40px" }}
+              />
+              <datalist id="folder-options">
+                {existingFolders.map((folder) => (
+                  <option key={folder} value={folder} />
+                ))}
+              </datalist>
+            </label>
+
+            <label className="rubric-field">
+              <span className="rubric-label">ת"ז / מזהה תלמיד</span>
+              <input
+                className="rubric-textarea"
+                value={studentId}
+                onChange={(e) => setStudentId(e.target.value)}
+                placeholder="לדוגמה: 315589..."
+                style={{ height: "40px" }}
               />
             </label>
 
@@ -400,8 +441,12 @@ export default function Dashboard({ token, username, onLogout }: DashboardProps)
           </div>
           
           <div className="panel comments-panel">
-            <h2>התיקיות שלי</h2>
-            <p className="panel-subtitle">ניהול מבחנים ומעקב ציונים לפי כיתה</p>
+            <h2>{currentFolder ? currentFolder : "התיקיות שלי"}</h2>
+            <p className="panel-subtitle">
+              {currentFolder 
+                ? "מבחנים ששייכים לתיקייה זו" 
+                : "ניהול מבחנים ומעקב ציונים לפי כיתה"}
+            </p>
 
             <div className="comments-list">
               {history.length === 0 ? (
