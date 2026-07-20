@@ -1,6 +1,4 @@
-# backend/api/auth.py
-
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
@@ -20,35 +18,31 @@ class TokenResponse(BaseModel):
     access_token: str
     token_type: str
     username: str
-    is_new_user: bool
+    role: str
 
 
 @router.post("/signin", response_model=TokenResponse)
-async def sign_in_or_register(
+async def sign_in(
     payload: SignInRequest,
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db),
 ):
     username = payload.username.strip().lower()
-    password = payload.password
 
-    stmt = select(models.User).where(models.User.username == username)
-    result = await db.execute(stmt)
+    result = await db.execute(select(models.User).where(models.User.username == username))
     user = result.scalar_one_or_none()
 
-    is_new_user = False
-
     if not user:
-        user = models.User(username=username, password=password)
-        db.add(user)
-        is_new_user = True
-    else:
-        user.password = password
+        raise HTTPException(
+            status_code=404,
+            detail="משתמש לא קיים במערכת. יש לפנות למנהל המערכת.",
+        )
 
-    await db.commit()
+    if user.password != payload.password:
+        raise HTTPException(status_code=401, detail="סיסמה שגויה")
 
     return {
         "access_token": user.username,
         "token_type": "bearer",
         "username": user.username,
-        "is_new_user": is_new_user
+        "role": user.role,
     }

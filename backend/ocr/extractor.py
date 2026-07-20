@@ -122,6 +122,13 @@ def _ocr_pdf_to_markdown(pdf_bytes: bytes, label: str) -> str:
     raise RuntimeError(f"Failed to OCR {label} exam: {last_error}")
 
 
+def ocr_single_pdf(pdf_bytes: bytes, label: str) -> str:
+    """OCR a single PDF and return concatenated page markdown."""
+    if client is None:
+        raise RuntimeError("MISTRAL_API_KEY is not set")
+    return _ocr_pdf_to_markdown(pdf_bytes, label)
+
+
 def extract_exam_transcripts(empty_exam: bytes, solved_exam: bytes) -> Dict[str, str]:
     """
     OCR the empty and solved PDFs via Mistral Document AI.

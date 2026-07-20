@@ -2,35 +2,39 @@
 
 import { useState } from "react";
 import logo from "../assets/logo.png";
-// 
+
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
 
 interface LoginProps {
-  onLoginSuccess: (token: string, username: string) => void;
+  onLoginSuccess: (token: string, username: string, role: string) => void;
 }
 
 export default function Login({ onLoginSuccess }: LoginProps) {
   const [loginUser, setLoginUser] = useState("");
   const [loginPass, setLoginPass] = useState("");
   const [authError, setAuthError] = useState<string | null>(null);
+  const [authErrorType, setAuthErrorType] = useState<"not-found" | "general" | null>(null);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthError(null);
+    setAuthErrorType(null);
     try {
       const res = await fetch(`${BACKEND_URL}/api/auth/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: loginUser, password: loginPass })
+        body: JSON.stringify({ username: loginUser, password: loginPass }),
       });
-      
-      if (!res.ok) throw new Error("פרטי התחברות שגויים");
-      
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        const isNotFound = res.status === 404;
+        setAuthErrorType(isNotFound ? "not-found" : "general");
+        throw new Error(body.detail || "פרטי התחברות שגויים");
+      }
+
       const data = await res.json();
-      localStorage.setItem("access_token", data.access_token);
-      localStorage.setItem("username", data.username);
-      
-      onLoginSuccess(data.access_token, data.username);
+      onLoginSuccess(data.access_token, data.username, data.role);
     } catch (err: any) {
       setAuthError(err.message);
     }
@@ -43,24 +47,31 @@ export default function Login({ onLoginSuccess }: LoginProps) {
       <div className="login-box">
         <img src={logo} alt="לוגו AutoGrade" className="brand-logo" />
         <h2>התחברות למערכת</h2>
-        <p>הקלידי שם משתמש וסיסמה כדי להתחבר או ליצור סביבה חדשה</p>
+        <p>הקלד/י שם משתמש וסיסמה כדי להתחבר</p>
         <form onSubmit={handleLogin}>
-          <input 
-            type="text" 
-            placeholder="שם משתמש" 
-            value={loginUser} 
-            onChange={e => setLoginUser(e.target.value)} 
-            required 
+          <input
+            type="text"
+            placeholder="שם משתמש"
+            value={loginUser}
+            onChange={(e) => setLoginUser(e.target.value)}
+            required
           />
-          <input 
-            type="password" 
-            placeholder="סיסמה" 
-            value={loginPass} 
-            onChange={e => setLoginPass(e.target.value)} 
-            required 
+          <input
+            type="password"
+            placeholder="סיסמה"
+            value={loginPass}
+            onChange={(e) => setLoginPass(e.target.value)}
+            required
           />
-          {authError && <div className="error-banner">{authError}</div>}
-          <button type="submit" className="main-button">כניסה למערכת</button>
+          {authError && (
+            <div className={`error-banner${authErrorType === "not-found" ? " error-banner--not-found" : ""}`}>
+              {authErrorType === "not-found" && <span className="error-icon">👤</span>}
+              {authError}
+            </div>
+          )}
+          <button type="submit" className="main-button">
+            כניסה למערכת
+          </button>
         </form>
       </div>
     </div>

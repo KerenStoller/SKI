@@ -1,41 +1,53 @@
 import { useState } from "react";
 import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
+import AdminDashboard from "./components/AdminDashboard";
+import TeacherDashboard from "./components/TeacherDashboard";
 import "./App.css";
 
 function App() {
-  // Initialize state with values from localStorage if they exist
   const [token, setToken] = useState<string | null>(localStorage.getItem("access_token"));
   const [username, setUsername] = useState<string | null>(localStorage.getItem("username"));
+  const [role, setRole] = useState<string | null>(localStorage.getItem("role"));
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("username");
+    localStorage.removeItem("role");
     setToken(null);
     setUsername(null);
+    setRole(null);
   };
 
   if (!token) {
     return (
-      <Login 
-        onLoginSuccess={(newToken: string, newUsername: string) => {
-          // Save to local storage so the session persists on refresh
+      <Login
+        onLoginSuccess={(newToken, newUsername, newRole) => {
           localStorage.setItem("access_token", newToken);
           localStorage.setItem("username", newUsername);
-          
-          // Update the React state
+          localStorage.setItem("role", newRole);
           setToken(newToken);
           setUsername(newUsername);
-        }} 
+          setRole(newRole);
+        }}
+      />
+    );
+  }
+
+  if (role === "admin") {
+    return (
+      <AdminDashboard
+        token={token}
+        username={username ?? ""}
+        onLogout={handleLogout}
       />
     );
   }
 
   return (
-    <Dashboard 
-      token={token} 
-      username={username ?? ""} 
-      onLogout={handleLogout} 
+    <TeacherDashboard
+      token={token}
+      username={username ?? ""}
+      onLogout={handleLogout}
     />
   );
 }

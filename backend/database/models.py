@@ -1,33 +1,51 @@
-# models.py
-from sqlalchemy import String
+from datetime import datetime
+from sqlalchemy import String, Integer, Float, ForeignKey, DateTime
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String, Column,ForeignKey,Float # (plus whatever else is already there)
 from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.sql import func
+
 
 class Base(DeclarativeBase):
     pass
+
 
 class User(Base):
     __tablename__ = "users"
 
     username: Mapped[str] = mapped_column(String, primary_key=True, index=True)
-    password: Mapped[str] = mapped_column(String, nullable=False)    
-    
-class GradingJob(Base):
-    __tablename__ = "grading_jobs"
+    password: Mapped[str] = mapped_column(String, nullable=False)
+    role: Mapped[str] = mapped_column(String, nullable=False, server_default="teacher")
+
+
+class Space(Base):
+    __tablename__ = "spaces"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    username: Mapped[str] = mapped_column(String, ForeignKey("users.username"), index=True)
-    
-    # --- NEW FIELDS FOR WORKSPACE ---
-    class_folder: Mapped[str] = mapped_column(String, index=True, nullable=False, server_default="General")
-    student_id: Mapped[str] = mapped_column(String, index=True, nullable=False)
-    file_path: Mapped[str] = mapped_column(String, nullable=True) # Where it lives on disk
-    # --------------------------------
-    
-    exam_name: Mapped[str] = mapped_column(String, nullable=False)
+    teacher_username: Mapped[str] = mapped_column(String, ForeignKey("users.username"), unique=True, index=True)
+    name: Mapped[str] = mapped_column(String, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+
+class Project(Base):
+    __tablename__ = "projects"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    space_id: Mapped[int] = mapped_column(Integer, ForeignKey("spaces.id"), index=True)
+    name: Mapped[str] = mapped_column(String, nullable=False)
+    empty_exam_path: Mapped[str] = mapped_column(String, nullable=True)
+    rubric: Mapped[str] = mapped_column(String, nullable=False)
+    questions_markdown: Mapped[str] = mapped_column(String, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+
+class GradingRun(Base):
+    __tablename__ = "grading_runs"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    project_id: Mapped[int] = mapped_column(Integer, ForeignKey("projects.id"), index=True)
+    student_number: Mapped[str] = mapped_column(String, nullable=False)
+    file_path: Mapped[str] = mapped_column(String, nullable=True)
     final_score: Mapped[float] = mapped_column(Float, nullable=False)
     max_score: Mapped[float] = mapped_column(Float, nullable=False)
-    
-    # Store the entire complex JSON tree (rationale, deductions, transcripts) right here!
     payload: Mapped[dict] = mapped_column(JSONB, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
